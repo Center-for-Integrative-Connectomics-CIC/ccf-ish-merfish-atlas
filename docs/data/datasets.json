@@ -1,0 +1,90 @@
+{
+ "ish": {
+  "label": "Blue Brain ISH gene atlas (Carey, Piluso et al. 2026)",
+  "genes": 4085,
+  "space": "CCFv3BBP 25 \u00b5m",
+  "url_template": "https://rgw.cscs.ch/ebrains:deepslice/expression_volumes/{gene}_interp_25um.nii.gz"
+ },
+ "merfish": [
+  {
+   "key": "yao638850",
+   "short": "Allen 638850",
+   "label": "Allen MERFISH, C57BL/6J 638850 (Yao et al. 2023)",
+   "dataset": "MERFISH-C57BL6J-638850",
+   "reference": "Yao Z. et al. Nature 624, 317-332 (2023)",
+   "cells": 3739961,
+   "genes": 550,
+   "sections": 53,
+   "label_agreement": {
+    "exact": 0.8381852492022852,
+    "depth5": 0.9673336871744095,
+    "cells_with_ccf_label": 3670170,
+    "cells_with_bbp_label": 3661833
+   }
+  },
+  {
+   "key": "zhuang1",
+   "short": "Zhuang 1",
+   "label": "Zhuang lab MERFISH, ABCA-1 (Zhang et al. 2023)",
+   "dataset": "Zhuang-ABCA-1",
+   "reference": "Zhang M. et al. Nature 624, 343-354 (2023)",
+   "cells": 2616328,
+   "genes": 1122,
+   "sections": 129,
+   "label_agreement": {
+    "exact": 0.8286112152116544,
+    "depth5": 0.9544392061312152,
+    "cells_with_ccf_label": 2563364,
+    "cells_with_bbp_label": 2562401
+   }
+  },
+  {
+   "key": "zhuang2",
+   "short": "Zhuang 2",
+   "label": "Zhuang lab MERFISH, ABCA-2 (Zhang et al. 2023)",
+   "dataset": "Zhuang-ABCA-2",
+   "reference": "Zhang M. et al. Nature 624, 343-354 (2023)",
+   "cells": 1056520,
+   "genes": 1122,
+   "sections": 54,
+   "label_agreement": {
+    "exact": 0.8548875880897435,
+    "depth5": 0.9567209785833174,
+    "cells_with_ccf_label": 1035684,
+    "cells_with_bbp_label": 1035557
+   }
+  },
+  {
+   "key": "zhuang3",
+   "short": "Zhuang 3",
+   "label": "Zhuang lab MERFISH, ABCA-3 (Zhang et al. 2023)",
+   "dataset": "Zhuang-ABCA-3",
+   "reference": "Zhang M. et al. Nature 624, 343-354 (2023)",
+   "cells": 1566842,
+   "genes": 1122,
+   "sections": 22,
+   "label_agreement": {
+    "exact": 0.7385785733939757,
+    "depth5": 0.9583730152307269,
+    "cells_with_ccf_label": 1547966,
+    "cells_with_bbp_label": 1547940
+   }
+  },
+  {
+   "key": "zhuang4",
+   "short": "Zhuang 4",
+   "label": "Zhuang lab MERFISH, ABCA-4 (Zhang et al. 2023)",
+   "dataset": "Zhuang-ABCA-4",
+   "reference": "Zhang M. et al. Nature 624, 343-354 (2023)",
+   "cells": 162361,
+   "genes": 1122,
+   "sections": 3,
+   "label_agreement": {
+    "exact": 0.6392694928084784,
+    "depth5": 0.9622949785516023,
+    "cells_with_ccf_label": 158918,
+    "cells_with_bbp_label": 159054
+   }
+  }
+ ]
+}

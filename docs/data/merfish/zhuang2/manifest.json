@@ -1,0 +1,8957 @@
+{
+ "key": "zhuang2",
+ "dataset": "Zhuang-ABCA-2",
+ "label": "Zhuang lab MERFISH, ABCA-2 (Zhang et al. 2023)",
+ "reference": "Zhang M. et al. Nature 624, 343-354 (2023)",
+ "source": {
+  "expr": "https://allen-brain-cell-atlas.s3.us-west-2.amazonaws.com/expression_matrices/Zhuang-ABCA-2/20230830/Zhuang-ABCA-2-log2.h5ad",
+  "meta": "https://allen-brain-cell-atlas.s3.us-west-2.amazonaws.com/metadata/Zhuang-ABCA-2/20241115/views/cell_metadata_with_cluster_annotation.csv",
+  "genes": "https://allen-brain-cell-atlas.s3.us-west-2.amazonaws.com/metadata/Zhuang-ABCA-2/20241115/gene.csv",
+  "ccf": "https://allen-brain-cell-atlas.s3.us-west-2.amazonaws.com/metadata/Zhuang-ABCA-2-CCF/20230830/ccf_coordinates.csv"
+ },
+ "cells": 1056520,
+ "cells_in_source": 1056520,
+ "dropped_outside_grid": 0,
+ "dropped_unknown_cluster": 0,
+ "sections": [
+  "Zhuang-ABCA-2.004",
+  "Zhuang-ABCA-2.005",
+  "Zhuang-ABCA-2.006",
+  "Zhuang-ABCA-2.007",
+  "Zhuang-ABCA-2.008",
+  "Zhuang-ABCA-2.009",
+  "Zhuang-ABCA-2.010",
+  "Zhuang-ABCA-2.011",
+  "Zhuang-ABCA-2.012",
+  "Zhuang-ABCA-2.013",
+  "Zhuang-ABCA-2.014",
+  "Zhuang-ABCA-2.015",
+  "Zhuang-ABCA-2.016",
+  "Zhuang-ABCA-2.017",
+  "Zhuang-ABCA-2.018",
+  "Zhuang-ABCA-2.019",
+  "Zhuang-ABCA-2.020",
+  "Zhuang-ABCA-2.021",
+  "Zhuang-ABCA-2.022",
+  "Zhuang-ABCA-2.023",
+  "Zhuang-ABCA-2.025",
+  "Zhuang-ABCA-2.026",
+  "Zhuang-ABCA-2.027",
+  "Zhuang-ABCA-2.028",
+  "Zhuang-ABCA-2.030",
+  "Zhuang-ABCA-2.031",
+  "Zhuang-ABCA-2.032",
+  "Zhuang-ABCA-2.033",
+  "Zhuang-ABCA-2.034",
+  "Zhuang-ABCA-2.035",
+  "Zhuang-ABCA-2.036",
+  "Zhuang-ABCA-2.037",
+  "Zhuang-ABCA-2.039",
+  "Zhuang-ABCA-2.040",
+  "Zhuang-ABCA-2.041",
+  "Zhuang-ABCA-2.042",
+  "Zhuang-ABCA-2.044",
+  "Zhuang-ABCA-2.045",
+  "Zhuang-ABCA-2.046",
+  "Zhuang-ABCA-2.047",
+  "Zhuang-ABCA-2.048",
+  "Zhuang-ABCA-2.049",
+  "Zhuang-ABCA-2.050",
+  "Zhuang-ABCA-2.051",
+  "Zhuang-ABCA-2.052",
+  "Zhuang-ABCA-2.053",
+  "Zhuang-ABCA-2.054",
+  "Zhuang-ABCA-2.055",
+  "Zhuang-ABCA-2.056",
+  "Zhuang-ABCA-2.057",
+  "Zhuang-ABCA-2.058",
+  "Zhuang-ABCA-2.059",
+  "Zhuang-ABCA-2.060",
+  "Zhuang-ABCA-2.061"
+ ],
+ "quality_field": "cluster_confidence_score",
+ "region_label_agreement": {
+  "exact": 0.8548875880897435,
+  "depth5": 0.9567209785833174,
+  "cells_with_ccf_label": 1035684,
+  "cells_with_bbp_label": 1035557
+ },
+ "position": "CCFv3BBP \u00b5m (AP, DV, LR) = (x*1000 + 350, y*1000, z*1000) from ABC CCFv3 coordinates",
+ "files": {
+  "pos": {
+   "file": "pos.u16.gz",
+   "dtype": "uint16",
+   "shape": [
+    1056520,
+    3
+   ],
+   "bytes_gz": 4453864
+  },
+  "cluster": {
+   "file": "cluster.u16.gz",
+   "dtype": "uint16",
+   "shape": [
+    1056520
+   ],
+   "bytes_gz": 1056788
+  },
+  "region_ccf": {
+   "file": "region_ccf.u16.gz",
+   "dtype": "uint16",
+   "shape": [
+    1056520
+   ],
+   "bytes_gz": 830949
+  },
+  "region_bbp": {
+   "file": "region_bbp.u16.gz",
+   "dtype": "uint16",
+   "shape": [
+    1056520
+   ],
+   "bytes_gz": 837806
+  },
+  "section": {
+   "file": "section.u16.gz",
+   "dtype": "uint16",
+   "shape": [
+    1056520
+   ],
+   "bytes_gz": 146267
+  },
+  "quality": {
+   "file": "quality.u8.gz",
+   "dtype": "uint8",
+   "shape": [
+    1056520
+   ],
+   "bytes_gz": 891190
+  },
+  "high_quality": {
+   "file": "high_quality.u8.gz",
+   "dtype": "uint8",
+   "shape": [
+    1056520
+   ],
+   "bytes_gz": 1059
+  },
+  "region_cluster_ccf": {
+   "region": {
+    "file": "region_cluster_ccf.region.u16.gz",
+    "dtype": "uint16",
+    "shape": [
+     110586
+    ],
+    "bytes_gz": 2274
+   },
+   "cluster": {
+    "file": "region_cluster_ccf.cluster.u16.gz",
+    "dtype": "uint16",
+    "shape": [
+     110586
+    ],
+    "bytes_gz": 74243
+   },
+   "count": {
+    "file": "region_cluster_ccf.count.u32.gz",
+    "dtype": "uint32",
+    "shape": [
+     110586
+    ],
+    "bytes_gz": 96630
+   }
+  },
+  "region_cluster_bbp": {
+   "region": {
+    "file": "region_cluster_bbp.region.u16.gz",
+    "dtype": "uint16",
+    "shape": [
+     111844
+    ],
+    "bytes_gz": 2334
+   },
+   "cluster": {
+    "file": "region_cluster_bbp.cluster.u16.gz",
+    "dtype": "uint16",
+    "shape": [
+     111844
+    ],
+    "bytes_gz": 74968
+   },
+   "count": {
+    "file": "region_cluster_bbp.count.u32.gz",
+    "dtype": "uint32",
+    "shape": [
+     111844
+    ],
+    "bytes_gz": 97875
+   }
+  },
+  "region_gene_mean": {
+   "file": "region_gene_mean.f16.gz",
+   "dtype": "float16",
+   "shape": [
+    888,
+    1122
+   ],
+   "bytes_gz": 1612859
+  },
+  "region_gene_frac": {
+   "file": "region_gene_frac.f16.gz",
+   "dtype": "float16",
+   "shape": [
+    888,
+    1122
+   ],
+   "bytes_gz": 1374427
+  }
+ },
+ "cells_without_expression": 0,
+ "region_cells": [
+  0,
+  1035684,
+  909210,
+  621460,
+  499531,
+  484437,
+  252932,
+  2114,
+  71,
+  704,
+  967,
+  357,
+  15,
+  48204,
+  21194,
+  1869,
+  7896,
+  5605,
+  5422,
+  402,
+  27010,
+  4354,
+  9125,
+  7960,
+  5396,
+  175,
+  67277,
+  50609,
+  7400,
+  713,
+  1475,
+  1705,
+  1079,
+  2253,
+  175,
+  11901,
+  1157,
+  2991,
+  3102,
+  1985,
+  2418,
+  248,
+  5964,
+  490,
+  1779,
+  801,
+  1274,
+  1484,
+  136,
+  11698,
+  932,
+  2814,
+  2555,
+  2017,
+  3133,
+  247,
+  8058,
+  653,
+  2056,
+  1377,
+  1530,
+  2261,
+  181,
+  2606,
+  258,
+  983,
+  324,
+  595,
+  398,
+  48,
+  2982,
+  267,
+  790,
+  610,
+  503,
+  744,
+  68,
+  16668,
+  1722,
+  4552,
+  2302,
+  3524,
+  4181,
+  387,
+  2583,
+  284,
+  728,
+  261,
+  678,
+  573,
+  59,
+  3706,
+  465,
+  995,
+  329,
+  986,
+  851,
+  80,
+  8945,
+  1882,
+  184,
+  588,
+  207,
+  448,
+  382,
+  73,
+  3790,
+  520,
+  1052,
+  426,
+  1133,
+  556,
+  103,
+  1066,
+  137,
+  347,
+  124,
+  271,
+  146,
+  41,
+  2207,
+  273,
+  593,
+  275,
+  637,
+  373,
+  56,
+  27359,
+  1405,
+  115,
+  431,
+  231,
+  350,
+  248,
+  30,
+  1603,
+  185,
+  551,
+  177,
+  368,
+  269,
+  53,
+  2401,
+  223,
+  651,
+  410,
+  589,
+  449,
+  79,
+  15410,
+  1898,
+  4749,
+  2736,
+  3085,
+  2567,
+  375,
+  1592,
+  403,
+  463,
+  65,
+  408,
+  248,
+  5,
+  1900,
+  252,
+  610,
+  231,
+  453,
+  298,
+  56,
+  928,
+  92,
+  292,
+  109,
+  277,
+  134,
+  24,
+  2120,
+  259,
+  658,
+  137,
+  616,
+  377,
+  73,
+  14582,
+  7784,
+  2668,
+  1592,
+  1928,
+  1543,
+  53,
+  6798,
+  2047,
+  1872,
+  1848,
+  897,
+  134,
+  4911,
+  1028,
+  968,
+  1685,
+  1188,
+  42,
+  2141,
+  240,
+  489,
+  708,
+  677,
+  27,
+  15260,
+  7779,
+  840,
+  1671,
+  3428,
+  1693,
+  147,
+  3095,
+  716,
+  521,
+  1031,
+  814,
+  13,
+  4386,
+  513,
+  1158,
+  1724,
+  918,
+  73,
+  12511,
+  6551,
+  614,
+  1646,
+  2542,
+  1666,
+  83,
+  3108,
+  460,
+  1153,
+  892,
+  579,
+  24,
+  2852,
+  367,
+  802,
+  1406,
+  269,
+  8,
+  32407,
+  4206,
+  682,
+  1422,
+  1266,
+  763,
+  73,
+  8137,
+  1623,
+  2330,
+  2559,
+  1539,
+  86,
+  20064,
+  6024,
+  7526,
+  4654,
+  1756,
+  104,
+  3576,
+  1699,
+  231,
+  602,
+  189,
+  307,
+  301,
+  69,
+  1877,
+  235,
+  594,
+  330,
+  385,
+  283,
+  50,
+  4289,
+  524,
+  1128,
+  535,
+  1250,
+  709,
+  143,
+  994,
+  198,
+  456,
+  232,
+  77,
+  31,
+  2073,
+  273,
+  676,
+  543,
+  486,
+  95,
+  136071,
+  78187,
+  0,
+  30405,
+  4221,
+  3483,
+  18945,
+  3827,
+  752,
+  1455,
+  1620,
+  16620,
+  2029,
+  1236,
+  793,
+  1127,
+  18095,
+  790,
+  192,
+  411,
+  187,
+  3828,
+  1123,
+  2705,
+  1126,
+  1579,
+  1252,
+  1687,
+  95434,
+  53661,
+  31318,
+  18383,
+  3376,
+  6926,
+  3381,
+  4700,
+  680,
+  126,
+  277,
+  122,
+  155,
+  12255,
+  632,
+  1330,
+  5244,
+  3164,
+  1885,
+  21710,
+  7867,
+  3180,
+  10663,
+  236,
+  397,
+  40824,
+  20032,
+  10496,
+  1098,
+  2504,
+  2123,
+  2531,
+  2240,
+  9536,
+  1337,
+  2089,
+  2379,
+  2123,
+  1608,
+  2168,
+  3023,
+  4475,
+  6623,
+  2929,
+  816,
+  758,
+  15094,
+  927,
+  5351,
+  3467,
+  1884,
+  1453,
+  2579,
+  1383,
+  961,
+  235,
+  2202,
+  1360,
+  842,
+  1743,
+  121929,
+  99790,
+  60491,
+  60491,
+  18380,
+  10384,
+  856,
+  7140,
+  7020,
+  5634,
+  839,
+  3505,
+  1290,
+  1321,
+  65,
+  7561,
+  1034,
+  34,
+  2886,
+  732,
+  524,
+  1630,
+  357,
+  3250,
+  22139,
+  5652,
+  4628,
+  1024,
+  5685,
+  5163,
+  522,
+  5278,
+  3579,
+  2049,
+  1530,
+  1699,
+  2642,
+  2599,
+  43,
+  237133,
+  76726,
+  38915,
+  11233,
+  7631,
+  1393,
+  1718,
+  4232,
+  1417,
+  184,
+  2234,
+  397,
+  288,
+  122,
+  75,
+  47,
+  357,
+  209,
+  2914,
+  1344,
+  379,
+  548,
+  417,
+  1570,
+  493,
+  838,
+  239,
+  25764,
+  3337,
+  1432,
+  1186,
+  267,
+  242,
+  210,
+  4404,
+  931,
+  847,
+  462,
+  385,
+  618,
+  81,
+  207,
+  1720,
+  3170,
+  372,
+  2112,
+  439,
+  247,
+  3853,
+  1935,
+  571,
+  1066,
+  281,
+  3043,
+  231,
+  630,
+  397,
+  394,
+  982,
+  409,
+  3973,
+  1676,
+  255,
+  55,
+  1271,
+  95,
+  2308,
+  1427,
+  881,
+  37811,
+  3212,
+  92,
+  7,
+  1057,
+  505,
+  678,
+  873,
+  6212,
+  202,
+  240,
+  944,
+  945,
+  139,
+  1102,
+  65,
+  41,
+  137,
+  115,
+  754,
+  658,
+  684,
+  81,
+  26,
+  79,
+  9591,
+  2308,
+  3061,
+  110,
+  2039,
+  433,
+  662,
+  411,
+  194,
+  339,
+  678,
+  234,
+  90,
+  144,
+  1016,
+  39,
+  246,
+  277,
+  1225,
+  1419,
+  12269,
+  4502,
+  1139,
+  0,
+  352,
+  602,
+  384,
+  361,
+  1140,
+  3789,
+  271,
+  134,
+  91001,
+  23033,
+  7412,
+  2259,
+  3667,
+  1486,
+  15103,
+  4013,
+  4997,
+  6093,
+  156,
+  190,
+  117,
+  55,
+  47269,
+  3932,
+  961,
+  39,
+  307,
+  9016,
+  13614,
+  2831,
+  912,
+  4730,
+  5141,
+  12448,
+  234,
+  125,
+  241,
+  93,
+  3591,
+  1976,
+  85,
+  407,
+  735,
+  57,
+  263,
+  68,
+  1429,
+  1392,
+  96,
+  52,
+  63,
+  27,
+  19,
+  101,
+  58,
+  0,
+  29,
+  95,
+  5005,
+  368,
+  1789,
+  2848,
+  360,
+  1394,
+  295,
+  302,
+  192,
+  115,
+  97,
+  130,
+  119,
+  61,
+  211,
+  296,
+  587,
+  69406,
+  42492,
+  10059,
+  1687,
+  3186,
+  3053,
+  576,
+  2133,
+  893,
+  538,
+  702,
+  14811,
+  25,
+  405,
+  98,
+  1479,
+  3170,
+  5369,
+  65,
+  549,
+  1859,
+  743,
+  715,
+  34,
+  203,
+  97,
+  8094,
+  1811,
+  22,
+  510,
+  495,
+  4470,
+  579,
+  64,
+  143,
+  26914,
+  6565,
+  0,
+  4737,
+  1240,
+  3497,
+  0,
+  0,
+  0,
+  0,
+  485,
+  28,
+  0,
+  0,
+  1315,
+  0,
+  15279,
+  49,
+  1810,
+  10,
+  0,
+  0,
+  0,
+  0,
+  2943,
+  8,
+  0,
+  1994,
+  14,
+  0,
+  0,
+  0,
+  0,
+  700,
+  0,
+  0,
+  0,
+  2112,
+  0,
+  566,
+  334,
+  232,
+  289,
+  0,
+  289,
+  250,
+  4504,
+  574,
+  2992,
+  201,
+  737,
+  0,
+  0,
+  30,
+  672,
+  538,
+  134,
+  0,
+  50617,
+  47595,
+  24608,
+  468,
+  0,
+  0,
+  14171,
+  4413,
+  0,
+  0,
+  9758,
+  0,
+  0,
+  9969,
+  9969,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  22987,
+  11034,
+  0,
+  0,
+  6655,
+  6497,
+  0,
+  0,
+  158,
+  0,
+  0,
+  19,
+  0,
+  0,
+  161,
+  0,
+  0,
+  1985,
+  0,
+  0,
+  3133,
+  0,
+  0,
+  1458,
+  55,
+  536,
+  765,
+  102,
+  103327,
+  26431,
+  75,
+  15968,
+  9585,
+  3485,
+  2581,
+  904,
+  2898,
+  1989,
+  483,
+  69,
+  301,
+  1086,
+  538,
+  350,
+  182,
+  14,
+  2007,
+  55,
+  1952,
+  1501,
+  216,
+  73,
+  4124,
+  518,
+  3606,
+  1040,
+  31,
+  1757,
+  264,
+  514,
+  0,
+  0,
+  1500,
+  1500,
+  0,
+  0,
+  1500,
+  12898,
+  23,
+  4300,
+  1699,
+  156,
+  173,
+  286,
+  2003,
+  598,
+  0,
+  8575,
+  4618,
+  36104,
+  26295,
+  5248,
+  2165,
+  115,
+  1825,
+  4771,
+  11485,
+  2851,
+  9111,
+  5339,
+  2580,
+  961,
+  0,
+  698,
+  274,
+  188,
+  236,
+  1993,
+  238,
+  238,
+  885,
+  22,
+  863,
+  870,
+  129,
+  18473,
+  16664,
+  228,
+  267,
+  3024,
+  12460,
+  3593,
+  326,
+  4387,
+  754,
+  37,
+  717,
+  3400,
+  3045,
+  355,
+  685,
+  90,
+  1809,
+  90,
+  30,
+  457,
+  54,
+  215,
+  142,
+  46,
+  1232,
+  813,
+  317,
+  102,
+  15036,
+  7495,
+  401,
+  2591,
+  4196,
+  1429,
+  1916,
+  213,
+  0
+ ],
+ "genes": [
+  {
+   "symbol": "Htr7",
+   "ensembl": "ENSMUSG00000024798",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 197774,
+   "detected_frac": 0.09472134933555446
+  },
+  {
+   "symbol": "Gzmk",
+   "ensembl": "ENSMUSG00000042385",
+   "vmax": 3.8940091133117676,
+   "bytes_gz": 24945,
+   "detected_frac": 0.006736266232537008
+  },
+  {
+   "symbol": "Arhgap36",
+   "ensembl": "ENSMUSG00000036198",
+   "vmax": 5.280461311340332,
+   "bytes_gz": 79017,
+   "detected_frac": 0.027859387422859955
+  },
+  {
+   "symbol": "Sema3c",
+   "ensembl": "ENSMUSG00000028780",
+   "vmax": 6.02236795425415,
+   "bytes_gz": 285300,
+   "detected_frac": 0.14005224699958355
+  },
+  {
+   "symbol": "Rxrg",
+   "ensembl": "ENSMUSG00000015843",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 204406,
+   "detected_frac": 0.09888785825161853
+  },
+  {
+   "symbol": "Itga8",
+   "ensembl": "ENSMUSG00000026768",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 112342,
+   "detected_frac": 0.045691515541589366
+  },
+  {
+   "symbol": "Glp2r",
+   "ensembl": "ENSMUSG00000049928",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 65140,
+   "detected_frac": 0.0224226706546019
+  },
+  {
+   "symbol": "Ramp3",
+   "ensembl": "ENSMUSG00000041046",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 142943,
+   "detected_frac": 0.060947260818536325
+  },
+  {
+   "symbol": "Car12",
+   "ensembl": "ENSMUSG00000032373",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 173524,
+   "detected_frac": 0.07982338242532086
+  },
+  {
+   "symbol": "Chn2",
+   "ensembl": "ENSMUSG00000004633",
+   "vmax": 6.0699992179870605,
+   "bytes_gz": 405943,
+   "detected_frac": 0.23629368114186197
+  },
+  {
+   "symbol": "Endou",
+   "ensembl": "ENSMUSG00000022468",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 61956,
+   "detected_frac": 0.02080320296823534
+  },
+  {
+   "symbol": "Cnih3",
+   "ensembl": "ENSMUSG00000026514",
+   "vmax": 4.991626739501953,
+   "bytes_gz": 353384,
+   "detected_frac": 0.19495040321054027
+  },
+  {
+   "symbol": "Esyt3",
+   "ensembl": "ENSMUSG00000037681",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 69770,
+   "detected_frac": 0.024722674440616363
+  },
+  {
+   "symbol": "Sox6",
+   "ensembl": "ENSMUSG00000051910",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 265961,
+   "detected_frac": 0.130880626963995
+  },
+  {
+   "symbol": "Kit",
+   "ensembl": "ENSMUSG00000005672",
+   "vmax": 6.196681976318359,
+   "bytes_gz": 236724,
+   "detected_frac": 0.1119382501041154
+  },
+  {
+   "symbol": "Colgalt2",
+   "ensembl": "ENSMUSG00000032649",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 116964,
+   "detected_frac": 0.04546624768106614
+  },
+  {
+   "symbol": "Synpo2",
+   "ensembl": "ENSMUSG00000050315",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 112035,
+   "detected_frac": 0.04384110097300572
+  },
+  {
+   "symbol": "Ntsr1",
+   "ensembl": "ENSMUSG00000027568",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 98418,
+   "detected_frac": 0.03813368417067353
+  },
+  {
+   "symbol": "Nxph3",
+   "ensembl": "ENSMUSG00000046719",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 185613,
+   "detected_frac": 0.08236095861886192
+  },
+  {
+   "symbol": "Brs3",
+   "ensembl": "ENSMUSG00000031130",
+   "vmax": 3.726318597793579,
+   "bytes_gz": 35911,
+   "detected_frac": 0.010508083140877597
+  },
+  {
+   "symbol": "Ddc",
+   "ensembl": "ENSMUSG00000020182",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 233570,
+   "detected_frac": 0.11052228069511226
+  },
+  {
+   "symbol": "Fam43a",
+   "ensembl": "ENSMUSG00000046546",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 243617,
+   "detected_frac": 0.11862529814863892
+  },
+  {
+   "symbol": "Htr1f",
+   "ensembl": "ENSMUSG00000050783",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 182840,
+   "detected_frac": 0.08776644076780374
+  },
+  {
+   "symbol": "Slc5a5",
+   "ensembl": "ENSMUSG00000000792",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 105876,
+   "detected_frac": 0.040316321508348164
+  },
+  {
+   "symbol": "Lemd1",
+   "ensembl": "ENSMUSG00000079330",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 67039,
+   "detected_frac": 0.023732631658652935
+  },
+  {
+   "symbol": "Dcdc2a",
+   "ensembl": "ENSMUSG00000035910",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 106670,
+   "detected_frac": 0.04062204217620111
+  },
+  {
+   "symbol": "Serinc2",
+   "ensembl": "ENSMUSG00000023232",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 85746,
+   "detected_frac": 0.0322047855222807
+  },
+  {
+   "symbol": "Lamb3",
+   "ensembl": "ENSMUSG00000026639",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 39159,
+   "detected_frac": 0.011851171771476167
+  },
+  {
+   "symbol": "Ngf",
+   "ensembl": "ENSMUSG00000027859",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 67180,
+   "detected_frac": 0.023615265210313104
+  },
+  {
+   "symbol": "Trh",
+   "ensembl": "ENSMUSG00000005892",
+   "vmax": 6.585286617279053,
+   "bytes_gz": 100068,
+   "detected_frac": 0.03883598985348124
+  },
+  {
+   "symbol": "Chat",
+   "ensembl": "ENSMUSG00000021919",
+   "vmax": 4.412285804748535,
+   "bytes_gz": 55617,
+   "detected_frac": 0.017894597357361906
+  },
+  {
+   "symbol": "Gpr4",
+   "ensembl": "ENSMUSG00000044317",
+   "vmax": 7.453437805175781,
+   "bytes_gz": 147391,
+   "detected_frac": 0.06358043387725741
+  },
+  {
+   "symbol": "Ngb",
+   "ensembl": "ENSMUSG00000021032",
+   "vmax": 5.310982704162598,
+   "bytes_gz": 153929,
+   "detected_frac": 0.06598739257183962
+  },
+  {
+   "symbol": "Upk1b",
+   "ensembl": "ENSMUSG00000049436",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 52450,
+   "detected_frac": 0.016459697876045887
+  },
+  {
+   "symbol": "Ptger3",
+   "ensembl": "ENSMUSG00000040016",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 81897,
+   "detected_frac": 0.029569719456328324
+  },
+  {
+   "symbol": "Stk32b",
+   "ensembl": "ENSMUSG00000029123",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 78055,
+   "detected_frac": 0.02761992200810207
+  },
+  {
+   "symbol": "Gpr101",
+   "ensembl": "ENSMUSG00000036357",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 54869,
+   "detected_frac": 0.017951387574300533
+  },
+  {
+   "symbol": "Ucma",
+   "ensembl": "ENSMUSG00000026668",
+   "vmax": 4.799020290374756,
+   "bytes_gz": 43654,
+   "detected_frac": 0.01346874645061144
+  },
+  {
+   "symbol": "Fndc1",
+   "ensembl": "ENSMUSG00000071984",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 138385,
+   "detected_frac": 0.06025725968273199
+  },
+  {
+   "symbol": "Sox14",
+   "ensembl": "ENSMUSG00000053747",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 53986,
+   "detected_frac": 0.01795801309961004
+  },
+  {
+   "symbol": "St18",
+   "ensembl": "ENSMUSG00000033740",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 270751,
+   "detected_frac": 0.13708022564646197
+  },
+  {
+   "symbol": "Il31ra",
+   "ensembl": "ENSMUSG00000050377",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 65652,
+   "detected_frac": 0.022120736001211526
+  },
+  {
+   "symbol": "Tcerg1l",
+   "ensembl": "ENSMUSG00000091002",
+   "vmax": 4.863348960876465,
+   "bytes_gz": 207047,
+   "detected_frac": 0.09670522091394389
+  },
+  {
+   "symbol": "Aqp6",
+   "ensembl": "ENSMUSG00000043144",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 57101,
+   "detected_frac": 0.019781925566955665
+  },
+  {
+   "symbol": "Prkd1",
+   "ensembl": "ENSMUSG00000002688",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 250523,
+   "detected_frac": 0.12658066103812515
+  },
+  {
+   "symbol": "Rgs12",
+   "ensembl": "ENSMUSG00000029101",
+   "vmax": 5.51005744934082,
+   "bytes_gz": 355870,
+   "detected_frac": 0.19755896717525462
+  },
+  {
+   "symbol": "Samd3",
+   "ensembl": "ENSMUSG00000051354",
+   "vmax": 3.544320583343506,
+   "bytes_gz": 38412,
+   "detected_frac": 0.011408208079354863
+  },
+  {
+   "symbol": "Col26a1",
+   "ensembl": "ENSMUSG00000004415",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 143988,
+   "detected_frac": 0.06317059781168365
+  },
+  {
+   "symbol": "Moxd1",
+   "ensembl": "ENSMUSG00000020000",
+   "vmax": 4.981315612792969,
+   "bytes_gz": 69708,
+   "detected_frac": 0.02411596562298868
+  },
+  {
+   "symbol": "S1pr1",
+   "ensembl": "ENSMUSG00000045092",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 570735,
+   "detected_frac": 0.35710067012455987
+  },
+  {
+   "symbol": "Tshz1",
+   "ensembl": "ENSMUSG00000046982",
+   "vmax": 5.530364036560059,
+   "bytes_gz": 500042,
+   "detected_frac": 0.32514102903873093
+  },
+  {
+   "symbol": "Grik3",
+   "ensembl": "ENSMUSG00000001985",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 392979,
+   "detected_frac": 0.22040093893158672
+  },
+  {
+   "symbol": "Oprm1",
+   "ensembl": "ENSMUSG00000000766",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 175928,
+   "detected_frac": 0.08032029682353387
+  },
+  {
+   "symbol": "4930467D21Rik",
+   "ensembl": "ENSMUSG00000097516",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 36444,
+   "detected_frac": 0.010806231779805399
+  },
+  {
+   "symbol": "Adam18",
+   "ensembl": "ENSMUSG00000031552",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 53785,
+   "detected_frac": 0.017290728050581152
+  },
+  {
+   "symbol": "Irx6",
+   "ensembl": "ENSMUSG00000031738",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 49627,
+   "detected_frac": 0.015681671903986675
+  },
+  {
+   "symbol": "Lrp4",
+   "ensembl": "ENSMUSG00000027253",
+   "vmax": 6.303780555725098,
+   "bytes_gz": 391597,
+   "detected_frac": 0.2311721500776133
+  },
+  {
+   "symbol": "Myo3b",
+   "ensembl": "ENSMUSG00000042064",
+   "vmax": 3.726318597793579,
+   "bytes_gz": 53113,
+   "detected_frac": 0.017506530874947943
+  },
+  {
+   "symbol": "Dbh",
+   "ensembl": "ENSMUSG00000000889",
+   "vmax": 5.847395896911621,
+   "bytes_gz": 40300,
+   "detected_frac": 0.012526028849430205
+  },
+  {
+   "symbol": "Onecut3",
+   "ensembl": "ENSMUSG00000045518",
+   "vmax": 5.8005595207214355,
+   "bytes_gz": 199419,
+   "detected_frac": 0.09413357059023965
+  },
+  {
+   "symbol": "Slc26a4",
+   "ensembl": "ENSMUSG00000020651",
+   "vmax": 3.5786211490631104,
+   "bytes_gz": 62408,
+   "detected_frac": 0.021395714231628365
+  },
+  {
+   "symbol": "Cd34",
+   "ensembl": "ENSMUSG00000016494",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 347797,
+   "detected_frac": 0.1884744254723053
+  },
+  {
+   "symbol": "Padi2",
+   "ensembl": "ENSMUSG00000028927",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 421757,
+   "detected_frac": 0.24132718736985576
+  },
+  {
+   "symbol": "2610028E06Rik",
+   "ensembl": "ENSMUSG00000085562",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 29829,
+   "detected_frac": 0.008563018210729564
+  },
+  {
+   "symbol": "Chrdl1",
+   "ensembl": "ENSMUSG00000031283",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 65830,
+   "detected_frac": 0.02261670389580888
+  },
+  {
+   "symbol": "D130009I18Rik",
+   "ensembl": "ENSMUSG00000115432",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 35114,
+   "detected_frac": 0.010354749555143301
+  },
+  {
+   "symbol": "Grm8",
+   "ensembl": "ENSMUSG00000024211",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 273146,
+   "detected_frac": 0.14309052360580019
+  },
+  {
+   "symbol": "Bves",
+   "ensembl": "ENSMUSG00000071317",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 53495,
+   "detected_frac": 0.017402415477227123
+  },
+  {
+   "symbol": "Pou4f2",
+   "ensembl": "ENSMUSG00000031688",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 64641,
+   "detected_frac": 0.02245958429561201
+  },
+  {
+   "symbol": "Pde3a",
+   "ensembl": "ENSMUSG00000041741",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 125578,
+   "detected_frac": 0.050731647294892664
+  },
+  {
+   "symbol": "Sox10",
+   "ensembl": "ENSMUSG00000033006",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 445843,
+   "detected_frac": 0.25629424904403136
+  },
+  {
+   "symbol": "Gda",
+   "ensembl": "ENSMUSG00000058624",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 533528,
+   "detected_frac": 0.35695490856775075
+  },
+  {
+   "symbol": "Esr1",
+   "ensembl": "ENSMUSG00000019768",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 64322,
+   "detected_frac": 0.021928595767235833
+  },
+  {
+   "symbol": "Epha10",
+   "ensembl": "ENSMUSG00000028876",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 496624,
+   "detected_frac": 0.3336330594782872
+  },
+  {
+   "symbol": "Trp73",
+   "ensembl": "ENSMUSG00000029026",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 56261,
+   "detected_frac": 0.018557149888312575
+  },
+  {
+   "symbol": "Alox8",
+   "ensembl": "ENSMUSG00000020891",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 75402,
+   "detected_frac": 0.026769015257638286
+  },
+  {
+   "symbol": "Klhdc8a",
+   "ensembl": "ENSMUSG00000042115",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 107681,
+   "detected_frac": 0.04306686101540908
+  },
+  {
+   "symbol": "Gpr149",
+   "ensembl": "ENSMUSG00000043441",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 76180,
+   "detected_frac": 0.02839416196569871
+  },
+  {
+   "symbol": "Nr2e1",
+   "ensembl": "ENSMUSG00000019803",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 164305,
+   "detected_frac": 0.07248608639685003
+  },
+  {
+   "symbol": "9330158H04Rik",
+   "ensembl": "ENSMUSG00000073154",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 48073,
+   "detected_frac": 0.015570930980956348
+  },
+  {
+   "symbol": "Crispld1",
+   "ensembl": "ENSMUSG00000025776",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 108653,
+   "detected_frac": 0.04308011206602809
+  },
+  {
+   "symbol": "Chrna2",
+   "ensembl": "ENSMUSG00000022041",
+   "vmax": 4.635558605194092,
+   "bytes_gz": 33702,
+   "detected_frac": 0.009769810320675426
+  },
+  {
+   "symbol": "Rcn1",
+   "ensembl": "ENSMUSG00000005973",
+   "vmax": 5.008988857269287,
+   "bytes_gz": 186501,
+   "detected_frac": 0.08614697308143716
+  },
+  {
+   "symbol": "Sec14l5",
+   "ensembl": "ENSMUSG00000091712",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 327918,
+   "detected_frac": 0.17084484912732367
+  },
+  {
+   "symbol": "Lcp1",
+   "ensembl": "ENSMUSG00000021998",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 204101,
+   "detected_frac": 0.08944364517472457
+  },
+  {
+   "symbol": "Ednra",
+   "ensembl": "ENSMUSG00000031616",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 151918,
+   "detected_frac": 0.06271249006171203
+  },
+  {
+   "symbol": "5830418P13Rik",
+   "ensembl": "ENSMUSG00000086236",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 54686,
+   "detected_frac": 0.018076326051565516
+  },
+  {
+   "symbol": "Serpina9",
+   "ensembl": "ENSMUSG00000058260",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 67878,
+   "detected_frac": 0.025878355355317458
+  },
+  {
+   "symbol": "Pou6f2",
+   "ensembl": "ENSMUSG00000009734",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 90410,
+   "detected_frac": 0.03455779351077121
+  },
+  {
+   "symbol": "Igfbp4",
+   "ensembl": "ENSMUSG00000017493",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 378261,
+   "detected_frac": 0.2092227312308333
+  },
+  {
+   "symbol": "Slc24a4",
+   "ensembl": "ENSMUSG00000041771",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 254092,
+   "detected_frac": 0.13009029644493242
+  },
+  {
+   "symbol": "Lhx4",
+   "ensembl": "ENSMUSG00000026468",
+   "vmax": 4.24605131149292,
+   "bytes_gz": 38373,
+   "detected_frac": 0.011440389202286752
+  },
+  {
+   "symbol": "Hpse2",
+   "ensembl": "ENSMUSG00000074852",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 28166,
+   "detected_frac": 0.007944951349714156
+  },
+  {
+   "symbol": "Gnrh1",
+   "ensembl": "ENSMUSG00000015812",
+   "vmax": 6.072062015533447,
+   "bytes_gz": 63889,
+   "detected_frac": 0.022083822360201417
+  },
+  {
+   "symbol": "Lypd6",
+   "ensembl": "ENSMUSG00000050447",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 206887,
+   "detected_frac": 0.09800571688183848
+  },
+  {
+   "symbol": "Creb5",
+   "ensembl": "ENSMUSG00000053007",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 258364,
+   "detected_frac": 0.1287699239011093
+  },
+  {
+   "symbol": "Rxfp3",
+   "ensembl": "ENSMUSG00000060735",
+   "vmax": 4.338202953338623,
+   "bytes_gz": 68838,
+   "detected_frac": 0.023504524287282776
+  },
+  {
+   "symbol": "Stxbp6",
+   "ensembl": "ENSMUSG00000046314",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 407694,
+   "detected_frac": 0.24191212660432362
+  },
+  {
+   "symbol": "Acsbg1",
+   "ensembl": "ENSMUSG00000032281",
+   "vmax": 6.02236795425415,
+   "bytes_gz": 648043,
+   "detected_frac": 0.43043671676825807
+  },
+  {
+   "symbol": "Arx",
+   "ensembl": "ENSMUSG00000035277",
+   "vmax": 4.814059734344482,
+   "bytes_gz": 192709,
+   "detected_frac": 0.09287377427781775
+  },
+  {
+   "symbol": "Arntl",
+   "ensembl": "ENSMUSG00000055116",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 313903,
+   "detected_frac": 0.1729025479877333
+  },
+  {
+   "symbol": "Tmem200a",
+   "ensembl": "ENSMUSG00000049420",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 208849,
+   "detected_frac": 0.0993800401317533
+  },
+  {
+   "symbol": "Ppp1r1b",
+   "ensembl": "ENSMUSG00000061718",
+   "vmax": 6.1126322746276855,
+   "bytes_gz": 451586,
+   "detected_frac": 0.27747699996213987
+  },
+  {
+   "symbol": "Slc35d3",
+   "ensembl": "ENSMUSG00000050473",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 109949,
+   "detected_frac": 0.045885548782796354
+  },
+  {
+   "symbol": "Lama4",
+   "ensembl": "ENSMUSG00000019846",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 160479,
+   "detected_frac": 0.06865180024987695
+  },
+  {
+   "symbol": "Dmrt2",
+   "ensembl": "ENSMUSG00000048138",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 63595,
+   "detected_frac": 0.021710899935637754
+  },
+  {
+   "symbol": "Car3",
+   "ensembl": "ENSMUSG00000027559",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 50528,
+   "detected_frac": 0.01631393631923674
+  },
+  {
+   "symbol": "Gem",
+   "ensembl": "ENSMUSG00000028214",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 58503,
+   "detected_frac": 0.019890773482754705
+  },
+  {
+   "symbol": "Sox9",
+   "ensembl": "ENSMUSG00000000567",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 362471,
+   "detected_frac": 0.19568583651989552
+  },
+  {
+   "symbol": "A730046J19Rik",
+   "ensembl": "ENSMUSG00000085139",
+   "vmax": 3.5330986976623535,
+   "bytes_gz": 34371,
+   "detected_frac": 0.009996024684814296
+  },
+  {
+   "symbol": "Nxph2",
+   "ensembl": "ENSMUSG00000069132",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 62970,
+   "detected_frac": 0.021154355809639192
+  },
+  {
+   "symbol": "Ebf3",
+   "ensembl": "ENSMUSG00000010476",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 97735,
+   "detected_frac": 0.036866315829326465
+  },
+  {
+   "symbol": "Mef2c",
+   "ensembl": "ENSMUSG00000005583",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 529778,
+   "detected_frac": 0.34318422746374894
+  },
+  {
+   "symbol": "Kctd8",
+   "ensembl": "ENSMUSG00000037653",
+   "vmax": 4.814059734344482,
+   "bytes_gz": 229643,
+   "detected_frac": 0.11115549161397796
+  },
+  {
+   "symbol": "Ascl1",
+   "ensembl": "ENSMUSG00000020052",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 95128,
+   "detected_frac": 0.034947753000416464
+  },
+  {
+   "symbol": "Shroom3",
+   "ensembl": "ENSMUSG00000029381",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 155941,
+   "detected_frac": 0.06709764131298981
+  },
+  {
+   "symbol": "Lipg",
+   "ensembl": "ENSMUSG00000053846",
+   "vmax": 3.8940091133117676,
+   "bytes_gz": 50319,
+   "detected_frac": 0.016330026880702685
+  },
+  {
+   "symbol": "Tnfaip8l3",
+   "ensembl": "ENSMUSG00000074345",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 92437,
+   "detected_frac": 0.03582232234127134
+  },
+  {
+   "symbol": "Oxtr",
+   "ensembl": "ENSMUSG00000049112",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 79007,
+   "detected_frac": 0.028864574262673682
+  },
+  {
+   "symbol": "Tafa4",
+   "ensembl": "ENSMUSG00000046500",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 51963,
+   "detected_frac": 0.01686290841631015
+  },
+  {
+   "symbol": "Tnfrsf8",
+   "ensembl": "ENSMUSG00000028602",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 47028,
+   "detected_frac": 0.01486862529814864
+  },
+  {
+   "symbol": "Zfp831",
+   "ensembl": "ENSMUSG00000050600",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 241984,
+   "detected_frac": 0.12493469125052058
+  },
+  {
+   "symbol": "Lsp1",
+   "ensembl": "ENSMUSG00000018819",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 86255,
+   "detected_frac": 0.03128194449702798
+  },
+  {
+   "symbol": "Isyna1",
+   "ensembl": "ENSMUSG00000019139",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 438817,
+   "detected_frac": 0.26342804679513876
+  },
+  {
+   "symbol": "Slco1c1",
+   "ensembl": "ENSMUSG00000030235",
+   "vmax": 6.599912643432617,
+   "bytes_gz": 417671,
+   "detected_frac": 0.22730378980047702
+  },
+  {
+   "symbol": "Pou3f1",
+   "ensembl": "ENSMUSG00000090125",
+   "vmax": 5.485087871551514,
+   "bytes_gz": 250757,
+   "detected_frac": 0.1260279029265892
+  },
+  {
+   "symbol": "Ccdc3",
+   "ensembl": "ENSMUSG00000026676",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 154108,
+   "detected_frac": 0.06581891492825502
+  },
+  {
+   "symbol": "Rxfp1",
+   "ensembl": "ENSMUSG00000034009",
+   "vmax": 5.01399040222168,
+   "bytes_gz": 105182,
+   "detected_frac": 0.040004921818801345
+  },
+  {
+   "symbol": "Aldh1a3",
+   "ensembl": "ENSMUSG00000015134",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 70538,
+   "detected_frac": 0.024754855563548252
+  },
+  {
+   "symbol": "Nr4a2",
+   "ensembl": "ENSMUSG00000026826",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 205380,
+   "detected_frac": 0.09386760307424374
+  },
+  {
+   "symbol": "Cdkn1a",
+   "ensembl": "ENSMUSG00000023067",
+   "vmax": 5.51005744934082,
+   "bytes_gz": 202449,
+   "detected_frac": 0.09562336728126301
+  },
+  {
+   "symbol": "Bmpr1b",
+   "ensembl": "ENSMUSG00000052430",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 246699,
+   "detected_frac": 0.12116287434217998
+  },
+  {
+   "symbol": "Sema6a",
+   "ensembl": "ENSMUSG00000019647",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 576677,
+   "detected_frac": 0.3845729375686215
+  },
+  {
+   "symbol": "Foxa1",
+   "ensembl": "ENSMUSG00000035451",
+   "vmax": 3.650254011154175,
+   "bytes_gz": 35857,
+   "detected_frac": 0.010726725476091319
+  },
+  {
+   "symbol": "Gsto1",
+   "ensembl": "ENSMUSG00000025068",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 241575,
+   "detected_frac": 0.12226176503994245
+  },
+  {
+   "symbol": "Myl4",
+   "ensembl": "ENSMUSG00000061086",
+   "vmax": 5.053147792816162,
+   "bytes_gz": 131147,
+   "detected_frac": 0.05339321546208307
+  },
+  {
+   "symbol": "Pdzrn3",
+   "ensembl": "ENSMUSG00000035357",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 313913,
+   "detected_frac": 0.1692357929807292
+  },
+  {
+   "symbol": "Col5a2",
+   "ensembl": "ENSMUSG00000026042",
+   "vmax": 4.790076732635498,
+   "bytes_gz": 97788,
+   "detected_frac": 0.03672907280505811
+  },
+  {
+   "symbol": "Plpp4",
+   "ensembl": "ENSMUSG00000070366",
+   "vmax": 5.044394016265869,
+   "bytes_gz": 159733,
+   "detected_frac": 0.06799965925869837
+  },
+  {
+   "symbol": "Diaph3",
+   "ensembl": "ENSMUSG00000022021",
+   "vmax": 3.726318597793579,
+   "bytes_gz": 40670,
+   "detected_frac": 0.01211051376216257
+  },
+  {
+   "symbol": "Tafa2",
+   "ensembl": "ENSMUSG00000044071",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 274747,
+   "detected_frac": 0.1418789989777761
+  },
+  {
+   "symbol": "Hs3st4",
+   "ensembl": "ENSMUSG00000078591",
+   "vmax": 5.614709854125977,
+   "bytes_gz": 382730,
+   "detected_frac": 0.2160233597092341
+  },
+  {
+   "symbol": "Prss23",
+   "ensembl": "ENSMUSG00000039405",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 129591,
+   "detected_frac": 0.05335535531745731
+  },
+  {
+   "symbol": "Gja1",
+   "ensembl": "ENSMUSG00000050953",
+   "vmax": 6.427788734436035,
+   "bytes_gz": 584626,
+   "detected_frac": 0.36444743118918715
+  },
+  {
+   "symbol": "Tgfbi",
+   "ensembl": "ENSMUSG00000035493",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 93210,
+   "detected_frac": 0.034469768674516336
+  },
+  {
+   "symbol": "Syt6",
+   "ensembl": "ENSMUSG00000027849",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 316942,
+   "detected_frac": 0.17515711960019686
+  },
+  {
+   "symbol": "Fbxw13",
+   "ensembl": "ENSMUSG00000049314",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 40947,
+   "detected_frac": 0.012348086169689168
+  },
+  {
+   "symbol": "Adamts18",
+   "ensembl": "ENSMUSG00000053399",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 116053,
+   "detected_frac": 0.04751826751978193
+  },
+  {
+   "symbol": "Gpr150",
+   "ensembl": "ENSMUSG00000045509",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 54118,
+   "detected_frac": 0.017788588952409798
+  },
+  {
+   "symbol": "Stk26",
+   "ensembl": "ENSMUSG00000031112",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 77274,
+   "detected_frac": 0.029032105402642637
+  },
+  {
+   "symbol": "Igfbpl1",
+   "ensembl": "ENSMUSG00000035551",
+   "vmax": 5.986410617828369,
+   "bytes_gz": 86177,
+   "detected_frac": 0.03413092038011585
+  },
+  {
+   "symbol": "Kcns3",
+   "ensembl": "ENSMUSG00000043673",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 94349,
+   "detected_frac": 0.034980880626963994
+  },
+  {
+   "symbol": "Dchs2",
+   "ensembl": "ENSMUSG00000102692",
+   "vmax": 5.080747604370117,
+   "bytes_gz": 133844,
+   "detected_frac": 0.05741964184303184
+  },
+  {
+   "symbol": "Pcdh8",
+   "ensembl": "ENSMUSG00000036422",
+   "vmax": 5.805896282196045,
+   "bytes_gz": 262613,
+   "detected_frac": 0.13391985007382728
+  },
+  {
+   "symbol": "Eya1",
+   "ensembl": "ENSMUSG00000025932",
+   "vmax": 5.666836738586426,
+   "bytes_gz": 216907,
+   "detected_frac": 0.10250255555976223
+  },
+  {
+   "symbol": "Cpa6",
+   "ensembl": "ENSMUSG00000042501",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 103168,
+   "detected_frac": 0.04430488774467119
+  },
+  {
+   "symbol": "Slc7a11",
+   "ensembl": "ENSMUSG00000027737",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 226842,
+   "detected_frac": 0.10535721046454398
+  },
+  {
+   "symbol": "Serpine2",
+   "ensembl": "ENSMUSG00000026249",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 702902,
+   "detected_frac": 0.5143092416613031
+  },
+  {
+   "symbol": "Slc12a8",
+   "ensembl": "ENSMUSG00000035506",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 71281,
+   "detected_frac": 0.025196872752053914
+  },
+  {
+   "symbol": "Slit3",
+   "ensembl": "ENSMUSG00000056427",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 371395,
+   "detected_frac": 0.2173134441373566
+  },
+  {
+   "symbol": "Gpr26",
+   "ensembl": "ENSMUSG00000040125",
+   "vmax": 4.4929585456848145,
+   "bytes_gz": 315597,
+   "detected_frac": 0.1713512285616931
+  },
+  {
+   "symbol": "Gpr139",
+   "ensembl": "ENSMUSG00000066197",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 83443,
+   "detected_frac": 0.030630750009465035
+  },
+  {
+   "symbol": "Drd1",
+   "ensembl": "ENSMUSG00000021478",
+   "vmax": 5.334545135498047,
+   "bytes_gz": 183464,
+   "detected_frac": 0.0851578768030894
+  },
+  {
+   "symbol": "Crym",
+   "ensembl": "ENSMUSG00000030905",
+   "vmax": 5.204065322875977,
+   "bytes_gz": 263074,
+   "detected_frac": 0.1366031878241775
+  },
+  {
+   "symbol": "Cldn11",
+   "ensembl": "ENSMUSG00000037625",
+   "vmax": 7.445704936981201,
+   "bytes_gz": 429561,
+   "detected_frac": 0.2429419225381441
+  },
+  {
+   "symbol": "Dlk1",
+   "ensembl": "ENSMUSG00000040856",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 105974,
+   "detected_frac": 0.03973990080642108
+  },
+  {
+   "symbol": "B9d2",
+   "ensembl": "ENSMUSG00000063439",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 214457,
+   "detected_frac": 0.1076089425661606
+  },
+  {
+   "symbol": "Trpc5",
+   "ensembl": "ENSMUSG00000041710",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 153089,
+   "detected_frac": 0.06732006966266611
+  },
+  {
+   "symbol": "Pamr1",
+   "ensembl": "ENSMUSG00000027188",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 153941,
+   "detected_frac": 0.0674752962556317
+  },
+  {
+   "symbol": "Npsr1",
+   "ensembl": "ENSMUSG00000043659",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 50567,
+   "detected_frac": 0.016071631393631925
+  },
+  {
+   "symbol": "Dpf3",
+   "ensembl": "ENSMUSG00000021221",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 268234,
+   "detected_frac": 0.13869590731836595
+  },
+  {
+   "symbol": "Dsg2",
+   "ensembl": "ENSMUSG00000044393",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 57224,
+   "detected_frac": 0.01881933138984591
+  },
+  {
+   "symbol": "Etv1",
+   "ensembl": "ENSMUSG00000004151",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 390680,
+   "detected_frac": 0.2252243213569076
+  },
+  {
+   "symbol": "Pmaip1",
+   "ensembl": "ENSMUSG00000024521",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 53120,
+   "detected_frac": 0.01709385529852724
+  },
+  {
+   "symbol": "Ltbp1",
+   "ensembl": "ENSMUSG00000001870",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 130767,
+   "detected_frac": 0.05239181463673191
+  },
+  {
+   "symbol": "Abca8a",
+   "ensembl": "ENSMUSG00000041828",
+   "vmax": 5.485087871551514,
+   "bytes_gz": 167176,
+   "detected_frac": 0.07149509711127096
+  },
+  {
+   "symbol": "Eomes",
+   "ensembl": "ENSMUSG00000032446",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 74099,
+   "detected_frac": 0.027599098928557907
+  },
+  {
+   "symbol": "Cbln1",
+   "ensembl": "ENSMUSG00000031654",
+   "vmax": 6.421909332275391,
+   "bytes_gz": 186913,
+   "detected_frac": 0.0912117139287472
+  },
+  {
+   "symbol": "Ano1",
+   "ensembl": "ENSMUSG00000031075",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 110225,
+   "detected_frac": 0.04087759815242494
+  },
+  {
+   "symbol": "Kcng4",
+   "ensembl": "ENSMUSG00000045246",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 111430,
+   "detected_frac": 0.04542081550751524
+  },
+  {
+   "symbol": "Tnc",
+   "ensembl": "ENSMUSG00000028364",
+   "vmax": 4.875958442687988,
+   "bytes_gz": 123886,
+   "detected_frac": 0.04820921515920191
+  },
+  {
+   "symbol": "Calb2",
+   "ensembl": "ENSMUSG00000003657",
+   "vmax": 6.8064961433410645,
+   "bytes_gz": 324001,
+   "detected_frac": 0.1730208609396888
+  },
+  {
+   "symbol": "Il1rapl2",
+   "ensembl": "ENSMUSG00000059203",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 102775,
+   "detected_frac": 0.03921175178889184
+  },
+  {
+   "symbol": "Spp1",
+   "ensembl": "ENSMUSG00000029304",
+   "vmax": 6.222701072692871,
+   "bytes_gz": 136005,
+   "detected_frac": 0.0549407488736607
+  },
+  {
+   "symbol": "Npnt",
+   "ensembl": "ENSMUSG00000040998",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 151220,
+   "detected_frac": 0.06416253360087835
+  },
+  {
+   "symbol": "Wnt7a",
+   "ensembl": "ENSMUSG00000030093",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 200029,
+   "detected_frac": 0.09204085109605119
+  },
+  {
+   "symbol": "Zfp503",
+   "ensembl": "ENSMUSG00000039081",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 116364,
+   "detected_frac": 0.04661435656684208
+  },
+  {
+   "symbol": "Six6",
+   "ensembl": "ENSMUSG00000021099",
+   "vmax": 3.625908136367798,
+   "bytes_gz": 38336,
+   "detected_frac": 0.011397796539582781
+  },
+  {
+   "symbol": "Slfn9",
+   "ensembl": "ENSMUSG00000069793",
+   "vmax": 6.045980453491211,
+   "bytes_gz": 52566,
+   "detected_frac": 0.01724529587703025
+  },
+  {
+   "symbol": "Dscaml1",
+   "ensembl": "ENSMUSG00000032087",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 450019,
+   "detected_frac": 0.2770718964146443
+  },
+  {
+   "symbol": "Mkx",
+   "ensembl": "ENSMUSG00000061013",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 236974,
+   "detected_frac": 0.11909760345284519
+  },
+  {
+   "symbol": "Gabbr2",
+   "ensembl": "ENSMUSG00000039809",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 550386,
+   "detected_frac": 0.37283629273463825
+  },
+  {
+   "symbol": "Gas2l3",
+   "ensembl": "ENSMUSG00000074802",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 34558,
+   "detected_frac": 0.010115284140385416
+  },
+  {
+   "symbol": "Arsj",
+   "ensembl": "ENSMUSG00000046561",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 79998,
+   "detected_frac": 0.028867413773520614
+  },
+  {
+   "symbol": "Lamc2",
+   "ensembl": "ENSMUSG00000026479",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 80913,
+   "detected_frac": 0.030692272744481885
+  },
+  {
+   "symbol": "Popdc3",
+   "ensembl": "ENSMUSG00000019848",
+   "vmax": 3.726318597793579,
+   "bytes_gz": 25132,
+   "detected_frac": 0.006790216938628706
+  },
+  {
+   "symbol": "Qpct",
+   "ensembl": "ENSMUSG00000024084",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 177188,
+   "detected_frac": 0.08154696550940825
+  },
+  {
+   "symbol": "Otx1",
+   "ensembl": "ENSMUSG00000005917",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 154331,
+   "detected_frac": 0.06497558020671639
+  },
+  {
+   "symbol": "Gli2",
+   "ensembl": "ENSMUSG00000048402",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 156950,
+   "detected_frac": 0.06542990194222542
+  },
+  {
+   "symbol": "Pax3",
+   "ensembl": "ENSMUSG00000004872",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 48662,
+   "detected_frac": 0.016210767425131563
+  },
+  {
+   "symbol": "En1",
+   "ensembl": "ENSMUSG00000058665",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 59418,
+   "detected_frac": 0.021539582781206223
+  },
+  {
+   "symbol": "Gabra6",
+   "ensembl": "ENSMUSG00000020428",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 79314,
+   "detected_frac": 0.036117631469352214
+  },
+  {
+   "symbol": "Emx2os",
+   "ensembl": "ENSMUSG00000087095",
+   "vmax": 5.080747604370117,
+   "bytes_gz": 113710,
+   "detected_frac": 0.044971226290084425
+  },
+  {
+   "symbol": "Rasd1",
+   "ensembl": "ENSMUSG00000049892",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 158257,
+   "detected_frac": 0.0683934047628062
+  },
+  {
+   "symbol": "Maged2",
+   "ensembl": "ENSMUSG00000025268",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 365240,
+   "detected_frac": 0.21176882595691515
+  },
+  {
+   "symbol": "Tnnt2",
+   "ensembl": "ENSMUSG00000026414",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 104205,
+   "detected_frac": 0.04037216522167115
+  },
+  {
+   "symbol": "4921539H07Rik",
+   "ensembl": "ENSMUSG00000104586",
+   "vmax": 4.3153557777404785,
+   "bytes_gz": 72012,
+   "detected_frac": 0.025212963313519857
+  },
+  {
+   "symbol": "Hmx2",
+   "ensembl": "ENSMUSG00000050100",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 36360,
+   "detected_frac": 0.011224586377919964
+  },
+  {
+   "symbol": "Sncg",
+   "ensembl": "ENSMUSG00000023064",
+   "vmax": 4.814059734344482,
+   "bytes_gz": 117832,
+   "detected_frac": 0.04632756597130201
+  },
+  {
+   "symbol": "Itga9",
+   "ensembl": "ENSMUSG00000039115",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 177316,
+   "detected_frac": 0.07742020974520122
+  },
+  {
+   "symbol": "St8sia6",
+   "ensembl": "ENSMUSG00000003418",
+   "vmax": 4.875958442687988,
+   "bytes_gz": 109810,
+   "detected_frac": 0.0423371067277477
+  },
+  {
+   "symbol": "Atp6v1c2",
+   "ensembl": "ENSMUSG00000020566",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 79628,
+   "detected_frac": 0.028861734751826754
+  },
+  {
+   "symbol": "Kcng1",
+   "ensembl": "ENSMUSG00000074575",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 202548,
+   "detected_frac": 0.09686044750690948
+  },
+  {
+   "symbol": "Snx31",
+   "ensembl": "ENSMUSG00000013611",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 32924,
+   "detected_frac": 0.00966190890849203
+  },
+  {
+   "symbol": "Lgr6",
+   "ensembl": "ENSMUSG00000042793",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 139249,
+   "detected_frac": 0.0633532730095029
+  },
+  {
+   "symbol": "1700057H15Rik",
+   "ensembl": "ENSMUSG00000084757",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 28982,
+   "detected_frac": 0.00833585734297505
+  },
+  {
+   "symbol": "Fstl5",
+   "ensembl": "ENSMUSG00000034098",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 201541,
+   "detected_frac": 0.09340570930980957
+  },
+  {
+   "symbol": "Adgrg6",
+   "ensembl": "ENSMUSG00000039116",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 61814,
+   "detected_frac": 0.020647976375269755
+  },
+  {
+   "symbol": "Cdkn1c",
+   "ensembl": "ENSMUSG00000037664",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 213647,
+   "detected_frac": 0.09687369855752849
+  },
+  {
+   "symbol": "Tent5a",
+   "ensembl": "ENSMUSG00000032265",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 144542,
+   "detected_frac": 0.0586264339529777
+  },
+  {
+   "symbol": "Gpc4",
+   "ensembl": "ENSMUSG00000031119",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 186755,
+   "detected_frac": 0.08567182826638398
+  },
+  {
+   "symbol": "Adamtsl3",
+   "ensembl": "ENSMUSG00000070469",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 68822,
+   "detected_frac": 0.023370120773861355
+  },
+  {
+   "symbol": "Cckbr",
+   "ensembl": "ENSMUSG00000030898",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 297750,
+   "detected_frac": 0.1603093173815924
+  },
+  {
+   "symbol": "Cnpy1",
+   "ensembl": "ENSMUSG00000044681",
+   "vmax": 5.986410617828369,
+   "bytes_gz": 74655,
+   "detected_frac": 0.034823761026767125
+  },
+  {
+   "symbol": "Nbl1",
+   "ensembl": "ENSMUSG00000041120",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 327114,
+   "detected_frac": 0.17312970885548784
+  },
+  {
+   "symbol": "Elfn1",
+   "ensembl": "ENSMUSG00000048988",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 295655,
+   "detected_frac": 0.15402074735925492
+  },
+  {
+   "symbol": "Megf11",
+   "ensembl": "ENSMUSG00000036466",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 190321,
+   "detected_frac": 0.08590656116306364
+  },
+  {
+   "symbol": "Adamts19",
+   "ensembl": "ENSMUSG00000053441",
+   "vmax": 4.659163475036621,
+   "bytes_gz": 81266,
+   "detected_frac": 0.03415174345966002
+  },
+  {
+   "symbol": "Abcc9",
+   "ensembl": "ENSMUSG00000030249",
+   "vmax": 7.2246904373168945,
+   "bytes_gz": 130400,
+   "detected_frac": 0.04992806572521107
+  },
+  {
+   "symbol": "Gsta4",
+   "ensembl": "ENSMUSG00000032348",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 358013,
+   "detected_frac": 0.2060472116003483
+  },
+  {
+   "symbol": "Dach2",
+   "ensembl": "ENSMUSG00000025592",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 45416,
+   "detected_frac": 0.014077348275470412
+  },
+  {
+   "symbol": "Tnnc1",
+   "ensembl": "ENSMUSG00000091898",
+   "vmax": 4.159053325653076,
+   "bytes_gz": 66349,
+   "detected_frac": 0.02290917351304282
+  },
+  {
+   "symbol": "Nkx2-4",
+   "ensembl": "ENSMUSG00000054160",
+   "vmax": 3.8940091133117676,
+   "bytes_gz": 36410,
+   "detected_frac": 0.01071442092908795
+  },
+  {
+   "symbol": "Lypd6b",
+   "ensembl": "ENSMUSG00000026765",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 104260,
+   "detected_frac": 0.04161397796539583
+  },
+  {
+   "symbol": "L3mbtl4",
+   "ensembl": "ENSMUSG00000041565",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 89475,
+   "detected_frac": 0.033533676598644604
+  },
+  {
+   "symbol": "Ranbp3l",
+   "ensembl": "ENSMUSG00000048424",
+   "vmax": 5.387402057647705,
+   "bytes_gz": 137375,
+   "detected_frac": 0.05454889637678416
+  },
+  {
+   "symbol": "Otp",
+   "ensembl": "ENSMUSG00000021685",
+   "vmax": 4.51694393157959,
+   "bytes_gz": 65597,
+   "detected_frac": 0.022007155567334267
+  },
+  {
+   "symbol": "Nr4a3",
+   "ensembl": "ENSMUSG00000028341",
+   "vmax": 4.284579753875732,
+   "bytes_gz": 147321,
+   "detected_frac": 0.062313065535910345
+  },
+  {
+   "symbol": "Il1rap",
+   "ensembl": "ENSMUSG00000022514",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 293974,
+   "detected_frac": 0.1573732631658653
+  },
+  {
+   "symbol": "Evx2",
+   "ensembl": "ENSMUSG00000001815",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 40973,
+   "detected_frac": 0.012416234430015523
+  },
+  {
+   "symbol": "Sema5b",
+   "ensembl": "ENSMUSG00000052133",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 228032,
+   "detected_frac": 0.1079610419111801
+  },
+  {
+   "symbol": "Prrxl1",
+   "ensembl": "ENSMUSG00000041730",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 35001,
+   "detected_frac": 0.010224132056184455
+  },
+  {
+   "symbol": "Reln",
+   "ensembl": "ENSMUSG00000042453",
+   "vmax": 6.37907600402832,
+   "bytes_gz": 262043,
+   "detected_frac": 0.13021618142581304
+  },
+  {
+   "symbol": "Rreb1",
+   "ensembl": "ENSMUSG00000039087",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 494776,
+   "detected_frac": 0.3110229811077878
+  },
+  {
+   "symbol": "Slc9a3r1",
+   "ensembl": "ENSMUSG00000020733",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 459408,
+   "detected_frac": 0.2737733313141256
+  },
+  {
+   "symbol": "Egfem1",
+   "ensembl": "ENSMUSG00000063600",
+   "vmax": 4.5537590980529785,
+   "bytes_gz": 203977,
+   "detected_frac": 0.0966967023814031
+  },
+  {
+   "symbol": "Mpped2",
+   "ensembl": "ENSMUSG00000016386",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 346074,
+   "detected_frac": 0.2012512777798811
+  },
+  {
+   "symbol": "Vit",
+   "ensembl": "ENSMUSG00000024076",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 89432,
+   "detected_frac": 0.03292980729186386
+  },
+  {
+   "symbol": "Lhx1",
+   "ensembl": "ENSMUSG00000018698",
+   "vmax": 5.080747604370117,
+   "bytes_gz": 84611,
+   "detected_frac": 0.0324944156286677
+  },
+  {
+   "symbol": "Emp2",
+   "ensembl": "ENSMUSG00000022505",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 236695,
+   "detected_frac": 0.11267462991708628
+  },
+  {
+   "symbol": "Tpm2",
+   "ensembl": "ENSMUSG00000028464",
+   "vmax": 5.8005595207214355,
+   "bytes_gz": 116017,
+   "detected_frac": 0.04419320031802521
+  },
+  {
+   "symbol": "Egr2",
+   "ensembl": "ENSMUSG00000037868",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 63356,
+   "detected_frac": 0.02248987241131261
+  },
+  {
+   "symbol": "H2-Q2",
+   "ensembl": "ENSMUSG00000091705",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 47583,
+   "detected_frac": 0.015334305077045394
+  },
+  {
+   "symbol": "Gna14",
+   "ensembl": "ENSMUSG00000024697",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 57519,
+   "detected_frac": 0.019558550713663726
+  },
+  {
+   "symbol": "Vgll2",
+   "ensembl": "ENSMUSG00000049641",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 36881,
+   "detected_frac": 0.011142240563358953
+  },
+  {
+   "symbol": "Map3k20",
+   "ensembl": "ENSMUSG00000004085",
+   "vmax": 6.974987983703613,
+   "bytes_gz": 257471,
+   "detected_frac": 0.13374285389770188
+  },
+  {
+   "symbol": "Glra1",
+   "ensembl": "ENSMUSG00000000263",
+   "vmax": 5.229552268981934,
+   "bytes_gz": 157845,
+   "detected_frac": 0.06976204899102714
+  },
+  {
+   "symbol": "Acvr1c",
+   "ensembl": "ENSMUSG00000026834",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 162873,
+   "detected_frac": 0.07378090334305078
+  },
+  {
+   "symbol": "Sv2b",
+   "ensembl": "ENSMUSG00000053025",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 516069,
+   "detected_frac": 0.31843789043274146
+  },
+  {
+   "symbol": "Mfge8",
+   "ensembl": "ENSMUSG00000030605",
+   "vmax": 6.453956604003906,
+   "bytes_gz": 555595,
+   "detected_frac": 0.345610116230644
+  },
+  {
+   "symbol": "4930438E09Rik",
+   "ensembl": "ENSMUSG00000093472",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 29897,
+   "detected_frac": 0.00852421156248817
+  },
+  {
+   "symbol": "Smoc2",
+   "ensembl": "ENSMUSG00000023886",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 150568,
+   "detected_frac": 0.06454492106159845
+  },
+  {
+   "symbol": "Lncenc1",
+   "ensembl": "ENSMUSG00000078952",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 75013,
+   "detected_frac": 0.026354446673986294
+  },
+  {
+   "symbol": "Gbx2",
+   "ensembl": "ENSMUSG00000034486",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 44279,
+   "detected_frac": 0.013941051754817703
+  },
+  {
+   "symbol": "Adra2a",
+   "ensembl": "ENSMUSG00000033717",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 215119,
+   "detected_frac": 0.1018276984818082
+  },
+  {
+   "symbol": "Slc17a8",
+   "ensembl": "ENSMUSG00000019935",
+   "vmax": 5.008988857269287,
+   "bytes_gz": 39361,
+   "detected_frac": 0.011508537462613107
+  },
+  {
+   "symbol": "Cftr",
+   "ensembl": "ENSMUSG00000041301",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 48329,
+   "detected_frac": 0.01562866770151062
+  },
+  {
+   "symbol": "Ighm",
+   "ensembl": "ENSMUSG00000076617",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 602886,
+   "detected_frac": 0.4388482944004846
+  },
+  {
+   "symbol": "Fibcd1",
+   "ensembl": "ENSMUSG00000026841",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 109628,
+   "detected_frac": 0.042112785370840115
+  },
+  {
+   "symbol": "Greb1",
+   "ensembl": "ENSMUSG00000036523",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 101780,
+   "detected_frac": 0.03880380873054935
+  },
+  {
+   "symbol": "Slc18a2",
+   "ensembl": "ENSMUSG00000025094",
+   "vmax": 5.008988857269287,
+   "bytes_gz": 68116,
+   "detected_frac": 0.023225305720667853
+  },
+  {
+   "symbol": "Vwa5b1",
+   "ensembl": "ENSMUSG00000028753",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 121540,
+   "detected_frac": 0.04836349524855185
+  },
+  {
+   "symbol": "Pgm5",
+   "ensembl": "ENSMUSG00000041731",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 135634,
+   "detected_frac": 0.05479214780600462
+  },
+  {
+   "symbol": "Aldh3b2",
+   "ensembl": "ENSMUSG00000075296",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 42797,
+   "detected_frac": 0.013217922992465832
+  },
+  {
+   "symbol": "Nfib",
+   "ensembl": "ENSMUSG00000008575",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 492688,
+   "detected_frac": 0.3163442244349373
+  },
+  {
+   "symbol": "Sertm1",
+   "ensembl": "ENSMUSG00000056306",
+   "vmax": 4.670760631561279,
+   "bytes_gz": 145969,
+   "detected_frac": 0.06313936319236739
+  },
+  {
+   "symbol": "Cidea",
+   "ensembl": "ENSMUSG00000024526",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 97172,
+   "detected_frac": 0.037060349070533447
+  },
+  {
+   "symbol": "Fyb",
+   "ensembl": "ENSMUSG00000022148",
+   "vmax": 6.905172348022461,
+   "bytes_gz": 146417,
+   "detected_frac": 0.05870499375307614
+  },
+  {
+   "symbol": "Prlr",
+   "ensembl": "ENSMUSG00000005268",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 66361,
+   "detected_frac": 0.022703782228448113
+  },
+  {
+   "symbol": "Zfp57",
+   "ensembl": "ENSMUSG00000036036",
+   "vmax": 4.698218822479248,
+   "bytes_gz": 161541,
+   "detected_frac": 0.07015768750236626
+  },
+  {
+   "symbol": "Baz1a",
+   "ensembl": "ENSMUSG00000035021",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 96098,
+   "detected_frac": 0.036404422064892285
+  },
+  {
+   "symbol": "Pim1",
+   "ensembl": "ENSMUSG00000024014",
+   "vmax": 5.080747604370117,
+   "bytes_gz": 166869,
+   "detected_frac": 0.07297542876613788
+  },
+  {
+   "symbol": "Grhpr",
+   "ensembl": "ENSMUSG00000035637",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 378076,
+   "detected_frac": 0.22457312686934464
+  },
+  {
+   "symbol": "4930509J09Rik",
+   "ensembl": "ENSMUSG00000102362",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 31989,
+   "detected_frac": 0.009494377768523075
+  },
+  {
+   "symbol": "Tox2",
+   "ensembl": "ENSMUSG00000074607",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 310040,
+   "detected_frac": 0.17087513724302428
+  },
+  {
+   "symbol": "Rskr",
+   "ensembl": "ENSMUSG00000037593",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 175737,
+   "detected_frac": 0.08009408245939499
+  },
+  {
+   "symbol": "Dlx6os1",
+   "ensembl": "ENSMUSG00000090063",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 238743,
+   "detected_frac": 0.1340779161776398
+  },
+  {
+   "symbol": "Foxo1",
+   "ensembl": "ENSMUSG00000044167",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 347163,
+   "detected_frac": 0.19347669708098286
+  },
+  {
+   "symbol": "Prss35",
+   "ensembl": "ENSMUSG00000033491",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 92808,
+   "detected_frac": 0.0344063529322682
+  },
+  {
+   "symbol": "Mafb",
+   "ensembl": "ENSMUSG00000074622",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 274276,
+   "detected_frac": 0.13210256313179117
+  },
+  {
+   "symbol": "Col8a1",
+   "ensembl": "ENSMUSG00000068196",
+   "vmax": 5.177917957305908,
+   "bytes_gz": 116524,
+   "detected_frac": 0.04514538295536289
+  },
+  {
+   "symbol": "Ckap2l",
+   "ensembl": "ENSMUSG00000048327",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 40556,
+   "detected_frac": 0.012000719342747889
+  },
+  {
+   "symbol": "Prom1",
+   "ensembl": "ENSMUSG00000029086",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 198535,
+   "detected_frac": 0.0862728580623178
+  },
+  {
+   "symbol": "Nefh",
+   "ensembl": "ENSMUSG00000020396",
+   "vmax": 7.033422946929932,
+   "bytes_gz": 483414,
+   "detected_frac": 0.30290292658917956
+  },
+  {
+   "symbol": "Trim54",
+   "ensembl": "ENSMUSG00000062077",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 24337,
+   "detected_frac": 0.00670692462045205
+  },
+  {
+   "symbol": "Chrna4",
+   "ensembl": "ENSMUSG00000027577",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 234554,
+   "detected_frac": 0.11706356718282664
+  },
+  {
+   "symbol": "Gsx1",
+   "ensembl": "ENSMUSG00000053129",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 55184,
+   "detected_frac": 0.017516942414720023
+  },
+  {
+   "symbol": "Npffr2",
+   "ensembl": "ENSMUSG00000035528",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 56978,
+   "detected_frac": 0.022013781092643774
+  },
+  {
+   "symbol": "A830036E02Rik",
+   "ensembl": "ENSMUSG00000084890",
+   "vmax": 5.236717700958252,
+   "bytes_gz": 237603,
+   "detected_frac": 0.11899916707681824
+  },
+  {
+   "symbol": "Cpne2",
+   "ensembl": "ENSMUSG00000034361",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 333919,
+   "detected_frac": 0.18444894559497219
+  },
+  {
+   "symbol": "Htr1d",
+   "ensembl": "ENSMUSG00000070687",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 90175,
+   "detected_frac": 0.035615984553060996
+  },
+  {
+   "symbol": "Klf5",
+   "ensembl": "ENSMUSG00000005148",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 218543,
+   "detected_frac": 0.10787112406769393
+  },
+  {
+   "symbol": "Htr4",
+   "ensembl": "ENSMUSG00000026322",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 106169,
+   "detected_frac": 0.04299965925869837
+  },
+  {
+   "symbol": "Pou4f1",
+   "ensembl": "ENSMUSG00000048349",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 63662,
+   "detected_frac": 0.022227690909779274
+  },
+  {
+   "symbol": "Rgs16",
+   "ensembl": "ENSMUSG00000026475",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 184034,
+   "detected_frac": 0.08336141294059743
+  },
+  {
+   "symbol": "Serpina3n",
+   "ensembl": "ENSMUSG00000021091",
+   "vmax": 5.503124237060547,
+   "bytes_gz": 165188,
+   "detected_frac": 0.07255612766440768
+  },
+  {
+   "symbol": "Igf2bp2",
+   "ensembl": "ENSMUSG00000033581",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 74008,
+   "detected_frac": 0.02620205959186764
+  },
+  {
+   "symbol": "Asic4",
+   "ensembl": "ENSMUSG00000033007",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 181750,
+   "detected_frac": 0.0806752356794003
+  },
+  {
+   "symbol": "Cngb3",
+   "ensembl": "ENSMUSG00000056494",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 70033,
+   "detected_frac": 0.02469711884299398
+  },
+  {
+   "symbol": "Gpr83",
+   "ensembl": "ENSMUSG00000031932",
+   "vmax": 5.986410617828369,
+   "bytes_gz": 191691,
+   "detected_frac": 0.09276681936924999
+  },
+  {
+   "symbol": "Kcnk9",
+   "ensembl": "ENSMUSG00000036760",
+   "vmax": 5.344084739685059,
+   "bytes_gz": 411505,
+   "detected_frac": 0.23874323249914814
+  },
+  {
+   "symbol": "Grik4",
+   "ensembl": "ENSMUSG00000032017",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 359442,
+   "detected_frac": 0.20755972437814713
+  },
+  {
+   "symbol": "6430628N08Rik",
+   "ensembl": "ENSMUSG00000034185",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 36394,
+   "detected_frac": 0.010891417105213342
+  },
+  {
+   "symbol": "Tafa1",
+   "ensembl": "ENSMUSG00000059187",
+   "vmax": 5.044394016265869,
+   "bytes_gz": 222461,
+   "detected_frac": 0.10755972437814712
+  },
+  {
+   "symbol": "Cbln4",
+   "ensembl": "ENSMUSG00000067578",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 160442,
+   "detected_frac": 0.06845019497974482
+  },
+  {
+   "symbol": "St6galnac5",
+   "ensembl": "ENSMUSG00000039037",
+   "vmax": 4.670760631561279,
+   "bytes_gz": 348378,
+   "detected_frac": 0.1934956271532957
+  },
+  {
+   "symbol": "Kcnab3",
+   "ensembl": "ENSMUSG00000018470",
+   "vmax": 6.629115104675293,
+   "bytes_gz": 309371,
+   "detected_frac": 0.17082307954416387
+  },
+  {
+   "symbol": "Yif1b",
+   "ensembl": "ENSMUSG00000030588",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 332568,
+   "detected_frac": 0.19087570514519364
+  },
+  {
+   "symbol": "Ccdc187",
+   "ensembl": "ENSMUSG00000048038",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 186775,
+   "detected_frac": 0.08925718396244274
+  },
+  {
+   "symbol": "Chodl",
+   "ensembl": "ENSMUSG00000022860",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 45498,
+   "detected_frac": 0.014037595123613373
+  },
+  {
+   "symbol": "Zic5",
+   "ensembl": "ENSMUSG00000041703",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 154670,
+   "detected_frac": 0.06673986294627646
+  },
+  {
+   "symbol": "Osr1",
+   "ensembl": "ENSMUSG00000048387",
+   "vmax": 4.799020290374756,
+   "bytes_gz": 79158,
+   "detected_frac": 0.027443872335592322
+  },
+  {
+   "symbol": "Dkk2",
+   "ensembl": "ENSMUSG00000028031",
+   "vmax": 4.1407790184021,
+   "bytes_gz": 57757,
+   "detected_frac": 0.018966985953886344
+  },
+  {
+   "symbol": "Col5a1",
+   "ensembl": "ENSMUSG00000026837",
+   "vmax": 5.190306186676025,
+   "bytes_gz": 140798,
+   "detected_frac": 0.058334910839359405
+  },
+  {
+   "symbol": "Tfap2b",
+   "ensembl": "ENSMUSG00000025927",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 74798,
+   "detected_frac": 0.02703119675917162
+  },
+  {
+   "symbol": "Ephb1",
+   "ensembl": "ENSMUSG00000032537",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 404908,
+   "detected_frac": 0.24717752621815015
+  },
+  {
+   "symbol": "Grm1",
+   "ensembl": "ENSMUSG00000019828",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 364069,
+   "detected_frac": 0.20605762314012038
+  },
+  {
+   "symbol": "Rbm20",
+   "ensembl": "ENSMUSG00000043639",
+   "vmax": 5.321928024291992,
+   "bytes_gz": 170132,
+   "detected_frac": 0.07564078294779086
+  },
+  {
+   "symbol": "Lgr5",
+   "ensembl": "ENSMUSG00000020140",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 137976,
+   "detected_frac": 0.0628932722523
+  },
+  {
+   "symbol": "Skap1",
+   "ensembl": "ENSMUSG00000057058",
+   "vmax": 3.650254011154175,
+   "bytes_gz": 37042,
+   "detected_frac": 0.01096808389808049
+  },
+  {
+   "symbol": "Mrpl16",
+   "ensembl": "ENSMUSG00000024683",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 333918,
+   "detected_frac": 0.19528735849770945
+  },
+  {
+   "symbol": "Dock5",
+   "ensembl": "ENSMUSG00000044447",
+   "vmax": 7.1258440017700195,
+   "bytes_gz": 249888,
+   "detected_frac": 0.1252527164653769
+  },
+  {
+   "symbol": "Adgrg2",
+   "ensembl": "ENSMUSG00000031298",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 45699,
+   "detected_frac": 0.014543974557982812
+  },
+  {
+   "symbol": "Adam12",
+   "ensembl": "ENSMUSG00000054555",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 116163,
+   "detected_frac": 0.044775300041646156
+  },
+  {
+   "symbol": "A830009L08Rik",
+   "ensembl": "ENSMUSG00000097182",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 63389,
+   "detected_frac": 0.02171468595010033
+  },
+  {
+   "symbol": "Klk8",
+   "ensembl": "ENSMUSG00000064023",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 68674,
+   "detected_frac": 0.02350547079089842
+  },
+  {
+   "symbol": "Pax6",
+   "ensembl": "ENSMUSG00000027168",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 247918,
+   "detected_frac": 0.12327736341952826
+  },
+  {
+   "symbol": "Dgkk",
+   "ensembl": "ENSMUSG00000062393",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 78120,
+   "detected_frac": 0.028246507401658273
+  },
+  {
+   "symbol": "Scn7a",
+   "ensembl": "ENSMUSG00000034810",
+   "vmax": 6.212235450744629,
+   "bytes_gz": 59370,
+   "detected_frac": 0.020330897664029075
+  },
+  {
+   "symbol": "Serpinf1",
+   "ensembl": "ENSMUSG00000000753",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 168504,
+   "detected_frac": 0.07152065270889335
+  },
+  {
+   "symbol": "Gng8",
+   "ensembl": "ENSMUSG00000063594",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 92523,
+   "detected_frac": 0.034397834399727406
+  },
+  {
+   "symbol": "Rmst",
+   "ensembl": "ENSMUSG00000112117",
+   "vmax": 5.156504154205322,
+   "bytes_gz": 253193,
+   "detected_frac": 0.12683811002158027
+  },
+  {
+   "symbol": "Ptprc",
+   "ensembl": "ENSMUSG00000026395",
+   "vmax": 6.2055487632751465,
+   "bytes_gz": 111196,
+   "detected_frac": 0.04107068489001628
+  },
+  {
+   "symbol": "Gldn",
+   "ensembl": "ENSMUSG00000046167",
+   "vmax": 3.726318597793579,
+   "bytes_gz": 50716,
+   "detected_frac": 0.0165032370423655
+  },
+  {
+   "symbol": "Shisa6",
+   "ensembl": "ENSMUSG00000053930",
+   "vmax": 5.236717700958252,
+   "bytes_gz": 197407,
+   "detected_frac": 0.08957236966645213
+  },
+  {
+   "symbol": "D930028M14Rik",
+   "ensembl": "ENSMUSG00000074274",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 39412,
+   "detected_frac": 0.011843599742551017
+  },
+  {
+   "symbol": "Epha8",
+   "ensembl": "ENSMUSG00000028661",
+   "vmax": 5.321928024291992,
+   "bytes_gz": 146692,
+   "detected_frac": 0.0639041381138076
+  },
+  {
+   "symbol": "Sv2c",
+   "ensembl": "ENSMUSG00000051111",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 302639,
+   "detected_frac": 0.15789762616893196
+  },
+  {
+   "symbol": "AW551984",
+   "ensembl": "ENSMUSG00000038112",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 108002,
+   "detected_frac": 0.04210899935637754
+  },
+  {
+   "symbol": "Isoc1",
+   "ensembl": "ENSMUSG00000024601",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 322108,
+   "detected_frac": 0.17826354446673986
+  },
+  {
+   "symbol": "Vdr",
+   "ensembl": "ENSMUSG00000022479",
+   "vmax": 4.882308006286621,
+   "bytes_gz": 35382,
+   "detected_frac": 0.010609359027751486
+  },
+  {
+   "symbol": "Galr1",
+   "ensembl": "ENSMUSG00000024553",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 60627,
+   "detected_frac": 0.020522091394389128
+  },
+  {
+   "symbol": "Hpgd",
+   "ensembl": "ENSMUSG00000031613",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 121169,
+   "detected_frac": 0.04690114716238216
+  },
+  {
+   "symbol": "Scnn1a",
+   "ensembl": "ENSMUSG00000030340",
+   "vmax": 4.698218822479248,
+   "bytes_gz": 67667,
+   "detected_frac": 0.02323950327490251
+  },
+  {
+   "symbol": "Zic4",
+   "ensembl": "ENSMUSG00000036972",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 135392,
+   "detected_frac": 0.05496346496043615
+  },
+  {
+   "symbol": "Nhlh2",
+   "ensembl": "ENSMUSG00000048540",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 47418,
+   "detected_frac": 0.015084428122515429
+  },
+  {
+   "symbol": "Fbn2",
+   "ensembl": "ENSMUSG00000024598",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 145236,
+   "detected_frac": 0.06343183280960134
+  },
+  {
+   "symbol": "Foxa2",
+   "ensembl": "ENSMUSG00000037025",
+   "vmax": 3.807354688644409,
+   "bytes_gz": 41932,
+   "detected_frac": 0.012645288305001326
+  },
+  {
+   "symbol": "Adora2a",
+   "ensembl": "ENSMUSG00000020178",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 155032,
+   "detected_frac": 0.0666329080377087
+  },
+  {
+   "symbol": "Id2",
+   "ensembl": "ENSMUSG00000020644",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 538293,
+   "detected_frac": 0.3476687615946693
+  },
+  {
+   "symbol": "Esrrg",
+   "ensembl": "ENSMUSG00000026610",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 195144,
+   "detected_frac": 0.08993961306932192
+  },
+  {
+   "symbol": "Pax7",
+   "ensembl": "ENSMUSG00000028736",
+   "vmax": 4.01965856552124,
+   "bytes_gz": 43887,
+   "detected_frac": 0.013705372354522394
+  },
+  {
+   "symbol": "Gpc3",
+   "ensembl": "ENSMUSG00000055653",
+   "vmax": 5.792593002319336,
+   "bytes_gz": 128015,
+   "detected_frac": 0.05172358308408738
+  },
+  {
+   "symbol": "Gad2",
+   "ensembl": "ENSMUSG00000026787",
+   "vmax": 5.986410617828369,
+   "bytes_gz": 421228,
+   "detected_frac": 0.24355241737023436
+  },
+  {
+   "symbol": "Th",
+   "ensembl": "ENSMUSG00000000214",
+   "vmax": 6.093689441680908,
+   "bytes_gz": 107791,
+   "detected_frac": 0.047459584295612006
+  },
+  {
+   "symbol": "Mctp2",
+   "ensembl": "ENSMUSG00000032776",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 96991,
+   "detected_frac": 0.03652178851323212
+  },
+  {
+   "symbol": "Clspn",
+   "ensembl": "ENSMUSG00000042489",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 41725,
+   "detected_frac": 0.013019157233180631
+  },
+  {
+   "symbol": "Stard5",
+   "ensembl": "ENSMUSG00000046027",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 163818,
+   "detected_frac": 0.07190966569492295
+  },
+  {
+   "symbol": "Gprc5b",
+   "ensembl": "ENSMUSG00000008734",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 715520,
+   "detected_frac": 0.5331351985764585
+  },
+  {
+   "symbol": "Ntrk3",
+   "ensembl": "ENSMUSG00000059146",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 619165,
+   "detected_frac": 0.43352137205164126
+  },
+  {
+   "symbol": "Tead1",
+   "ensembl": "ENSMUSG00000055320",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 244251,
+   "detected_frac": 0.12142978836179154
+  },
+  {
+   "symbol": "Glra2",
+   "ensembl": "ENSMUSG00000018589",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 123181,
+   "detected_frac": 0.050189300723128764
+  },
+  {
+   "symbol": "Barx2",
+   "ensembl": "ENSMUSG00000032033",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 127862,
+   "detected_frac": 0.052909552114489077
+  },
+  {
+   "symbol": "Tll1",
+   "ensembl": "ENSMUSG00000053626",
+   "vmax": 5.321928024291992,
+   "bytes_gz": 137894,
+   "detected_frac": 0.060933063264301666
+  },
+  {
+   "symbol": "Fbln5",
+   "ensembl": "ENSMUSG00000021186",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 54881,
+   "detected_frac": 0.017760193843940484
+  },
+  {
+   "symbol": "Tbcc",
+   "ensembl": "ENSMUSG00000036430",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 302716,
+   "detected_frac": 0.1695424601521978
+  },
+  {
+   "symbol": "Rwdd2a",
+   "ensembl": "ENSMUSG00000032417",
+   "vmax": 6.482203006744385,
+   "bytes_gz": 198813,
+   "detected_frac": 0.09860580017415667
+  },
+  {
+   "symbol": "Slc6a3",
+   "ensembl": "ENSMUSG00000021609",
+   "vmax": 5.325510501861572,
+   "bytes_gz": 64915,
+   "detected_frac": 0.022528679059554007
+  },
+  {
+   "symbol": "Adra1a",
+   "ensembl": "ENSMUSG00000045875",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 200006,
+   "detected_frac": 0.09718036572899709
+  },
+  {
+   "symbol": "Medag",
+   "ensembl": "ENSMUSG00000029659",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 164466,
+   "detected_frac": 0.07132567296407072
+  },
+  {
+   "symbol": "Rab38",
+   "ensembl": "ENSMUSG00000030559",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 53024,
+   "detected_frac": 0.01752356794002953
+  },
+  {
+   "symbol": "Zic3",
+   "ensembl": "ENSMUSG00000067860",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 152259,
+   "detected_frac": 0.0629254533752319
+  },
+  {
+   "symbol": "Dkkl1",
+   "ensembl": "ENSMUSG00000030792",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 113435,
+   "detected_frac": 0.04557604210048082
+  },
+  {
+   "symbol": "Rxfp2",
+   "ensembl": "ENSMUSG00000053368",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 41039,
+   "detected_frac": 0.012622572218225873
+  },
+  {
+   "symbol": "Crybg1",
+   "ensembl": "ENSMUSG00000019866",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 68075,
+   "detected_frac": 0.02419831143754969
+  },
+  {
+   "symbol": "Ctss",
+   "ensembl": "ENSMUSG00000038642",
+   "vmax": 7.361317157745361,
+   "bytes_gz": 271531,
+   "detected_frac": 0.1270936659978041
+  },
+  {
+   "symbol": "Ccdc42",
+   "ensembl": "ENSMUSG00000045915",
+   "vmax": 4.4929585456848145,
+   "bytes_gz": 48099,
+   "detected_frac": 0.015506568735092569
+  },
+  {
+   "symbol": "Adgrl2",
+   "ensembl": "ENSMUSG00000028184",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 454255,
+   "detected_frac": 0.2882434785900882
+  },
+  {
+   "symbol": "Vwc2l",
+   "ensembl": "ENSMUSG00000045648",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 141838,
+   "detected_frac": 0.05921231969106122
+  },
+  {
+   "symbol": "Kcnh3",
+   "ensembl": "ENSMUSG00000037579",
+   "vmax": 5.561394214630127,
+   "bytes_gz": 283561,
+   "detected_frac": 0.1598881232726309
+  },
+  {
+   "symbol": "Chrm1",
+   "ensembl": "ENSMUSG00000032773",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 275825,
+   "detected_frac": 0.14967724226706547
+  },
+  {
+   "symbol": "Prkcd",
+   "ensembl": "ENSMUSG00000021948",
+   "vmax": 6.217459201812744,
+   "bytes_gz": 268660,
+   "detected_frac": 0.1307793510771211
+  },
+  {
+   "symbol": "Nr5a2",
+   "ensembl": "ENSMUSG00000026398",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 85538,
+   "detected_frac": 0.03142392003937455
+  },
+  {
+   "symbol": "Gucy1a1",
+   "ensembl": "ENSMUSG00000033910",
+   "vmax": 5.634617805480957,
+   "bytes_gz": 399662,
+   "detected_frac": 0.23636940143111346
+  },
+  {
+   "symbol": "Kcng2",
+   "ensembl": "ENSMUSG00000059852",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 77441,
+   "detected_frac": 0.028148071025631317
+  },
+  {
+   "symbol": "Calcrl",
+   "ensembl": "ENSMUSG00000059588",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 133856,
+   "detected_frac": 0.05438420474766214
+  },
+  {
+   "symbol": "Mecom",
+   "ensembl": "ENSMUSG00000027684",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 221113,
+   "detected_frac": 0.10787396357854087
+  },
+  {
+   "symbol": "Adad1",
+   "ensembl": "ENSMUSG00000027719",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 44345,
+   "detected_frac": 0.013639117101427328
+  },
+  {
+   "symbol": "Eya4",
+   "ensembl": "ENSMUSG00000010461",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 86286,
+   "detected_frac": 0.031278158482565405
+  },
+  {
+   "symbol": "Npy2r",
+   "ensembl": "ENSMUSG00000028004",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 94245,
+   "detected_frac": 0.0355383712565782
+  },
+  {
+   "symbol": "Ppp1r17",
+   "ensembl": "ENSMUSG00000002930",
+   "vmax": 4.799020290374756,
+   "bytes_gz": 67768,
+   "detected_frac": 0.024001438685495778
+  },
+  {
+   "symbol": "Kcnip1",
+   "ensembl": "ENSMUSG00000053519",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 218058,
+   "detected_frac": 0.10394029455192519
+  },
+  {
+   "symbol": "Pvalb",
+   "ensembl": "ENSMUSG00000005716",
+   "vmax": 6.259957313537598,
+   "bytes_gz": 331128,
+   "detected_frac": 0.18191515541589368
+  },
+  {
+   "symbol": "Fgf13",
+   "ensembl": "ENSMUSG00000031137",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 408460,
+   "detected_frac": 0.249447241888464
+  },
+  {
+   "symbol": "Hs3st3b1",
+   "ensembl": "ENSMUSG00000070407",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 75872,
+   "detected_frac": 0.02659391208874418
+  },
+  {
+   "symbol": "Ednrb",
+   "ensembl": "ENSMUSG00000022122",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 272333,
+   "detected_frac": 0.13404194904024533
+  },
+  {
+   "symbol": "Stk31",
+   "ensembl": "ENSMUSG00000023403",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 79163,
+   "detected_frac": 0.028558853594820733
+  },
+  {
+   "symbol": "Dach1",
+   "ensembl": "ENSMUSG00000055639",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 195826,
+   "detected_frac": 0.08994150607655321
+  },
+  {
+   "symbol": "Cd44",
+   "ensembl": "ENSMUSG00000005087",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 64100,
+   "detected_frac": 0.021797978268276987
+  },
+  {
+   "symbol": "Casq2",
+   "ensembl": "ENSMUSG00000027861",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 76782,
+   "detected_frac": 0.026647862794835876
+  },
+  {
+   "symbol": "Hoxb8",
+   "ensembl": "ENSMUSG00000056648",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 23951,
+   "detected_frac": 0.00660754174080945
+  },
+  {
+   "symbol": "Meis2",
+   "ensembl": "ENSMUSG00000027210",
+   "vmax": 5.6782660484313965,
+   "bytes_gz": 495466,
+   "detected_frac": 0.32255328815356077
+  },
+  {
+   "symbol": "Plagl1",
+   "ensembl": "ENSMUSG00000019817",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 303308,
+   "detected_frac": 0.1632084579563094
+  },
+  {
+   "symbol": "Slc32a1",
+   "ensembl": "ENSMUSG00000037771",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 424669,
+   "detected_frac": 0.250164691629122
+  },
+  {
+   "symbol": "Sox21",
+   "ensembl": "ENSMUSG00000061517",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 201649,
+   "detected_frac": 0.09088706318858138
+  },
+  {
+   "symbol": "Sostdc1",
+   "ensembl": "ENSMUSG00000036169",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 57253,
+   "detected_frac": 0.018562828910006435
+  },
+  {
+   "symbol": "Egflam",
+   "ensembl": "ENSMUSG00000042961",
+   "vmax": 5.008988857269287,
+   "bytes_gz": 118168,
+   "detected_frac": 0.04491916859122402
+  },
+  {
+   "symbol": "Igsf1",
+   "ensembl": "ENSMUSG00000031111",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 89448,
+   "detected_frac": 0.03401450043539166
+  },
+  {
+   "symbol": "Cdh9",
+   "ensembl": "ENSMUSG00000025370",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 215751,
+   "detected_frac": 0.10566198462878128
+  },
+  {
+   "symbol": "Mcub",
+   "ensembl": "ENSMUSG00000027994",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 63163,
+   "detected_frac": 0.02148657857873017
+  },
+  {
+   "symbol": "Itgad",
+   "ensembl": "ENSMUSG00000070369",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 32185,
+   "detected_frac": 0.00920001514405785
+  },
+  {
+   "symbol": "Ntsr2",
+   "ensembl": "ENSMUSG00000020591",
+   "vmax": 6.044394016265869,
+   "bytes_gz": 519338,
+   "detected_frac": 0.3176825805474577
+  },
+  {
+   "symbol": "Meis1",
+   "ensembl": "ENSMUSG00000020160",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 279166,
+   "detected_frac": 0.1493241964184303
+  },
+  {
+   "symbol": "Calcr",
+   "ensembl": "ENSMUSG00000023964",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 60832,
+   "detected_frac": 0.02007818119865218
+  },
+  {
+   "symbol": "Tpbg",
+   "ensembl": "ENSMUSG00000035274",
+   "vmax": 5.321928024291992,
+   "bytes_gz": 201098,
+   "detected_frac": 0.09275735433309355
+  },
+  {
+   "symbol": "Atp10a",
+   "ensembl": "ENSMUSG00000025324",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 321953,
+   "detected_frac": 0.16273709915571877
+  },
+  {
+   "symbol": "Casz1",
+   "ensembl": "ENSMUSG00000028977",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 59753,
+   "detected_frac": 0.020098057774580697
+  },
+  {
+   "symbol": "Grp",
+   "ensembl": "ENSMUSG00000024517",
+   "vmax": 4.483484268188477,
+   "bytes_gz": 87814,
+   "detected_frac": 0.03315791466323401
+  },
+  {
+   "symbol": "Npr3",
+   "ensembl": "ENSMUSG00000022206",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 132929,
+   "detected_frac": 0.05470222996251846
+  },
+  {
+   "symbol": "Fat2",
+   "ensembl": "ENSMUSG00000055333",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 111677,
+   "detected_frac": 0.04977473213947677
+  },
+  {
+   "symbol": "Filip1",
+   "ensembl": "ENSMUSG00000034898",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 209221,
+   "detected_frac": 0.09959300344527316
+  },
+  {
+   "symbol": "Meox2",
+   "ensembl": "ENSMUSG00000036144",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 40224,
+   "detected_frac": 0.012672736909854996
+  },
+  {
+   "symbol": "Ucp2",
+   "ensembl": "ENSMUSG00000033685",
+   "vmax": 6.234304428100586,
+   "bytes_gz": 429867,
+   "detected_frac": 0.244810320675425
+  },
+  {
+   "symbol": "Slc25a13",
+   "ensembl": "ENSMUSG00000015112",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 126591,
+   "detected_frac": 0.050753416878052474
+  },
+  {
+   "symbol": "Gabre",
+   "ensembl": "ENSMUSG00000031340",
+   "vmax": 6.643507480621338,
+   "bytes_gz": 68178,
+   "detected_frac": 0.024283496762957636
+  },
+  {
+   "symbol": "Col6a1",
+   "ensembl": "ENSMUSG00000001119",
+   "vmax": 6.0068440437316895,
+   "bytes_gz": 287133,
+   "detected_frac": 0.1450611441335706
+  },
+  {
+   "symbol": "Fgf10",
+   "ensembl": "ENSMUSG00000021732",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 75134,
+   "detected_frac": 0.02739654715481013
+  },
+  {
+   "symbol": "Cited1",
+   "ensembl": "ENSMUSG00000051159",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 66924,
+   "detected_frac": 0.023168515503729226
+  },
+  {
+   "symbol": "St3gal1",
+   "ensembl": "ENSMUSG00000013846",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 285664,
+   "detected_frac": 0.14826884488698747
+  },
+  {
+   "symbol": "Hmcn1",
+   "ensembl": "ENSMUSG00000066842",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 140394,
+   "detected_frac": 0.05571120281679476
+  },
+  {
+   "symbol": "Prox1",
+   "ensembl": "ENSMUSG00000010175",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 288339,
+   "detected_frac": 0.14616382084579563
+  },
+  {
+   "symbol": "Ldb2",
+   "ensembl": "ENSMUSG00000039706",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 336018,
+   "detected_frac": 0.18889845909211372
+  },
+  {
+   "symbol": "C230014O12Rik",
+   "ensembl": "ENSMUSG00000087461",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 165358,
+   "detected_frac": 0.07447847650778026
+  },
+  {
+   "symbol": "Nell1",
+   "ensembl": "ENSMUSG00000055409",
+   "vmax": 4.991626739501953,
+   "bytes_gz": 300762,
+   "detected_frac": 0.15425642675955023
+  },
+  {
+   "symbol": "Tnnt1",
+   "ensembl": "ENSMUSG00000064179",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 229946,
+   "detected_frac": 0.11586718661265286
+  },
+  {
+   "symbol": "Tgfb2",
+   "ensembl": "ENSMUSG00000039239",
+   "vmax": 5.614709854125977,
+   "bytes_gz": 204830,
+   "detected_frac": 0.09346344603036384
+  },
+  {
+   "symbol": "Nfatc1",
+   "ensembl": "ENSMUSG00000033016",
+   "vmax": 5.561394214630127,
+   "bytes_gz": 151810,
+   "detected_frac": 0.06367887025328436
+  },
+  {
+   "symbol": "Rorb",
+   "ensembl": "ENSMUSG00000036192",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 281075,
+   "detected_frac": 0.14398496952258358
+  },
+  {
+   "symbol": "Neurod2",
+   "ensembl": "ENSMUSG00000038255",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 359572,
+   "detected_frac": 0.2111498125922841
+  },
+  {
+   "symbol": "Adgrf5",
+   "ensembl": "ENSMUSG00000056492",
+   "vmax": 6.494141101837158,
+   "bytes_gz": 279560,
+   "detected_frac": 0.13436281376594858
+  },
+  {
+   "symbol": "Lef1",
+   "ensembl": "ENSMUSG00000027985",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 248340,
+   "detected_frac": 0.117062620679211
+  },
+  {
+   "symbol": "Esrrb",
+   "ensembl": "ENSMUSG00000021255",
+   "vmax": 3.8940091133117676,
+   "bytes_gz": 55761,
+   "detected_frac": 0.018229659637299816
+  },
+  {
+   "symbol": "Zeb2",
+   "ensembl": "ENSMUSG00000026872",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 625466,
+   "detected_frac": 0.43907829477908605
+  },
+  {
+   "symbol": "Hapln1",
+   "ensembl": "ENSMUSG00000021613",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 111607,
+   "detected_frac": 0.04286241623443002
+  },
+  {
+   "symbol": "Fbln1",
+   "ensembl": "ENSMUSG00000006369",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 201861,
+   "detected_frac": 0.09035418165297392
+  },
+  {
+   "symbol": "Comtd1",
+   "ensembl": "ENSMUSG00000021773",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 170087,
+   "detected_frac": 0.0775470412296975
+  },
+  {
+   "symbol": "Hhip",
+   "ensembl": "ENSMUSG00000064325",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 128519,
+   "detected_frac": 0.05212774012796729
+  },
+  {
+   "symbol": "Tmem132c",
+   "ensembl": "ENSMUSG00000034324",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 114715,
+   "detected_frac": 0.04460492939083027
+  },
+  {
+   "symbol": "Adcy7",
+   "ensembl": "ENSMUSG00000031659",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 158769,
+   "detected_frac": 0.06753681899064855
+  },
+  {
+   "symbol": "Adcy8",
+   "ensembl": "ENSMUSG00000022376",
+   "vmax": 5.851181507110596,
+   "bytes_gz": 455183,
+   "detected_frac": 0.28412808086926894
+  },
+  {
+   "symbol": "Rai14",
+   "ensembl": "ENSMUSG00000022246",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 226185,
+   "detected_frac": 0.10668610154090788
+  },
+  {
+   "symbol": "Gnb3",
+   "ensembl": "ENSMUSG00000023439",
+   "vmax": 5.958296775817871,
+   "bytes_gz": 99961,
+   "detected_frac": 0.03850187407715897
+  },
+  {
+   "symbol": "Rasgrp2",
+   "ensembl": "ENSMUSG00000032946",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 350424,
+   "detected_frac": 0.19357040093893157
+  },
+  {
+   "symbol": "Dnah9",
+   "ensembl": "ENSMUSG00000056752",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 91205,
+   "detected_frac": 0.03390565251959263
+  },
+  {
+   "symbol": "Cldn5",
+   "ensembl": "ENSMUSG00000041378",
+   "vmax": 7.073759078979492,
+   "bytes_gz": 356748,
+   "detected_frac": 0.1804698443948056
+  },
+  {
+   "symbol": "Styk1",
+   "ensembl": "ENSMUSG00000032899",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 50579,
+   "detected_frac": 0.016482413962821338
+  },
+  {
+   "symbol": "Ermn",
+   "ensembl": "ENSMUSG00000026830",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 334750,
+   "detected_frac": 0.1774221027524325
+  },
+  {
+   "symbol": "Cwh43",
+   "ensembl": "ENSMUSG00000029154",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 60628,
+   "detected_frac": 0.02113826524817325
+  },
+  {
+   "symbol": "Pthlh",
+   "ensembl": "ENSMUSG00000048776",
+   "vmax": 3.756092071533203,
+   "bytes_gz": 65774,
+   "detected_frac": 0.021656949229546058
+  },
+  {
+   "symbol": "4930452B06Rik",
+   "ensembl": "ENSMUSG00000021747",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 179263,
+   "detected_frac": 0.08158577215764964
+  },
+  {
+   "symbol": "Ret",
+   "ensembl": "ENSMUSG00000030110",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 138743,
+   "detected_frac": 0.05673437322530572
+  },
+  {
+   "symbol": "Fam163a",
+   "ensembl": "ENSMUSG00000015484",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 177951,
+   "detected_frac": 0.07948453413092038
+  },
+  {
+   "symbol": "Glis3",
+   "ensembl": "ENSMUSG00000052942",
+   "vmax": 6.494141101837158,
+   "bytes_gz": 162793,
+   "detected_frac": 0.0735395449210616
+  },
+  {
+   "symbol": "Pou3f3",
+   "ensembl": "ENSMUSG00000045515",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 755414,
+   "detected_frac": 0.6005177374777572
+  },
+  {
+   "symbol": "Syt17",
+   "ensembl": "ENSMUSG00000058420",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 381230,
+   "detected_frac": 0.2240279407867338
+  },
+  {
+   "symbol": "Epsti1",
+   "ensembl": "ENSMUSG00000022014",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 58220,
+   "detected_frac": 0.01909287093476697
+  },
+  {
+   "symbol": "Npy1r",
+   "ensembl": "ENSMUSG00000036437",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 209758,
+   "detected_frac": 0.10171506455154658
+  },
+  {
+   "symbol": "Zfhx4",
+   "ensembl": "ENSMUSG00000025255",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 293905,
+   "detected_frac": 0.15644947563699693
+  },
+  {
+   "symbol": "Grid2ip",
+   "ensembl": "ENSMUSG00000010825",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 128178,
+   "detected_frac": 0.051849468064968006
+  },
+  {
+   "symbol": "Ccn4",
+   "ensembl": "ENSMUSG00000005124",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 101646,
+   "detected_frac": 0.04041286487714383
+  },
+  {
+   "symbol": "Svep1",
+   "ensembl": "ENSMUSG00000028369",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 99897,
+   "detected_frac": 0.038499981069927684
+  },
+  {
+   "symbol": "Olig3",
+   "ensembl": "ENSMUSG00000045591",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 25716,
+   "detected_frac": 0.006969106121985386
+  },
+  {
+   "symbol": "Esr2",
+   "ensembl": "ENSMUSG00000021055",
+   "vmax": 3.5109617710113525,
+   "bytes_gz": 42152,
+   "detected_frac": 0.01268409495324272
+  },
+  {
+   "symbol": "Ntn1",
+   "ensembl": "ENSMUSG00000020902",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 205238,
+   "detected_frac": 0.0924279710748495
+  },
+  {
+   "symbol": "Cartpt",
+   "ensembl": "ENSMUSG00000021647",
+   "vmax": 6.928370475769043,
+   "bytes_gz": 97731,
+   "detected_frac": 0.037744671184643926
+  },
+  {
+   "symbol": "Pitx2",
+   "ensembl": "ENSMUSG00000028023",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 67662,
+   "detected_frac": 0.023691932003180254
+  },
+  {
+   "symbol": "4921534H16Rik",
+   "ensembl": "ENSMUSG00000090255",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 40231,
+   "detected_frac": 0.01219475258395487
+  },
+  {
+   "symbol": "Inhbb",
+   "ensembl": "ENSMUSG00000037035",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 142996,
+   "detected_frac": 0.05982849354484534
+  },
+  {
+   "symbol": "Lama1",
+   "ensembl": "ENSMUSG00000032796",
+   "vmax": 5.321928024291992,
+   "bytes_gz": 87330,
+   "detected_frac": 0.031366183318820275
+  },
+  {
+   "symbol": "Sntg2",
+   "ensembl": "ENSMUSG00000020672",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 153619,
+   "detected_frac": 0.06843599742551017
+  },
+  {
+   "symbol": "Ankrd63",
+   "ensembl": "ENSMUSG00000078137",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 191076,
+   "detected_frac": 0.09548517775337902
+  },
+  {
+   "symbol": "C1ql1",
+   "ensembl": "ENSMUSG00000045532",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 160116,
+   "detected_frac": 0.06497747321394767
+  },
+  {
+   "symbol": "Trabd2b",
+   "ensembl": "ENSMUSG00000070867",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 68231,
+   "detected_frac": 0.023903948813084466
+  },
+  {
+   "symbol": "Tshz3",
+   "ensembl": "ENSMUSG00000021217",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 332421,
+   "detected_frac": 0.18265910725778972
+  },
+  {
+   "symbol": "Epha7",
+   "ensembl": "ENSMUSG00000028289",
+   "vmax": 5.614709854125977,
+   "bytes_gz": 373420,
+   "detected_frac": 0.21919225381440957
+  },
+  {
+   "symbol": "Cyp19a1",
+   "ensembl": "ENSMUSG00000032274",
+   "vmax": 3.9166386127471924,
+   "bytes_gz": 35132,
+   "detected_frac": 0.01026767122250407
+  },
+  {
+   "symbol": "Npas1",
+   "ensembl": "ENSMUSG00000001988",
+   "vmax": 5.247673034667969,
+   "bytes_gz": 107859,
+   "detected_frac": 0.04000302881157006
+  },
+  {
+   "symbol": "Smpdl3b",
+   "ensembl": "ENSMUSG00000028885",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 94384,
+   "detected_frac": 0.03631261121417484
+  },
+  {
+   "symbol": "Ccnd2",
+   "ensembl": "ENSMUSG00000000184",
+   "vmax": 6.234304428100586,
+   "bytes_gz": 369632,
+   "detected_frac": 0.2170370650815886
+  },
+  {
+   "symbol": "B020031H02Rik",
+   "ensembl": "ENSMUSG00000109995",
+   "vmax": 5.008988857269287,
+   "bytes_gz": 75601,
+   "detected_frac": 0.027114489077348276
+  },
+  {
+   "symbol": "Bhlhe23",
+   "ensembl": "ENSMUSG00000045493",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 23026,
+   "detected_frac": 0.006099269299208723
+  },
+  {
+   "symbol": "Gfap",
+   "ensembl": "ENSMUSG00000020932",
+   "vmax": 7.294620513916016,
+   "bytes_gz": 501582,
+   "detected_frac": 0.30443815545375386
+  },
+  {
+   "symbol": "Hrk",
+   "ensembl": "ENSMUSG00000046607",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 222515,
+   "detected_frac": 0.11084882444250937
+  },
+  {
+   "symbol": "Ptk2b",
+   "ensembl": "ENSMUSG00000059456",
+   "vmax": 5.88184118270874,
+   "bytes_gz": 558417,
+   "detected_frac": 0.3695632832317419
+  },
+  {
+   "symbol": "Igfbp6",
+   "ensembl": "ENSMUSG00000023046",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 199386,
+   "detected_frac": 0.09557509559686518
+  },
+  {
+   "symbol": "Rab33a",
+   "ensembl": "ENSMUSG00000031104",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 288586,
+   "detected_frac": 0.1539365085374626
+  },
+  {
+   "symbol": "Fn1",
+   "ensembl": "ENSMUSG00000026193",
+   "vmax": 7.262408256530762,
+   "bytes_gz": 355614,
+   "detected_frac": 0.18405614659448
+  },
+  {
+   "symbol": "Gpr39",
+   "ensembl": "ENSMUSG00000026343",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 51615,
+   "detected_frac": 0.01693484269109908
+  },
+  {
+   "symbol": "Abi3bp",
+   "ensembl": "ENSMUSG00000035258",
+   "vmax": 5.127599239349365,
+   "bytes_gz": 142951,
+   "detected_frac": 0.0618606368076326
+  },
+  {
+   "symbol": "Stk32a",
+   "ensembl": "ENSMUSG00000039954",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 165003,
+   "detected_frac": 0.07242456366183318
+  },
+  {
+   "symbol": "Slc7a10",
+   "ensembl": "ENSMUSG00000030495",
+   "vmax": 5.832890033721924,
+   "bytes_gz": 364824,
+   "detected_frac": 0.19120224889259077
+  },
+  {
+   "symbol": "Zbtb7c",
+   "ensembl": "ENSMUSG00000044646",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 136092,
+   "detected_frac": 0.055985688865331465
+  },
+  {
+   "symbol": "Pif1",
+   "ensembl": "ENSMUSG00000041064",
+   "vmax": 3.9040167331695557,
+   "bytes_gz": 36748,
+   "detected_frac": 0.010860182485897096
+  },
+  {
+   "symbol": "Skor2",
+   "ensembl": "ENSMUSG00000091519",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 35369,
+   "detected_frac": 0.010354749555143301
+  },
+  {
+   "symbol": "Slit2",
+   "ensembl": "ENSMUSG00000031558",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 161696,
+   "detected_frac": 0.0720402831938818
+  },
+  {
+   "symbol": "Rgs6",
+   "ensembl": "ENSMUSG00000021219",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 328589,
+   "detected_frac": 0.18382236020141596
+  },
+  {
+   "symbol": "Sp8",
+   "ensembl": "ENSMUSG00000048562",
+   "vmax": 5.008988857269287,
+   "bytes_gz": 109043,
+   "detected_frac": 0.05079790254798773
+  },
+  {
+   "symbol": "Gpr37l1",
+   "ensembl": "ENSMUSG00000026424",
+   "vmax": 5.877198696136475,
+   "bytes_gz": 529148,
+   "detected_frac": 0.31718471964562905
+  },
+  {
+   "symbol": "Ccdc192",
+   "ensembl": "ENSMUSG00000058925",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 27775,
+   "detected_frac": 0.0076723583084087384
+  },
+  {
+   "symbol": "Piezo2",
+   "ensembl": "ENSMUSG00000041482",
+   "vmax": 5.561394214630127,
+   "bytes_gz": 69601,
+   "detected_frac": 0.02387744671184644
+  },
+  {
+   "symbol": "Ppif",
+   "ensembl": "ENSMUSG00000021868",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 217971,
+   "detected_frac": 0.10882803922310984
+  },
+  {
+   "symbol": "Mme",
+   "ensembl": "ENSMUSG00000027820",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 104634,
+   "detected_frac": 0.042139287472078145
+  },
+  {
+   "symbol": "Hs3st2",
+   "ensembl": "ENSMUSG00000046321",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 225070,
+   "detected_frac": 0.11247207814333851
+  },
+  {
+   "symbol": "Frmd7",
+   "ensembl": "ENSMUSG00000036131",
+   "vmax": 5.561394214630127,
+   "bytes_gz": 100011,
+   "detected_frac": 0.054442887971832055
+  },
+  {
+   "symbol": "Zic1",
+   "ensembl": "ENSMUSG00000032368",
+   "vmax": 6.494141101837158,
+   "bytes_gz": 374235,
+   "detected_frac": 0.21150948396622876
+  },
+  {
+   "symbol": "Adamtsl1",
+   "ensembl": "ENSMUSG00000066113",
+   "vmax": 5.561394214630127,
+   "bytes_gz": 202834,
+   "detected_frac": 0.09220838223602014
+  },
+  {
+   "symbol": "Wif1",
+   "ensembl": "ENSMUSG00000020218",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 52712,
+   "detected_frac": 0.017022867527353956
+  },
+  {
+   "symbol": "Cd247",
+   "ensembl": "ENSMUSG00000005763",
+   "vmax": 5.008988857269287,
+   "bytes_gz": 32257,
+   "detected_frac": 0.009406352932268202
+  },
+  {
+   "symbol": "Chrm3",
+   "ensembl": "ENSMUSG00000046159",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 279237,
+   "detected_frac": 0.14688316359368492
+  },
+  {
+   "symbol": "Atp6ap1l",
+   "ensembl": "ENSMUSG00000078958",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 94775,
+   "detected_frac": 0.03671014273274524
+  },
+  {
+   "symbol": "Pax2",
+   "ensembl": "ENSMUSG00000004231",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 73114,
+   "detected_frac": 0.02581210010222239
+  },
+  {
+   "symbol": "C130074G19Rik",
+   "ensembl": "ENSMUSG00000039349",
+   "vmax": 6.303780555725098,
+   "bytes_gz": 364122,
+   "detected_frac": 0.20140839738007799
+  },
+  {
+   "symbol": "Marcksl1",
+   "ensembl": "ENSMUSG00000047945",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 555982,
+   "detected_frac": 0.3719995835384091
+  },
+  {
+   "symbol": "Cplx3",
+   "ensembl": "ENSMUSG00000039714",
+   "vmax": 6.330552577972412,
+   "bytes_gz": 91035,
+   "detected_frac": 0.03396149623291561
+  },
+  {
+   "symbol": "Timm50",
+   "ensembl": "ENSMUSG00000003438",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 328631,
+   "detected_frac": 0.1843760648165676
+  },
+  {
+   "symbol": "Col18a1",
+   "ensembl": "ENSMUSG00000001435",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 137550,
+   "detected_frac": 0.05500605762314012
+  },
+  {
+   "symbol": "Ccdc141",
+   "ensembl": "ENSMUSG00000044033",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 323652,
+   "detected_frac": 0.1703573997652671
+  },
+  {
+   "symbol": "Itih3",
+   "ensembl": "ENSMUSG00000006522",
+   "vmax": 6.360552787780762,
+   "bytes_gz": 311505,
+   "detected_frac": 0.1590410025366297
+  },
+  {
+   "symbol": "Cdh3",
+   "ensembl": "ENSMUSG00000061048",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 45265,
+   "detected_frac": 0.014462575247037444
+  },
+  {
+   "symbol": "Ndnf",
+   "ensembl": "ENSMUSG00000049001",
+   "vmax": 6.494141101837158,
+   "bytes_gz": 203972,
+   "detected_frac": 0.0915874758641578
+  },
+  {
+   "symbol": "Cd36",
+   "ensembl": "ENSMUSG00000002944",
+   "vmax": 5.023040294647217,
+   "bytes_gz": 70250,
+   "detected_frac": 0.02411123310491046
+  },
+  {
+   "symbol": "Edaradd",
+   "ensembl": "ENSMUSG00000095105",
+   "vmax": 7.1976094245910645,
+   "bytes_gz": 68495,
+   "detected_frac": 0.024049710369893614
+  },
+  {
+   "symbol": "Sp9",
+   "ensembl": "ENSMUSG00000068859",
+   "vmax": 5.51005744934082,
+   "bytes_gz": 173437,
+   "detected_frac": 0.08929504410706848
+  },
+  {
+   "symbol": "Col12a1",
+   "ensembl": "ENSMUSG00000032332",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 138931,
+   "detected_frac": 0.05817873774277818
+  },
+  {
+   "symbol": "Prdm16",
+   "ensembl": "ENSMUSG00000039410",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 188413,
+   "detected_frac": 0.084994131677583
+  },
+  {
+   "symbol": "Prdm13",
+   "ensembl": "ENSMUSG00000040478",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 52263,
+   "detected_frac": 0.017070192708136145
+  },
+  {
+   "symbol": "A2m",
+   "ensembl": "ENSMUSG00000030111",
+   "vmax": 5.9110307693481445,
+   "bytes_gz": 119152,
+   "detected_frac": 0.047014727596259416
+  },
+  {
+   "symbol": "Chrna3",
+   "ensembl": "ENSMUSG00000032303",
+   "vmax": 3.807354688644409,
+   "bytes_gz": 46192,
+   "detected_frac": 0.014326278726384735
+  },
+  {
+   "symbol": "Stac2",
+   "ensembl": "ENSMUSG00000017400",
+   "vmax": 5.236717700958252,
+   "bytes_gz": 343592,
+   "detected_frac": 0.18803335478741529
+  },
+  {
+   "symbol": "Trhde",
+   "ensembl": "ENSMUSG00000050663",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 270354,
+   "detected_frac": 0.1371739295044107
+  },
+  {
+   "symbol": "Mc4r",
+   "ensembl": "ENSMUSG00000047259",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 64671,
+   "detected_frac": 0.0220251391360315
+  },
+  {
+   "symbol": "P3h2",
+   "ensembl": "ENSMUSG00000038168",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 163507,
+   "detected_frac": 0.07100575474198312
+  },
+  {
+   "symbol": "Sema3d",
+   "ensembl": "ENSMUSG00000040254",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 130760,
+   "detected_frac": 0.05263979858403059
+  },
+  {
+   "symbol": "Clic6",
+   "ensembl": "ENSMUSG00000022949",
+   "vmax": 5.453633785247803,
+   "bytes_gz": 93565,
+   "detected_frac": 0.0372212546851929
+  },
+  {
+   "symbol": "Epha1",
+   "ensembl": "ENSMUSG00000029859",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 45441,
+   "detected_frac": 0.01425813046605838
+  },
+  {
+   "symbol": "Efna5",
+   "ensembl": "ENSMUSG00000048915",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 202203,
+   "detected_frac": 0.09742740317268012
+  },
+  {
+   "symbol": "Ecm2",
+   "ensembl": "ENSMUSG00000043631",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 102643,
+   "detected_frac": 0.038479157990383525
+  },
+  {
+   "symbol": "Ptgs2",
+   "ensembl": "ENSMUSG00000032487",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 99308,
+   "detected_frac": 0.038301215310642484
+  },
+  {
+   "symbol": "Ndst4",
+   "ensembl": "ENSMUSG00000027971",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 149361,
+   "detected_frac": 0.06400730700791277
+  },
+  {
+   "symbol": "Aqp4",
+   "ensembl": "ENSMUSG00000024411",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 396922,
+   "detected_frac": 0.22129254533752318
+  },
+  {
+   "symbol": "Cpne9",
+   "ensembl": "ENSMUSG00000030270",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 237643,
+   "detected_frac": 0.1167559535077424
+  },
+  {
+   "symbol": "Lmod2",
+   "ensembl": "ENSMUSG00000029683",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 30628,
+   "detected_frac": 0.008697421724150986
+  },
+  {
+   "symbol": "Sox11",
+   "ensembl": "ENSMUSG00000063632",
+   "vmax": 6.0699992179870605,
+   "bytes_gz": 305965,
+   "detected_frac": 0.17226649755802068
+  },
+  {
+   "symbol": "Lypd1",
+   "ensembl": "ENSMUSG00000026344",
+   "vmax": 5.561394214630127,
+   "bytes_gz": 184569,
+   "detected_frac": 0.08434861621171393
+  },
+  {
+   "symbol": "Irs4",
+   "ensembl": "ENSMUSG00000054667",
+   "vmax": 5.456826686859131,
+   "bytes_gz": 65227,
+   "detected_frac": 0.022640366486199978
+  },
+  {
+   "symbol": "Gal",
+   "ensembl": "ENSMUSG00000024907",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 43669,
+   "detected_frac": 0.013714837390678832
+  },
+  {
+   "symbol": "Htr1b",
+   "ensembl": "ENSMUSG00000049511",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 190544,
+   "detected_frac": 0.08863343807973346
+  },
+  {
+   "symbol": "Kl",
+   "ensembl": "ENSMUSG00000058488",
+   "vmax": 6.56107759475708,
+   "bytes_gz": 86087,
+   "detected_frac": 0.03184132813387347
+  },
+  {
+   "symbol": "Evx1os",
+   "ensembl": "ENSMUSG00000086126",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 44821,
+   "detected_frac": 0.01426759550221482
+  },
+  {
+   "symbol": "Lrrc55",
+   "ensembl": "ENSMUSG00000075224",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 211341,
+   "detected_frac": 0.10117271797978268
+  },
+  {
+   "symbol": "Vgll3",
+   "ensembl": "ENSMUSG00000091243",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 54312,
+   "detected_frac": 0.017457312686934463
+  },
+  {
+   "symbol": "Nr2f2",
+   "ensembl": "ENSMUSG00000030551",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 238158,
+   "detected_frac": 0.11691780562601749
+  },
+  {
+   "symbol": "Zfpm2",
+   "ensembl": "ENSMUSG00000022306",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 245273,
+   "detected_frac": 0.12139476772801272
+  },
+  {
+   "symbol": "Irx3",
+   "ensembl": "ENSMUSG00000031734",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 86032,
+   "detected_frac": 0.03243289289365085
+  },
+  {
+   "symbol": "Kcnj8",
+   "ensembl": "ENSMUSG00000030247",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 80263,
+   "detected_frac": 0.0270804149471851
+  },
+  {
+   "symbol": "Ust",
+   "ensembl": "ENSMUSG00000047712",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 326559,
+   "detected_frac": 0.17967383485404914
+  },
+  {
+   "symbol": "Tmem215",
+   "ensembl": "ENSMUSG00000046593",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 114022,
+   "detected_frac": 0.04567637148373907
+  },
+  {
+   "symbol": "Dlx2",
+   "ensembl": "ENSMUSG00000023391",
+   "vmax": 5.788186073303223,
+   "bytes_gz": 143439,
+   "detected_frac": 0.06910328247453905
+  },
+  {
+   "symbol": "Aff2",
+   "ensembl": "ENSMUSG00000031189",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 276562,
+   "detected_frac": 0.14573600121152464
+  },
+  {
+   "symbol": "B230323A14Rik",
+   "ensembl": "ENSMUSG00000097623",
+   "vmax": 5.044394016265869,
+   "bytes_gz": 124178,
+   "detected_frac": 0.04954757127172226
+  },
+  {
+   "symbol": "Alk",
+   "ensembl": "ENSMUSG00000055471",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 156455,
+   "detected_frac": 0.06510146518759702
+  },
+  {
+   "symbol": "Adgrv1",
+   "ensembl": "ENSMUSG00000069170",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 98341,
+   "detected_frac": 0.036659031537500476
+  },
+  {
+   "symbol": "Frzb",
+   "ensembl": "ENSMUSG00000027004",
+   "vmax": 5.3941240310668945,
+   "bytes_gz": 129220,
+   "detected_frac": 0.05555976223829175
+  },
+  {
+   "symbol": "Adcy2",
+   "ensembl": "ENSMUSG00000021536",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 511854,
+   "detected_frac": 0.3409097792753568
+  },
+  {
+   "symbol": "Ano2",
+   "ensembl": "ENSMUSG00000038115",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 80646,
+   "detected_frac": 0.03100177942679741
+  },
+  {
+   "symbol": "Akain1",
+   "ensembl": "ENSMUSG00000091636",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 132472,
+   "detected_frac": 0.055272971642751675
+  },
+  {
+   "symbol": "Tfap2d",
+   "ensembl": "ENSMUSG00000042596",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 67410,
+   "detected_frac": 0.02440843524022262
+  },
+  {
+   "symbol": "Gpr88",
+   "ensembl": "ENSMUSG00000068696",
+   "vmax": 5.026576042175293,
+   "bytes_gz": 213988,
+   "detected_frac": 0.1088469692954227
+  },
+  {
+   "symbol": "Hspb8",
+   "ensembl": "ENSMUSG00000041548",
+   "vmax": 5.044394016265869,
+   "bytes_gz": 186806,
+   "detected_frac": 0.08330178321281187
+  },
+  {
+   "symbol": "Chrna5",
+   "ensembl": "ENSMUSG00000035594",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 88677,
+   "detected_frac": 0.0328919471472381
+  },
+  {
+   "symbol": "Arhgap25",
+   "ensembl": "ENSMUSG00000030047",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 112883,
+   "detected_frac": 0.04395657441411426
+  },
+  {
+   "symbol": "Tspan18",
+   "ensembl": "ENSMUSG00000027217",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 155528,
+   "detected_frac": 0.06593344186574793
+  },
+  {
+   "symbol": "Plch1",
+   "ensembl": "ENSMUSG00000036834",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 131440,
+   "detected_frac": 0.0548262219361678
+  },
+  {
+   "symbol": "Lpl",
+   "ensembl": "ENSMUSG00000015568",
+   "vmax": 5.614709854125977,
+   "bytes_gz": 112588,
+   "detected_frac": 0.04655188732820959
+  },
+  {
+   "symbol": "Hcrtr2",
+   "ensembl": "ENSMUSG00000032360",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 63606,
+   "detected_frac": 0.02199579752394654
+  },
+  {
+   "symbol": "C1ql2",
+   "ensembl": "ENSMUSG00000036907",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 114456,
+   "detected_frac": 0.04477151402718359
+  },
+  {
+   "symbol": "Ror2",
+   "ensembl": "ENSMUSG00000021464",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 67505,
+   "detected_frac": 0.023017074925226214
+  },
+  {
+   "symbol": "Syndig1l",
+   "ensembl": "ENSMUSG00000071234",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 265877,
+   "detected_frac": 0.1371436413887101
+  },
+  {
+   "symbol": "Pcsk6",
+   "ensembl": "ENSMUSG00000030513",
+   "vmax": 5.561394214630127,
+   "bytes_gz": 259117,
+   "detected_frac": 0.12979498731685155
+  },
+  {
+   "symbol": "Agtr2",
+   "ensembl": "ENSMUSG00000068122",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 77128,
+   "detected_frac": 0.0277760951046833
+  },
+  {
+   "symbol": "P2ry1",
+   "ensembl": "ENSMUSG00000027765",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 144408,
+   "detected_frac": 0.05966569492295461
+  },
+  {
+   "symbol": "Spag16",
+   "ensembl": "ENSMUSG00000053153",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 46486,
+   "detected_frac": 0.014401052512020595
+  },
+  {
+   "symbol": "Slc6a5",
+   "ensembl": "ENSMUSG00000039728",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 55036,
+   "detected_frac": 0.018428425396585017
+  },
+  {
+   "symbol": "Aldh1l1",
+   "ensembl": "ENSMUSG00000030088",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 435925,
+   "detected_frac": 0.25770075341687804
+  },
+  {
+   "symbol": "Tbx3",
+   "ensembl": "ENSMUSG00000018604",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 138051,
+   "detected_frac": 0.05499564608336804
+  },
+  {
+   "symbol": "Pde1a",
+   "ensembl": "ENSMUSG00000059173",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 338429,
+   "detected_frac": 0.18707549312838376
+  },
+  {
+   "symbol": "Tmem26",
+   "ensembl": "ENSMUSG00000060044",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 35489,
+   "detected_frac": 0.01058285692651346
+  },
+  {
+   "symbol": "Ung",
+   "ensembl": "ENSMUSG00000029591",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 136444,
+   "detected_frac": 0.0573107939272328
+  },
+  {
+   "symbol": "Fam122b",
+   "ensembl": "ENSMUSG00000036022",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 106145,
+   "detected_frac": 0.04067315337144588
+  },
+  {
+   "symbol": "C7",
+   "ensembl": "ENSMUSG00000079105",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 44982,
+   "detected_frac": 0.01466796653163215
+  },
+  {
+   "symbol": "Crhbp",
+   "ensembl": "ENSMUSG00000021680",
+   "vmax": 5.90653133392334,
+   "bytes_gz": 90593,
+   "detected_frac": 0.032907091205088404
+  },
+  {
+   "symbol": "Wls",
+   "ensembl": "ENSMUSG00000028173",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 348717,
+   "detected_frac": 0.19937720062090636
+  },
+  {
+   "symbol": "Chrm2",
+   "ensembl": "ENSMUSG00000045613",
+   "vmax": 4.746232509613037,
+   "bytes_gz": 199092,
+   "detected_frac": 0.09193768220194601
+  },
+  {
+   "symbol": "Fezf2",
+   "ensembl": "ENSMUSG00000021743",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 195885,
+   "detected_frac": 0.09283212811872942
+  },
+  {
+   "symbol": "Mdga1",
+   "ensembl": "ENSMUSG00000043557",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 196531,
+   "detected_frac": 0.09118615833112483
+  },
+  {
+   "symbol": "Sln",
+   "ensembl": "ENSMUSG00000042045",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 31713,
+   "detected_frac": 0.009050467572786129
+  },
+  {
+   "symbol": "Ptpru",
+   "ensembl": "ENSMUSG00000028909",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 271061,
+   "detected_frac": 0.14147673494112747
+  },
+  {
+   "symbol": "Sntb1",
+   "ensembl": "ENSMUSG00000060429",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 167203,
+   "detected_frac": 0.07170048839586567
+  },
+  {
+   "symbol": "Chrnb3",
+   "ensembl": "ENSMUSG00000031492",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 72639,
+   "detected_frac": 0.025256502479839474
+  },
+  {
+   "symbol": "Zan",
+   "ensembl": "ENSMUSG00000079173",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 43458,
+   "detected_frac": 0.013462120925301935
+  },
+  {
+   "symbol": "Lmcd1",
+   "ensembl": "ENSMUSG00000057604",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 209139,
+   "detected_frac": 0.09599628970582667
+  },
+  {
+   "symbol": "Rarb",
+   "ensembl": "ENSMUSG00000017491",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 203517,
+   "detected_frac": 0.09682921288759323
+  },
+  {
+   "symbol": "Prkg2",
+   "ensembl": "ENSMUSG00000029334",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 166043,
+   "detected_frac": 0.07380077991897929
+  },
+  {
+   "symbol": "Gpr50",
+   "ensembl": "ENSMUSG00000056380",
+   "vmax": 5.517275810241699,
+   "bytes_gz": 67244,
+   "detected_frac": 0.023511149812592284
+  },
+  {
+   "symbol": "Colec12",
+   "ensembl": "ENSMUSG00000036103",
+   "vmax": 7.038268089294434,
+   "bytes_gz": 154957,
+   "detected_frac": 0.0654251694241472
+  },
+  {
+   "symbol": "Onecut2",
+   "ensembl": "ENSMUSG00000045991",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 95932,
+   "detected_frac": 0.037672736909854995
+  },
+  {
+   "symbol": "Avpr1a",
+   "ensembl": "ENSMUSG00000020123",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 51660,
+   "detected_frac": 0.016868587438004012
+  },
+  {
+   "symbol": "Bmp6",
+   "ensembl": "ENSMUSG00000039004",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 156158,
+   "detected_frac": 0.06613504713588006
+  },
+  {
+   "symbol": "Cacng5",
+   "ensembl": "ENSMUSG00000040373",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 283186,
+   "detected_frac": 0.15493885586642941
+  },
+  {
+   "symbol": "Clrn1",
+   "ensembl": "ENSMUSG00000043850",
+   "vmax": 4.670760631561279,
+   "bytes_gz": 68547,
+   "detected_frac": 0.023456252602884944
+  },
+  {
+   "symbol": "Sall3",
+   "ensembl": "ENSMUSG00000024565",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 237158,
+   "detected_frac": 0.11529360542157271
+  },
+  {
+   "symbol": "Tox",
+   "ensembl": "ENSMUSG00000041272",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 280443,
+   "detected_frac": 0.1479536591829781
+  },
+  {
+   "symbol": "Tshr",
+   "ensembl": "ENSMUSG00000020963",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 41591,
+   "detected_frac": 0.012652860333926475
+  },
+  {
+   "symbol": "Frem3",
+   "ensembl": "ENSMUSG00000042353",
+   "vmax": 3.650254011154175,
+   "bytes_gz": 27178,
+   "detected_frac": 0.007500094650361565
+  },
+  {
+   "symbol": "Zfp618",
+   "ensembl": "ENSMUSG00000028358",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 155987,
+   "detected_frac": 0.0684303184038163
+  },
+  {
+   "symbol": "Col27a1",
+   "ensembl": "ENSMUSG00000045672",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 215642,
+   "detected_frac": 0.09909892855790708
+  },
+  {
+   "symbol": "Ccdc80",
+   "ensembl": "ENSMUSG00000022665",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 109103,
+   "detected_frac": 0.04239862946276455
+  },
+  {
+   "symbol": "Antxr2",
+   "ensembl": "ENSMUSG00000029338",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 85681,
+   "detected_frac": 0.03162647181312232
+  },
+  {
+   "symbol": "Shox2",
+   "ensembl": "ENSMUSG00000027833",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 92687,
+   "detected_frac": 0.036256767500851855
+  },
+  {
+   "symbol": "Pgr15l",
+   "ensembl": "ENSMUSG00000031212",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 31814,
+   "detected_frac": 0.009395941392496119
+  },
+  {
+   "symbol": "Col6a5",
+   "ensembl": "ENSMUSG00000091345",
+   "vmax": 4.670760154724121,
+   "bytes_gz": 47267,
+   "detected_frac": 0.014960436148866088
+  },
+  {
+   "symbol": "Anxa2",
+   "ensembl": "ENSMUSG00000032231",
+   "vmax": 5.658891677856445,
+   "bytes_gz": 265920,
+   "detected_frac": 0.127484571991065
+  },
+  {
+   "symbol": "Tacr3",
+   "ensembl": "ENSMUSG00000028172",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 88911,
+   "detected_frac": 0.03304717374020369
+  },
+  {
+   "symbol": "Gpr6",
+   "ensembl": "ENSMUSG00000046922",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 68635,
+   "detected_frac": 0.024758641578010828
+  },
+  {
+   "symbol": "Barhl2",
+   "ensembl": "ENSMUSG00000034384",
+   "vmax": 5.986410617828369,
+   "bytes_gz": 73479,
+   "detected_frac": 0.027933214704880173
+  },
+  {
+   "symbol": "Nr5a1",
+   "ensembl": "ENSMUSG00000026751",
+   "vmax": 4.026279449462891,
+   "bytes_gz": 24695,
+   "detected_frac": 0.006702192102373831
+  },
+  {
+   "symbol": "Hdc",
+   "ensembl": "ENSMUSG00000027360",
+   "vmax": 5.843149185180664,
+   "bytes_gz": 61699,
+   "detected_frac": 0.02115624881687048
+  },
+  {
+   "symbol": "Mcm6",
+   "ensembl": "ENSMUSG00000026355",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 97416,
+   "detected_frac": 0.03644701472759626
+  },
+  {
+   "symbol": "Tmem176a",
+   "ensembl": "ENSMUSG00000023367",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 236904,
+   "detected_frac": 0.11531537500473252
+  },
+  {
+   "symbol": "Pld5",
+   "ensembl": "ENSMUSG00000055214",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 232472,
+   "detected_frac": 0.11586718661265286
+  },
+  {
+   "symbol": "Htr2a",
+   "ensembl": "ENSMUSG00000034997",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 159259,
+   "detected_frac": 0.07290633400219589
+  },
+  {
+   "symbol": "6530403H02Rik",
+   "ensembl": "ENSMUSG00000098097",
+   "vmax": 4.670760631561279,
+   "bytes_gz": 38332,
+   "detected_frac": 0.011610759853102639
+  },
+  {
+   "symbol": "Bcl11a",
+   "ensembl": "ENSMUSG00000000861",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 456322,
+   "detected_frac": 0.2859264377389922
+  },
+  {
+   "symbol": "Nudt14",
+   "ensembl": "ENSMUSG00000002804",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 153010,
+   "detected_frac": 0.06569681596183698
+  },
+  {
+   "symbol": "Pde11a",
+   "ensembl": "ENSMUSG00000075270",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 80759,
+   "detected_frac": 0.028383750425926627
+  },
+  {
+   "symbol": "Bsx",
+   "ensembl": "ENSMUSG00000054360",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 36417,
+   "detected_frac": 0.010638700639836443
+  },
+  {
+   "symbol": "Sim1",
+   "ensembl": "ENSMUSG00000019913",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 57797,
+   "detected_frac": 0.019050278272063
+  },
+  {
+   "symbol": "Rgs5",
+   "ensembl": "ENSMUSG00000026678",
+   "vmax": 7.108269214630127,
+   "bytes_gz": 351061,
+   "detected_frac": 0.17903589141710521
+  },
+  {
+   "symbol": "Ntng1",
+   "ensembl": "ENSMUSG00000059857",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 227587,
+   "detected_frac": 0.10761272858062318
+  },
+  {
+   "symbol": "Pde5a",
+   "ensembl": "ENSMUSG00000053965",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 103091,
+   "detected_frac": 0.03918998220573203
+  },
+  {
+   "symbol": "Sox2",
+   "ensembl": "ENSMUSG00000074637",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 578399,
+   "detected_frac": 0.3942992087229773
+  },
+  {
+   "symbol": "Igf2",
+   "ensembl": "ENSMUSG00000048583",
+   "vmax": 6.511976718902588,
+   "bytes_gz": 202770,
+   "detected_frac": 0.0859207587172983
+  },
+  {
+   "symbol": "Slc30a3",
+   "ensembl": "ENSMUSG00000029151",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 269928,
+   "detected_frac": 0.1379689925415515
+  },
+  {
+   "symbol": "Nxph1",
+   "ensembl": "ENSMUSG00000046178",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 241644,
+   "detected_frac": 0.11508348161889978
+  },
+  {
+   "symbol": "Gdf6",
+   "ensembl": "ENSMUSG00000051279",
+   "vmax": 7.42872953414917,
+   "bytes_gz": 126255,
+   "detected_frac": 0.05247605345852421
+  },
+  {
+   "symbol": "Fosb",
+   "ensembl": "ENSMUSG00000003545",
+   "vmax": 4.974484443664551,
+   "bytes_gz": 118914,
+   "detected_frac": 0.04846761064627267
+  },
+  {
+   "symbol": "Col24a1",
+   "ensembl": "ENSMUSG00000028197",
+   "vmax": 4.795573711395264,
+   "bytes_gz": 84534,
+   "detected_frac": 0.031099269299208723
+  },
+  {
+   "symbol": "Hopx",
+   "ensembl": "ENSMUSG00000059325",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 266479,
+   "detected_frac": 0.13429655851285352
+  },
+  {
+   "symbol": "Eya2",
+   "ensembl": "ENSMUSG00000017897",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 92724,
+   "detected_frac": 0.03409684624995268
+  },
+  {
+   "symbol": "Nwd2",
+   "ensembl": "ENSMUSG00000090061",
+   "vmax": 5.3575520515441895,
+   "bytes_gz": 195935,
+   "detected_frac": 0.0923910574338394
+  },
+  {
+   "symbol": "Aqp1",
+   "ensembl": "ENSMUSG00000004655",
+   "vmax": 5.756522178649902,
+   "bytes_gz": 88611,
+   "detected_frac": 0.03390849203043956
+  },
+  {
+   "symbol": "Mafa",
+   "ensembl": "ENSMUSG00000047591",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 190181,
+   "detected_frac": 0.09391303524779465
+  },
+  {
+   "symbol": "Adgrd1",
+   "ensembl": "ENSMUSG00000044017",
+   "vmax": 3.8073549270629883,
+   "bytes_gz": 64487,
+   "detected_frac": 0.02182353386589937
+  },
+  {
+   "symbol": "Erbb4",
+   "ensembl": "ENSMUSG00000062209",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 280120,
+   "detected_frac": 0.14332336349524855
+  },
+  {
+   "symbol": "Drd3",
+   "ensembl": "ENSMUSG00000022705",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 67439,
+   "detected_frac": 0.02433934047628062
+  },
+  {
+   "symbol": "Cdc14a",
+   "ensembl": "ENSMUSG00000033502",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 138420,
+   "detected_frac": 0.05769034187710597
+  },
+  {
+   "symbol": "Dlx6",
+   "ensembl": "ENSMUSG00000029754",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 184687,
+   "detected_frac": 0.09169727028357248
+  },
+  {
+   "symbol": "Cd79a",
+   "ensembl": "ENSMUSG00000003379",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 30112,
+   "detected_frac": 0.008533676598644607
+  },
+  {
+   "symbol": "Thbs4",
+   "ensembl": "ENSMUSG00000021702",
+   "vmax": 6.250035285949707,
+   "bytes_gz": 87246,
+   "detected_frac": 0.03153844697686745
+  },
+  {
+   "symbol": "Col6a3",
+   "ensembl": "ENSMUSG00000048126",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 73132,
+   "detected_frac": 0.025385226971567032
+  },
+  {
+   "symbol": "Oprk1",
+   "ensembl": "ENSMUSG00000025905",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 99146,
+   "detected_frac": 0.038767841593154884
+  },
+  {
+   "symbol": "Cnmd",
+   "ensembl": "ENSMUSG00000022025",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 76492,
+   "detected_frac": 0.027810169234846478
+  },
+  {
+   "symbol": "9630002D21Rik",
+   "ensembl": "ENSMUSG00000114028",
+   "vmax": 3.5786211490631104,
+   "bytes_gz": 26013,
+   "detected_frac": 0.007107295649869383
+  },
+  {
+   "symbol": "Sstr1",
+   "ensembl": "ENSMUSG00000035431",
+   "vmax": 7.361317157745361,
+   "bytes_gz": 389996,
+   "detected_frac": 0.23831162685041457
+  },
+  {
+   "symbol": "Slitrk6",
+   "ensembl": "ENSMUSG00000045871",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 76721,
+   "detected_frac": 0.02736625903910953
+  },
+  {
+   "symbol": "Rab3b",
+   "ensembl": "ENSMUSG00000003411",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 189906,
+   "detected_frac": 0.0870139703933669
+  },
+  {
+   "symbol": "Slc38a1",
+   "ensembl": "ENSMUSG00000023169",
+   "vmax": 5.867385387420654,
+   "bytes_gz": 664550,
+   "detected_frac": 0.4804594328550335
+  },
+  {
+   "symbol": "Ror1",
+   "ensembl": "ENSMUSG00000035305",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 76519,
+   "detected_frac": 0.027257411123310493
+  },
+  {
+   "symbol": "Gcnt4",
+   "ensembl": "ENSMUSG00000091387",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 138065,
+   "detected_frac": 0.05807746185590429
+  },
+  {
+   "symbol": "Rab37",
+   "ensembl": "ENSMUSG00000020732",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 90374,
+   "detected_frac": 0.03414606443796615
+  },
+  {
+   "symbol": "Bmp3",
+   "ensembl": "ENSMUSG00000029335",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 64686,
+   "detected_frac": 0.022806004618937645
+  },
+  {
+   "symbol": "Kif11",
+   "ensembl": "ENSMUSG00000012443",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 52752,
+   "detected_frac": 0.01734467875667285
+  },
+  {
+   "symbol": "Masp1",
+   "ensembl": "ENSMUSG00000022887",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 144103,
+   "detected_frac": 0.06020046946579336
+  },
+  {
+   "symbol": "Arhgef38",
+   "ensembl": "ENSMUSG00000040969",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 33529,
+   "detected_frac": 0.009945859993185174
+  },
+  {
+   "symbol": "Usp43",
+   "ensembl": "ENSMUSG00000020905",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 85318,
+   "detected_frac": 0.031591451179343505
+  },
+  {
+   "symbol": "Vegfc",
+   "ensembl": "ENSMUSG00000031520",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 117195,
+   "detected_frac": 0.04611460265778215
+  },
+  {
+   "symbol": "Prdm12",
+   "ensembl": "ENSMUSG00000079466",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 57957,
+   "detected_frac": 0.019544353159429068
+  },
+  {
+   "symbol": "Fgf11",
+   "ensembl": "ENSMUSG00000042826",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 362744,
+   "detected_frac": 0.20820807935486313
+  },
+  {
+   "symbol": "En2",
+   "ensembl": "ENSMUSG00000039095",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 155368,
+   "detected_frac": 0.07288456441903608
+  },
+  {
+   "symbol": "Stac",
+   "ensembl": "ENSMUSG00000032502",
+   "vmax": 4.51694393157959,
+   "bytes_gz": 97317,
+   "detected_frac": 0.03653030704577292
+  },
+  {
+   "symbol": "Iqgap2",
+   "ensembl": "ENSMUSG00000021676",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 262398,
+   "detected_frac": 0.13557433839397268
+  },
+  {
+   "symbol": "Fgd5",
+   "ensembl": "ENSMUSG00000034037",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 243283,
+   "detected_frac": 0.11359368492787643
+  },
+  {
+   "symbol": "Rbp4",
+   "ensembl": "ENSMUSG00000024990",
+   "vmax": 4.557913303375244,
+   "bytes_gz": 92046,
+   "detected_frac": 0.03456631204331201
+  },
+  {
+   "symbol": "Hgf",
+   "ensembl": "ENSMUSG00000028864",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 89601,
+   "detected_frac": 0.03380343012910309
+  },
+  {
+   "symbol": "Tal1",
+   "ensembl": "ENSMUSG00000028717",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 155653,
+   "detected_frac": 0.06524344072994359
+  },
+  {
+   "symbol": "Chrna6",
+   "ensembl": "ENSMUSG00000031491",
+   "vmax": 5.112700462341309,
+   "bytes_gz": 39801,
+   "detected_frac": 0.012073600121152463
+  },
+  {
+   "symbol": "Fbn1",
+   "ensembl": "ENSMUSG00000027204",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 130349,
+   "detected_frac": 0.053983833718244806
+  },
+  {
+   "symbol": "Lama3",
+   "ensembl": "ENSMUSG00000024421",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 212001,
+   "detected_frac": 0.09867868095256124
+  },
+  {
+   "symbol": "Frem1",
+   "ensembl": "ENSMUSG00000059049",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 61912,
+   "detected_frac": 0.0208476886381706
+  },
+  {
+   "symbol": "Penk",
+   "ensembl": "ENSMUSG00000045573",
+   "vmax": 7.062182903289795,
+   "bytes_gz": 376312,
+   "detected_frac": 0.20933820467194184
+  },
+  {
+   "symbol": "Prph",
+   "ensembl": "ENSMUSG00000023484",
+   "vmax": 5.988082408905029,
+   "bytes_gz": 61403,
+   "detected_frac": 0.021067277476999963
+  },
+  {
+   "symbol": "Ptpn14",
+   "ensembl": "ENSMUSG00000026604",
+   "vmax": 6.6835174560546875,
+   "bytes_gz": 254610,
+   "detected_frac": 0.1294372089501382
+  },
+  {
+   "symbol": "Tcf7l2",
+   "ensembl": "ENSMUSG00000024985",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 269507,
+   "detected_frac": 0.13764150229053876
+  },
+  {
+   "symbol": "Lhfp",
+   "ensembl": "ENSMUSG00000048332",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 393381,
+   "detected_frac": 0.22584996024684814
+  },
+  {
+   "symbol": "Trdn",
+   "ensembl": "ENSMUSG00000019787",
+   "vmax": 4.122759819030762,
+   "bytes_gz": 44079,
+   "detected_frac": 0.015453564532616515
+  },
+  {
+   "symbol": "Lpar1",
+   "ensembl": "ENSMUSG00000038668",
+   "vmax": 6.514671325683594,
+   "bytes_gz": 371189,
+   "detected_frac": 0.2053060992692992
+  },
+  {
+   "symbol": "Adora1",
+   "ensembl": "ENSMUSG00000042429",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 517298,
+   "detected_frac": 0.34209385529852726
+  },
+  {
+   "symbol": "Rpp25",
+   "ensembl": "ENSMUSG00000062309",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 201362,
+   "detected_frac": 0.09674497406580093
+  },
+  {
+   "symbol": "4930426D05Rik",
+   "ensembl": "ENSMUSG00000043168",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 60789,
+   "detected_frac": 0.021050240411918372
+  },
+  {
+   "symbol": "Col15a1",
+   "ensembl": "ENSMUSG00000028339",
+   "vmax": 5.642157554626465,
+   "bytes_gz": 139012,
+   "detected_frac": 0.056189187142694885
+  },
+  {
+   "symbol": "Grik1",
+   "ensembl": "ENSMUSG00000022935",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 194861,
+   "detected_frac": 0.08708779767538712
+  },
+  {
+   "symbol": "D430036J16Rik",
+   "ensembl": "ENSMUSG00000097466",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 53825,
+   "detected_frac": 0.01813406277211979
+  },
+  {
+   "symbol": "Tnfrsf11b",
+   "ensembl": "ENSMUSG00000063727",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 63042,
+   "detected_frac": 0.021036042857683717
+  },
+  {
+   "symbol": "Skor1",
+   "ensembl": "ENSMUSG00000022245",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 57175,
+   "detected_frac": 0.019990156362397305
+  },
+  {
+   "symbol": "Pappa",
+   "ensembl": "ENSMUSG00000028370",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 90938,
+   "detected_frac": 0.034581456101162304
+  },
+  {
+   "symbol": "Cdh6",
+   "ensembl": "ENSMUSG00000039385",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 208251,
+   "detected_frac": 0.09904781736266233
+  },
+  {
+   "symbol": "Nek10",
+   "ensembl": "ENSMUSG00000042567",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 97079,
+   "detected_frac": 0.037718169083405896
+  },
+  {
+   "symbol": "Lancl3",
+   "ensembl": "ENSMUSG00000047344",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 151944,
+   "detected_frac": 0.0651809714913111
+  },
+  {
+   "symbol": "Sfrp1",
+   "ensembl": "ENSMUSG00000031548",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 93749,
+   "detected_frac": 0.03471869912543066
+  },
+  {
+   "symbol": "Fam20a",
+   "ensembl": "ENSMUSG00000020614",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 222082,
+   "detected_frac": 0.10262560102979594
+  },
+  {
+   "symbol": "Plce1",
+   "ensembl": "ENSMUSG00000024998",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 195722,
+   "detected_frac": 0.08999356377541362
+  },
+  {
+   "symbol": "Plekha2",
+   "ensembl": "ENSMUSG00000031557",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 252493,
+   "detected_frac": 0.12732745239086812
+  },
+  {
+   "symbol": "Pla2g7",
+   "ensembl": "ENSMUSG00000023913",
+   "vmax": 5.6782660484313965,
+   "bytes_gz": 470471,
+   "detected_frac": 0.28173058721084315
+  },
+  {
+   "symbol": "Fgf18",
+   "ensembl": "ENSMUSG00000057967",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 96995,
+   "detected_frac": 0.03704520501268315
+  },
+  {
+   "symbol": "Grpr",
+   "ensembl": "ENSMUSG00000031364",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 52729,
+   "detected_frac": 0.016841138833150342
+  },
+  {
+   "symbol": "Sh3rf2",
+   "ensembl": "ENSMUSG00000057719",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 131358,
+   "detected_frac": 0.057987544012418124
+  },
+  {
+   "symbol": "Acta2",
+   "ensembl": "ENSMUSG00000035783",
+   "vmax": 7.179908752441406,
+   "bytes_gz": 122820,
+   "detected_frac": 0.04615435580963919
+  },
+  {
+   "symbol": "Npas4",
+   "ensembl": "ENSMUSG00000045903",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 195640,
+   "detected_frac": 0.09330443342293568
+  },
+  {
+   "symbol": "Epha4",
+   "ensembl": "ENSMUSG00000026235",
+   "vmax": 5.080747604370117,
+   "bytes_gz": 522958,
+   "detected_frac": 0.33330367622004314
+  },
+  {
+   "symbol": "Ccnb1",
+   "ensembl": "ENSMUSG00000041431",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 42637,
+   "detected_frac": 0.012946276454776057
+  },
+  {
+   "symbol": "Bcl11b",
+   "ensembl": "ENSMUSG00000048251",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 274217,
+   "detected_frac": 0.15009843637602696
+  },
+  {
+   "symbol": "Osbpl3",
+   "ensembl": "ENSMUSG00000029822",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 232163,
+   "detected_frac": 0.1165638132737667
+  },
+  {
+   "symbol": "Lrrc10b",
+   "ensembl": "ENSMUSG00000090291",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 189623,
+   "detected_frac": 0.09403229470336577
+  },
+  {
+   "symbol": "Runx2",
+   "ensembl": "ENSMUSG00000039153",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 203977,
+   "detected_frac": 0.0993194639003521
+  },
+  {
+   "symbol": "Tmie",
+   "ensembl": "ENSMUSG00000049555",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 170614,
+   "detected_frac": 0.07589917843486162
+  },
+  {
+   "symbol": "Dio3",
+   "ensembl": "ENSMUSG00000075707",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 50452,
+   "detected_frac": 0.016368833528944082
+  },
+  {
+   "symbol": "Mylk",
+   "ensembl": "ENSMUSG00000022836",
+   "vmax": 5.6782660484313965,
+   "bytes_gz": 156149,
+   "detected_frac": 0.06311286109112937
+  },
+  {
+   "symbol": "Mamdc2",
+   "ensembl": "ENSMUSG00000033207",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 52112,
+   "detected_frac": 0.01664899859917465
+  },
+  {
+   "symbol": "Cubn",
+   "ensembl": "ENSMUSG00000026726",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 29055,
+   "detected_frac": 0.008229848938022944
+  },
+  {
+   "symbol": "Frem2",
+   "ensembl": "ENSMUSG00000037016",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 113287,
+   "detected_frac": 0.04447336538825578
+  },
+  {
+   "symbol": "Rnh1",
+   "ensembl": "ENSMUSG00000038650",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 507874,
+   "detected_frac": 0.3402850868890319
+  },
+  {
+   "symbol": "Crhr2",
+   "ensembl": "ENSMUSG00000003476",
+   "vmax": 4.008699417114258,
+   "bytes_gz": 87260,
+   "detected_frac": 0.031209063718623406
+  },
+  {
+   "symbol": "Lhx8",
+   "ensembl": "ENSMUSG00000096225",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 59742,
+   "detected_frac": 0.019777193048877446
+  },
+  {
+   "symbol": "Pkp2",
+   "ensembl": "ENSMUSG00000041957",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 155313,
+   "detected_frac": 0.06900579260212775
+  },
+  {
+   "symbol": "Glra3",
+   "ensembl": "ENSMUSG00000038257",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 100559,
+   "detected_frac": 0.03865520766289327
+  },
+  {
+   "symbol": "Arhgap28",
+   "ensembl": "ENSMUSG00000024043",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 68737,
+   "detected_frac": 0.023411766932949683
+  },
+  {
+   "symbol": "Asb2",
+   "ensembl": "ENSMUSG00000021200",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 118413,
+   "detected_frac": 0.04573694771514027
+  },
+  {
+   "symbol": "Bhlhe22",
+   "ensembl": "ENSMUSG00000025128",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 192999,
+   "detected_frac": 0.08970961269072047
+  },
+  {
+   "symbol": "Chrna7",
+   "ensembl": "ENSMUSG00000030525",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 269828,
+   "detected_frac": 0.14065233029190172
+  },
+  {
+   "symbol": "Lhx5",
+   "ensembl": "ENSMUSG00000029595",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 80573,
+   "detected_frac": 0.029647332752811117
+  },
+  {
+   "symbol": "Creb3l1",
+   "ensembl": "ENSMUSG00000027230",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 114524,
+   "detected_frac": 0.044975012304547
+  },
+  {
+   "symbol": "Kcnmb2",
+   "ensembl": "ENSMUSG00000037610",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 200768,
+   "detected_frac": 0.09752489304509143
+  },
+  {
+   "symbol": "Otof",
+   "ensembl": "ENSMUSG00000062372",
+   "vmax": 5.851181507110596,
+   "bytes_gz": 153851,
+   "detected_frac": 0.06603471775262182
+  },
+  {
+   "symbol": "Lratd2",
+   "ensembl": "ENSMUSG00000072568",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 172928,
+   "detected_frac": 0.0775924734032484
+  },
+  {
+   "symbol": "Akr7a5",
+   "ensembl": "ENSMUSG00000028743",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 204073,
+   "detected_frac": 0.0989891341384924
+  },
+  {
+   "symbol": "Egfr",
+   "ensembl": "ENSMUSG00000020122",
+   "vmax": 4.754887580871582,
+   "bytes_gz": 228374,
+   "detected_frac": 0.1058200507325938
+  },
+  {
+   "symbol": "Alpk2",
+   "ensembl": "ENSMUSG00000032845",
+   "vmax": 7.099071502685547,
+   "bytes_gz": 89343,
+   "detected_frac": 0.03526956422973536
+  },
+  {
+   "symbol": "Grin2c",
+   "ensembl": "ENSMUSG00000020734",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 353581,
+   "detected_frac": 0.18728750993828797
+  },
+  {
+   "symbol": "Nfix",
+   "ensembl": "ENSMUSG00000001911",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 768493,
+   "detected_frac": 0.6123556581986144
+  },
+  {
+   "symbol": "Stc1",
+   "ensembl": "ENSMUSG00000014813",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 76385,
+   "detected_frac": 0.02758206186347632
+  },
+  {
+   "symbol": "Serpinb7",
+   "ensembl": "ENSMUSG00000067001",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 32360,
+   "detected_frac": 0.009373225305720668
+  },
+  {
+   "symbol": "Vsx2",
+   "ensembl": "ENSMUSG00000021239",
+   "vmax": 3.7460882663726807,
+   "bytes_gz": 26001,
+   "detected_frac": 0.007094991102866013
+  },
+  {
+   "symbol": "Mrap2",
+   "ensembl": "ENSMUSG00000042761",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 141611,
+   "detected_frac": 0.061160224132056185
+  },
+  {
+   "symbol": "Zfp536",
+   "ensembl": "ENSMUSG00000043456",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 464885,
+   "detected_frac": 0.2808314087759815
+  },
+  {
+   "symbol": "Tns1",
+   "ensembl": "ENSMUSG00000055322",
+   "vmax": 5.986410617828369,
+   "bytes_gz": 445451,
+   "detected_frac": 0.26078919471472384
+  },
+  {
+   "symbol": "Fras1",
+   "ensembl": "ENSMUSG00000034687",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 235921,
+   "detected_frac": 0.11981978571158142
+  },
+  {
+   "symbol": "Ecel1",
+   "ensembl": "ENSMUSG00000026247",
+   "vmax": 5.695135116577148,
+   "bytes_gz": 117753,
+   "detected_frac": 0.04547098019914436
+  },
+  {
+   "symbol": "Crb1",
+   "ensembl": "ENSMUSG00000063681",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 36469,
+   "detected_frac": 0.011237837428538977
+  },
+  {
+   "symbol": "Nfkbib",
+   "ensembl": "ENSMUSG00000030595",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 180095,
+   "detected_frac": 0.08413186688373149
+  },
+  {
+   "symbol": "Folh1",
+   "ensembl": "ENSMUSG00000001773",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 201294,
+   "detected_frac": 0.09279805398856623
+  },
+  {
+   "symbol": "Adamts16",
+   "ensembl": "ENSMUSG00000049538",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 199716,
+   "detected_frac": 0.09295517358876311
+  },
+  {
+   "symbol": "Serpinb8",
+   "ensembl": "ENSMUSG00000026315",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 92219,
+   "detected_frac": 0.03600878355355317
+  },
+  {
+   "symbol": "Lamp5",
+   "ensembl": "ENSMUSG00000027270",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 271924,
+   "detected_frac": 0.13824442509370385
+  },
+  {
+   "symbol": "Fst",
+   "ensembl": "ENSMUSG00000021765",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 78211,
+   "detected_frac": 0.027993790936281376
+  },
+  {
+   "symbol": "C030029H02Rik",
+   "ensembl": "ENSMUSG00000110027",
+   "vmax": 5.851181507110596,
+   "bytes_gz": 175315,
+   "detected_frac": 0.07580736758414418
+  },
+  {
+   "symbol": "Cdk15",
+   "ensembl": "ENSMUSG00000026023",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 41033,
+   "detected_frac": 0.013030515276568356
+  },
+  {
+   "symbol": "Nr2f1",
+   "ensembl": "ENSMUSG00000069171",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 565186,
+   "detected_frac": 0.38490894635217504
+  },
+  {
+   "symbol": "Trps1",
+   "ensembl": "ENSMUSG00000038679",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 425754,
+   "detected_frac": 0.2572615757392193
+  },
+  {
+   "symbol": "Agtr1a",
+   "ensembl": "ENSMUSG00000049115",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 37180,
+   "detected_frac": 0.011168742664596979
+  },
+  {
+   "symbol": "Npbwr1",
+   "ensembl": "ENSMUSG00000033774",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 81530,
+   "detected_frac": 0.02994453488812327
+  },
+  {
+   "symbol": "C1ql3",
+   "ensembl": "ENSMUSG00000049630",
+   "vmax": 5.453633785247803,
+   "bytes_gz": 280016,
+   "detected_frac": 0.14495513572861848
+  },
+  {
+   "symbol": "Col11a1",
+   "ensembl": "ENSMUSG00000027966",
+   "vmax": 5.008988857269287,
+   "bytes_gz": 256515,
+   "detected_frac": 0.12977037822284482
+  },
+  {
+   "symbol": "Gxylt2",
+   "ensembl": "ENSMUSG00000030074",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 66957,
+   "detected_frac": 0.022897815469655095
+  },
+  {
+   "symbol": "Tmem176b",
+   "ensembl": "ENSMUSG00000029810",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 340003,
+   "detected_frac": 0.18522413205618446
+  },
+  {
+   "symbol": "Amigo2",
+   "ensembl": "ENSMUSG00000048218",
+   "vmax": 4.670760631561279,
+   "bytes_gz": 157579,
+   "detected_frac": 0.06755669556657706
+  },
+  {
+   "symbol": "Sox1",
+   "ensembl": "ENSMUSG00000096014",
+   "vmax": 5.080747604370117,
+   "bytes_gz": 355188,
+   "detected_frac": 0.1923068186120471
+  },
+  {
+   "symbol": "Ttn",
+   "ensembl": "ENSMUSG00000051747",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 38687,
+   "detected_frac": 0.01164104796880324
+  },
+  {
+   "symbol": "Pdlim1",
+   "ensembl": "ENSMUSG00000055044",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 170919,
+   "detected_frac": 0.07611024874115019
+  },
+  {
+   "symbol": "Gfra1",
+   "ensembl": "ENSMUSG00000025089",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 377780,
+   "detected_frac": 0.21128516260932118
+  },
+  {
+   "symbol": "Per2",
+   "ensembl": "ENSMUSG00000055866",
+   "vmax": 5.561394214630127,
+   "bytes_gz": 455385,
+   "detected_frac": 0.29048953167001096
+  },
+  {
+   "symbol": "Tnfaip6",
+   "ensembl": "ENSMUSG00000053475",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 267809,
+   "detected_frac": 0.13034017339946238
+  },
+  {
+   "symbol": "Fosl2",
+   "ensembl": "ENSMUSG00000029135",
+   "vmax": 5.6303277015686035,
+   "bytes_gz": 229749,
+   "detected_frac": 0.11446730776511567
+  },
+  {
+   "symbol": "Fibin",
+   "ensembl": "ENSMUSG00000074971",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 124126,
+   "detected_frac": 0.049459546435467384
+  },
+  {
+   "symbol": "Ovol2",
+   "ensembl": "ENSMUSG00000037279",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 96910,
+   "detected_frac": 0.03833907545526824
+  },
+  {
+   "symbol": "Htr1a",
+   "ensembl": "ENSMUSG00000021721",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 161416,
+   "detected_frac": 0.07092151592019082
+  },
+  {
+   "symbol": "Crhr1",
+   "ensembl": "ENSMUSG00000018634",
+   "vmax": 5.8005595207214355,
+   "bytes_gz": 289027,
+   "detected_frac": 0.15196872752053914
+  },
+  {
+   "symbol": "Cdhr1",
+   "ensembl": "ENSMUSG00000021803",
+   "vmax": 5.813989639282227,
+   "bytes_gz": 113672,
+   "detected_frac": 0.04648184606065195
+  },
+  {
+   "symbol": "Isl1",
+   "ensembl": "ENSMUSG00000042258",
+   "vmax": 4.3575520515441895,
+   "bytes_gz": 70515,
+   "detected_frac": 0.02691666982167872
+  },
+  {
+   "symbol": "Fign",
+   "ensembl": "ENSMUSG00000075324",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 166247,
+   "detected_frac": 0.07272839132245486
+  },
+  {
+   "symbol": "Spon1",
+   "ensembl": "ENSMUSG00000038156",
+   "vmax": 4.991626739501953,
+   "bytes_gz": 377044,
+   "detected_frac": 0.20776511566274183
+  },
+  {
+   "symbol": "Bmp4",
+   "ensembl": "ENSMUSG00000021835",
+   "vmax": 6.259957313537598,
+   "bytes_gz": 119522,
+   "detected_frac": 0.045404724946049295
+  },
+  {
+   "symbol": "Ethe1",
+   "ensembl": "ENSMUSG00000064254",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 140785,
+   "detected_frac": 0.05964013932533222
+  },
+  {
+   "symbol": "Zic2",
+   "ensembl": "ENSMUSG00000061524",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 350131,
+   "detected_frac": 0.19134801044939992
+  },
+  {
+   "symbol": "Myo5b",
+   "ensembl": "ENSMUSG00000025885",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 179249,
+   "detected_frac": 0.08401071442092908
+  },
+  {
+   "symbol": "C730002L08Rik",
+   "ensembl": "ENSMUSG00000114469",
+   "vmax": 6.948237419128418,
+   "bytes_gz": 77240,
+   "detected_frac": 0.029763752697535305
+  },
+  {
+   "symbol": "Hoxb4",
+   "ensembl": "ENSMUSG00000038692",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 31575,
+   "detected_frac": 0.00919717563321092
+  },
+  {
+   "symbol": "Trpc7",
+   "ensembl": "ENSMUSG00000021541",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 148127,
+   "detected_frac": 0.0626642183773142
+  },
+  {
+   "symbol": "Parm1",
+   "ensembl": "ENSMUSG00000034981",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 375935,
+   "detected_frac": 0.2133059478287207
+  },
+  {
+   "symbol": "Klk6",
+   "ensembl": "ENSMUSG00000050063",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 101831,
+   "detected_frac": 0.03755158444705259
+  },
+  {
+   "symbol": "Asb4",
+   "ensembl": "ENSMUSG00000042607",
+   "vmax": 4.219332695007324,
+   "bytes_gz": 54599,
+   "detected_frac": 0.017365501836217014
+  },
+  {
+   "symbol": "Fzd5",
+   "ensembl": "ENSMUSG00000045005",
+   "vmax": 5.642157554626465,
+   "bytes_gz": 124258,
+   "detected_frac": 0.050081399310945365
+  },
+  {
+   "symbol": "Pdyn",
+   "ensembl": "ENSMUSG00000027400",
+   "vmax": 6.243173599243164,
+   "bytes_gz": 143835,
+   "detected_frac": 0.06110343391511756
+  },
+  {
+   "symbol": "Slc5a7",
+   "ensembl": "ENSMUSG00000023945",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 49942,
+   "detected_frac": 0.015726157573921932
+  },
+  {
+   "symbol": "B930025P03Rik",
+   "ensembl": "ENSMUSG00000109473",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 83380,
+   "detected_frac": 0.03060708741907394
+  },
+  {
+   "symbol": "Barhl1",
+   "ensembl": "ENSMUSG00000026805",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 50587,
+   "detected_frac": 0.01724529587703025
+  },
+  {
+   "symbol": "Mbnl3",
+   "ensembl": "ENSMUSG00000036109",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 23891,
+   "detected_frac": 0.006293302540415704
+  },
+  {
+   "symbol": "Layn",
+   "ensembl": "ENSMUSG00000060594",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 156525,
+   "detected_frac": 0.06520842009616477
+  },
+  {
+   "symbol": "Nox4",
+   "ensembl": "ENSMUSG00000030562",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 61636,
+   "detected_frac": 0.020797523946541475
+  },
+  {
+   "symbol": "Pcsk5",
+   "ensembl": "ENSMUSG00000024713",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 120031,
+   "detected_frac": 0.04952958770302503
+  },
+  {
+   "symbol": "Cobll1",
+   "ensembl": "ENSMUSG00000034903",
+   "vmax": 6.2901506423950195,
+   "bytes_gz": 475546,
+   "detected_frac": 0.28979574451974405
+  },
+  {
+   "symbol": "Catsperd",
+   "ensembl": "ENSMUSG00000040828",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 63508,
+   "detected_frac": 0.022197402794078672
+  },
+  {
+   "symbol": "Bnc2",
+   "ensembl": "ENSMUSG00000028487",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 84687,
+   "detected_frac": 0.031167417559535077
+  },
+  {
+   "symbol": "Prss22",
+   "ensembl": "ENSMUSG00000045027",
+   "vmax": 3.3860583305358887,
+   "bytes_gz": 29813,
+   "detected_frac": 0.008395487070760611
+  },
+  {
+   "symbol": "Gli3",
+   "ensembl": "ENSMUSG00000021318",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 186864,
+   "detected_frac": 0.08375515844470525
+  },
+  {
+   "symbol": "Slc39a8",
+   "ensembl": "ENSMUSG00000053897",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 98312,
+   "detected_frac": 0.03624351645023284
+  },
+  {
+   "symbol": "Scube2",
+   "ensembl": "ENSMUSG00000007279",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 97861,
+   "detected_frac": 0.037189073562261005
+  },
+  {
+   "symbol": "Apold1",
+   "ensembl": "ENSMUSG00000090698",
+   "vmax": 5.642157554626465,
+   "bytes_gz": 108122,
+   "detected_frac": 0.04195945178510582
+  },
+  {
+   "symbol": "Bace2",
+   "ensembl": "ENSMUSG00000040605",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 56301,
+   "detected_frac": 0.018178548442055048
+  },
+  {
+   "symbol": "Man1a",
+   "ensembl": "ENSMUSG00000003746",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 275023,
+   "detected_frac": 0.14515295498428804
+  },
+  {
+   "symbol": "Rspo2",
+   "ensembl": "ENSMUSG00000051920",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 99367,
+   "detected_frac": 0.038978911899443455
+  },
+  {
+   "symbol": "Zfp521",
+   "ensembl": "ENSMUSG00000024420",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 293225,
+   "detected_frac": 0.15555124370575096
+  },
+  {
+   "symbol": "Trpc3",
+   "ensembl": "ENSMUSG00000027716",
+   "vmax": 5.321928024291992,
+   "bytes_gz": 201064,
+   "detected_frac": 0.09222447279748609
+  },
+  {
+   "symbol": "Pdgfd",
+   "ensembl": "ENSMUSG00000032006",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 96531,
+   "detected_frac": 0.03550619013364631
+  },
+  {
+   "symbol": "Lhx6",
+   "ensembl": "ENSMUSG00000026890",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 112093,
+   "detected_frac": 0.042631469352212924
+  },
+  {
+   "symbol": "D130079A08Rik",
+   "ensembl": "ENSMUSG00000115424",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 32236,
+   "detected_frac": 0.009365653276795517
+  },
+  {
+   "symbol": "Dnah11",
+   "ensembl": "ENSMUSG00000018581",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 80045,
+   "detected_frac": 0.02965869079619884
+  },
+  {
+   "symbol": "Vwc2",
+   "ensembl": "ENSMUSG00000050830",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 177970,
+   "detected_frac": 0.08080206716389657
+  },
+  {
+   "symbol": "Adra1b",
+   "ensembl": "ENSMUSG00000050541",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 143854,
+   "detected_frac": 0.06125866050808314
+  },
+  {
+   "symbol": "Vgf",
+   "ensembl": "ENSMUSG00000037428",
+   "vmax": 6.787558555603027,
+   "bytes_gz": 515125,
+   "detected_frac": 0.32948169462007343
+  },
+  {
+   "symbol": "Sytl5",
+   "ensembl": "ENSMUSG00000054453",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 89661,
+   "detected_frac": 0.03410536478249347
+  },
+  {
+   "symbol": "Krt9",
+   "ensembl": "ENSMUSG00000051617",
+   "vmax": 4.930904865264893,
+   "bytes_gz": 195918,
+   "detected_frac": 0.0923304812024382
+  },
+  {
+   "symbol": "Trhr",
+   "ensembl": "ENSMUSG00000038760",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 77914,
+   "detected_frac": 0.02792564267595502
+  },
+  {
+   "symbol": "A630012P03Rik",
+   "ensembl": "ENSMUSG00000055110",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 23478,
+   "detected_frac": 0.006289516525953129
+  },
+  {
+   "symbol": "Epha3",
+   "ensembl": "ENSMUSG00000052504",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 220394,
+   "detected_frac": 0.10928803998031272
+  },
+  {
+   "symbol": "Fgf1",
+   "ensembl": "ENSMUSG00000036585",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 515430,
+   "detected_frac": 0.3312743724681028
+  },
+  {
+   "symbol": "Kcnj4",
+   "ensembl": "ENSMUSG00000044216",
+   "vmax": 5.561394214630127,
+   "bytes_gz": 366354,
+   "detected_frac": 0.2217355090296445
+  },
+  {
+   "symbol": "Epha6",
+   "ensembl": "ENSMUSG00000055540",
+   "vmax": 5.130781173706055,
+   "bytes_gz": 405822,
+   "detected_frac": 0.23922121682504827
+  },
+  {
+   "symbol": "Oprd1",
+   "ensembl": "ENSMUSG00000050511",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 230546,
+   "detected_frac": 0.11259228410252527
+  },
+  {
+   "symbol": "Rprm",
+   "ensembl": "ENSMUSG00000075334",
+   "vmax": 5.835163593292236,
+   "bytes_gz": 283223,
+   "detected_frac": 0.14274031726801195
+  },
+  {
+   "symbol": "Cgnl1",
+   "ensembl": "ENSMUSG00000032232",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 336172,
+   "detected_frac": 0.1735442774391398
+  },
+  {
+   "symbol": "Baiap3",
+   "ensembl": "ENSMUSG00000047507",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 236063,
+   "detected_frac": 0.11215026691401961
+  },
+  {
+   "symbol": "Nptx2",
+   "ensembl": "ENSMUSG00000059991",
+   "vmax": 5.251821517944336,
+   "bytes_gz": 227689,
+   "detected_frac": 0.10976886381705978
+  },
+  {
+   "symbol": "Pdgfc",
+   "ensembl": "ENSMUSG00000028019",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 169182,
+   "detected_frac": 0.07632699806913262
+  },
+  {
+   "symbol": "Qrfpr",
+   "ensembl": "ENSMUSG00000058400",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 69334,
+   "detected_frac": 0.02401374323249915
+  },
+  {
+   "symbol": "Fezf1",
+   "ensembl": "ENSMUSG00000029697",
+   "vmax": 3.807354688644409,
+   "bytes_gz": 52405,
+   "detected_frac": 0.01730492560481581
+  },
+  {
+   "symbol": "Adh5",
+   "ensembl": "ENSMUSG00000028138",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 310080,
+   "detected_frac": 0.16862151213417637
+  },
+  {
+   "symbol": "Col14a1",
+   "ensembl": "ENSMUSG00000022371",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 54272,
+   "detected_frac": 0.01746867073032219
+  },
+  {
+   "symbol": "Itih5",
+   "ensembl": "ENSMUSG00000025780",
+   "vmax": 6.009718894958496,
+   "bytes_gz": 323032,
+   "detected_frac": 0.16445121720364972
+  },
+  {
+   "symbol": "Fgf3",
+   "ensembl": "ENSMUSG00000031074",
+   "vmax": 3.650254011154175,
+   "bytes_gz": 33118,
+   "detected_frac": 0.009783061371294439
+  },
+  {
+   "symbol": "Tcap",
+   "ensembl": "ENSMUSG00000007877",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 55449,
+   "detected_frac": 0.01861583311248249
+  },
+  {
+   "symbol": "Hrh2",
+   "ensembl": "ENSMUSG00000034987",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 183156,
+   "detected_frac": 0.08457104456139022
+  },
+  {
+   "symbol": "Met",
+   "ensembl": "ENSMUSG00000009376",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 72598,
+   "detected_frac": 0.0265295498428804
+  },
+  {
+   "symbol": "Ccn2",
+   "ensembl": "ENSMUSG00000019997",
+   "vmax": 6.073494911193848,
+   "bytes_gz": 149787,
+   "detected_frac": 0.06078824821110817
+  },
+  {
+   "symbol": "Nkx2-1",
+   "ensembl": "ENSMUSG00000001496",
+   "vmax": 4.379172325134277,
+   "bytes_gz": 47173,
+   "detected_frac": 0.015217885132321205
+  },
+  {
+   "symbol": "Wnt7b",
+   "ensembl": "ENSMUSG00000022382",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 224481,
+   "detected_frac": 0.10902680498239503
+  },
+  {
+   "symbol": "Col19a1",
+   "ensembl": "ENSMUSG00000026141",
+   "vmax": 4.95755672454834,
+   "bytes_gz": 143275,
+   "detected_frac": 0.06052701321319048
+  },
+  {
+   "symbol": "Kirrel",
+   "ensembl": "ENSMUSG00000041734",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 170906,
+   "detected_frac": 0.07527827206299928
+  },
+  {
+   "symbol": "Pth2r",
+   "ensembl": "ENSMUSG00000025946",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 60244,
+   "detected_frac": 0.020128345890281302
+  },
+  {
+   "symbol": "Angpt1",
+   "ensembl": "ENSMUSG00000022309",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 118032,
+   "detected_frac": 0.04740279407867338
+  },
+  {
+   "symbol": "Hoxb3",
+   "ensembl": "ENSMUSG00000048763",
+   "vmax": 4.754887580871582,
+   "bytes_gz": 92538,
+   "detected_frac": 0.035531745731268695
+  },
+  {
+   "symbol": "Serpinb1b",
+   "ensembl": "ENSMUSG00000051029",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 57433,
+   "detected_frac": 0.019322871313368416
+  },
+  {
+   "symbol": "Neurod6",
+   "ensembl": "ENSMUSG00000037984",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 236928,
+   "detected_frac": 0.11861772611971377
+  },
+  {
+   "symbol": "Samd5",
+   "ensembl": "ENSMUSG00000060487",
+   "vmax": 5.008988857269287,
+   "bytes_gz": 259800,
+   "detected_frac": 0.13408075568848674
+  },
+  {
+   "symbol": "Nfam1",
+   "ensembl": "ENSMUSG00000058099",
+   "vmax": 5.561394214630127,
+   "bytes_gz": 126840,
+   "detected_frac": 0.04844205504865028
+  },
+  {
+   "symbol": "Lhfpl2",
+   "ensembl": "ENSMUSG00000045312",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 292544,
+   "detected_frac": 0.15015711960019687
+  },
+  {
+   "symbol": "Sema3e",
+   "ensembl": "ENSMUSG00000063531",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 179891,
+   "detected_frac": 0.08017926778480294
+  },
+  {
+   "symbol": "Ctxn3",
+   "ensembl": "ENSMUSG00000069372",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 131052,
+   "detected_frac": 0.053770870404724946
+  },
+  {
+   "symbol": "Htr2c",
+   "ensembl": "ENSMUSG00000041380",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 127302,
+   "detected_frac": 0.0530742437436111
+  },
+  {
+   "symbol": "Cckar",
+   "ensembl": "ENSMUSG00000029193",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 52503,
+   "detected_frac": 0.016861961912694505
+  },
+  {
+   "symbol": "Rspo3",
+   "ensembl": "ENSMUSG00000019880",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 124745,
+   "detected_frac": 0.051423541437928294
+  },
+  {
+   "symbol": "Lmx1a",
+   "ensembl": "ENSMUSG00000026686",
+   "vmax": 4.502500057220459,
+   "bytes_gz": 41637,
+   "detected_frac": 0.012782531329269677
+  },
+  {
+   "symbol": "Lrat",
+   "ensembl": "ENSMUSG00000028003",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 93122,
+   "detected_frac": 0.036964752205353425
+  },
+  {
+   "symbol": "Prss12",
+   "ensembl": "ENSMUSG00000027978",
+   "vmax": 5.118099689483643,
+   "bytes_gz": 217240,
+   "detected_frac": 0.1035020633778821
+  },
+  {
+   "symbol": "Tgfbr2",
+   "ensembl": "ENSMUSG00000032440",
+   "vmax": 5.658891677856445,
+   "bytes_gz": 290531,
+   "detected_frac": 0.14336879566879945
+  },
+  {
+   "symbol": "Fmo1",
+   "ensembl": "ENSMUSG00000040181",
+   "vmax": 4.991626739501953,
+   "bytes_gz": 169909,
+   "detected_frac": 0.07392098587816605
+  },
+  {
+   "symbol": "Kcnj5",
+   "ensembl": "ENSMUSG00000032034",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 60788,
+   "detected_frac": 0.020598758187256275
+  },
+  {
+   "symbol": "Klhl14",
+   "ensembl": "ENSMUSG00000042514",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 64666,
+   "detected_frac": 0.022928103585355696
+  },
+  {
+   "symbol": "Cbln2",
+   "ensembl": "ENSMUSG00000024647",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 219031,
+   "detected_frac": 0.10336292734638246
+  },
+  {
+   "symbol": "Adcyap1",
+   "ensembl": "ENSMUSG00000024256",
+   "vmax": 5.595931053161621,
+   "bytes_gz": 110144,
+   "detected_frac": 0.043766327187369856
+  },
+  {
+   "symbol": "Pou3f2",
+   "ensembl": "ENSMUSG00000095139",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 331039,
+   "detected_frac": 0.1829070912050884
+  },
+  {
+   "symbol": "Hcrtr1",
+   "ensembl": "ENSMUSG00000028778",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 68075,
+   "detected_frac": 0.023639874304319842
+  },
+  {
+   "symbol": "Adam33",
+   "ensembl": "ENSMUSG00000027318",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 57837,
+   "detected_frac": 0.019376822019460116
+  },
+  {
+   "symbol": "Ar",
+   "ensembl": "ENSMUSG00000046532",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 136005,
+   "detected_frac": 0.058433347215386365
+  },
+  {
+   "symbol": "Car4",
+   "ensembl": "ENSMUSG00000000805",
+   "vmax": 5.642157554626465,
+   "bytes_gz": 314249,
+   "detected_frac": 0.15896054972929996
+  },
+  {
+   "symbol": "Caln1",
+   "ensembl": "ENSMUSG00000060371",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 398946,
+   "detected_frac": 0.24166508916064058
+  },
+  {
+   "symbol": "Cdh20",
+   "ensembl": "ENSMUSG00000050840",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 380705,
+   "detected_frac": 0.21676352553666756
+  },
+  {
+   "symbol": "Lhx9",
+   "ensembl": "ENSMUSG00000019230",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 138622,
+   "detected_frac": 0.05884791579903835
+  },
+  {
+   "symbol": "Satb2",
+   "ensembl": "ENSMUSG00000038331",
+   "vmax": 5.156504154205322,
+   "bytes_gz": 264564,
+   "detected_frac": 0.1396887896111763
+  },
+  {
+   "symbol": "Zmat4",
+   "ensembl": "ENSMUSG00000037492",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 268283,
+   "detected_frac": 0.1383381289516526
+  },
+  {
+   "symbol": "Igfn1",
+   "ensembl": "ENSMUSG00000051985",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 121823,
+   "detected_frac": 0.04903929883012153
+  },
+  {
+   "symbol": "Foxd2",
+   "ensembl": "ENSMUSG00000055210",
+   "vmax": 3.807354688644409,
+   "bytes_gz": 39428,
+   "detected_frac": 0.011605080831408775
+  },
+  {
+   "symbol": "Mybpc1",
+   "ensembl": "ENSMUSG00000020061",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 74837,
+   "detected_frac": 0.026673418392458258
+  },
+  {
+   "symbol": "Mog",
+   "ensembl": "ENSMUSG00000076439",
+   "vmax": 7.1258440017700195,
+   "bytes_gz": 368773,
+   "detected_frac": 0.20238424260780677
+  },
+  {
+   "symbol": "Cp",
+   "ensembl": "ENSMUSG00000003617",
+   "vmax": 5.080747604370117,
+   "bytes_gz": 165793,
+   "detected_frac": 0.06944402377617083
+  },
+  {
+   "symbol": "Hoxc4",
+   "ensembl": "ENSMUSG00000075394",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 56044,
+   "detected_frac": 0.018517396736455534
+  },
+  {
+   "symbol": "Palld",
+   "ensembl": "ENSMUSG00000058056",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 130325,
+   "detected_frac": 0.05254420171885057
+  },
+  {
+   "symbol": "Slc17a7",
+   "ensembl": "ENSMUSG00000070570",
+   "vmax": 5.9464192390441895,
+   "bytes_gz": 522718,
+   "detected_frac": 0.3347347896868966
+  },
+  {
+   "symbol": "Satb1",
+   "ensembl": "ENSMUSG00000023927",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 430865,
+   "detected_frac": 0.26119808427668195
+  },
+  {
+   "symbol": "Fbln2",
+   "ensembl": "ENSMUSG00000064080",
+   "vmax": 5.321928024291992,
+   "bytes_gz": 185537,
+   "detected_frac": 0.08318252375724075
+  },
+  {
+   "symbol": "Scn4b",
+   "ensembl": "ENSMUSG00000046480",
+   "vmax": 5.757727146148682,
+   "bytes_gz": 312063,
+   "detected_frac": 0.1651355393177602
+  },
+  {
+   "symbol": "Lnp1",
+   "ensembl": "ENSMUSG00000109588",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 49578,
+   "detected_frac": 0.015955211448907734
+  },
+  {
+   "symbol": "Tox3",
+   "ensembl": "ENSMUSG00000043668",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 235936,
+   "detected_frac": 0.11763620187029114
+  },
+  {
+   "symbol": "Fam107a",
+   "ensembl": "ENSMUSG00000021750",
+   "vmax": 6.494141101837158,
+   "bytes_gz": 655783,
+   "detected_frac": 0.46664048006663383
+  },
+  {
+   "symbol": "Tmem114",
+   "ensembl": "ENSMUSG00000022715",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 47207,
+   "detected_frac": 0.014962329156097376
+  },
+  {
+   "symbol": "Slc6a4",
+   "ensembl": "ENSMUSG00000020838",
+   "vmax": 5.971996307373047,
+   "bytes_gz": 43437,
+   "detected_frac": 0.013645742626736835
+  },
+  {
+   "symbol": "Plekhd1",
+   "ensembl": "ENSMUSG00000066438",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 139217,
+   "detected_frac": 0.05850338848294401
+  },
+  {
+   "symbol": "Rspo1",
+   "ensembl": "ENSMUSG00000028871",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 142458,
+   "detected_frac": 0.05985026312800515
+  },
+  {
+   "symbol": "Drd5",
+   "ensembl": "ENSMUSG00000039358",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 72163,
+   "detected_frac": 0.02505679021693863
+  },
+  {
+   "symbol": "Dlx1as",
+   "ensembl": "ENSMUSG00000084946",
+   "vmax": 5.156504154205322,
+   "bytes_gz": 118852,
+   "detected_frac": 0.04873547116949987
+  },
+  {
+   "symbol": "Sox5",
+   "ensembl": "ENSMUSG00000041540",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 309261,
+   "detected_frac": 0.16986332487790104
+  },
+  {
+   "symbol": "Mab21l1",
+   "ensembl": "ENSMUSG00000056947",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 85704,
+   "detected_frac": 0.03561030553136713
+  },
+  {
+   "symbol": "Sema5a",
+   "ensembl": "ENSMUSG00000022231",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 219070,
+   "detected_frac": 0.10344905917540605
+  },
+  {
+   "symbol": "Slc10a4",
+   "ensembl": "ENSMUSG00000029219",
+   "vmax": 4.274480819702148,
+   "bytes_gz": 49936,
+   "detected_frac": 0.015764017718547685
+  },
+  {
+   "symbol": "Wnt4",
+   "ensembl": "ENSMUSG00000036856",
+   "vmax": 4.65053129196167,
+   "bytes_gz": 118698,
+   "detected_frac": 0.047172793700071936
+  },
+  {
+   "symbol": "Pdlim3",
+   "ensembl": "ENSMUSG00000031636",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 61260,
+   "detected_frac": 0.019962707757543635
+  },
+  {
+   "symbol": "Arhgap22",
+   "ensembl": "ENSMUSG00000063506",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 147185,
+   "detected_frac": 0.0625582099723621
+  },
+  {
+   "symbol": "Calb1",
+   "ensembl": "ENSMUSG00000028222",
+   "vmax": 6.044394016265869,
+   "bytes_gz": 312813,
+   "detected_frac": 0.16835365161094915
+  },
+  {
+   "symbol": "Crh",
+   "ensembl": "ENSMUSG00000049796",
+   "vmax": 5.51005744934082,
+   "bytes_gz": 54148,
+   "detected_frac": 0.017564267595502215
+  },
+  {
+   "symbol": "Krt12",
+   "ensembl": "ENSMUSG00000020912",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 46823,
+   "detected_frac": 0.015207473592549123
+  },
+  {
+   "symbol": "Gata2",
+   "ensembl": "ENSMUSG00000015053",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 194545,
+   "detected_frac": 0.08570211638208458
+  },
+  {
+   "symbol": "Ccn3",
+   "ensembl": "ENSMUSG00000037362",
+   "vmax": 6.122657299041748,
+   "bytes_gz": 250787,
+   "detected_frac": 0.12638378828607125
+  },
+  {
+   "symbol": "Ier3ip1",
+   "ensembl": "ENSMUSG00000090000",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 242869,
+   "detected_frac": 0.12414909324953621
+  },
+  {
+   "symbol": "Arhgef26",
+   "ensembl": "ENSMUSG00000036885",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 314352,
+   "detected_frac": 0.1656087911255821
+  },
+  {
+   "symbol": "Irx5",
+   "ensembl": "ENSMUSG00000031737",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 90025,
+   "detected_frac": 0.034754666262825126
+  },
+  {
+   "symbol": "Syt2",
+   "ensembl": "ENSMUSG00000026452",
+   "vmax": 5.819327354431152,
+   "bytes_gz": 216651,
+   "detected_frac": 0.10684795365918298
+  },
+  {
+   "symbol": "Apex1",
+   "ensembl": "ENSMUSG00000035960",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 339636,
+   "detected_frac": 0.1958344375875516
+  },
+  {
+   "symbol": "Sulf2",
+   "ensembl": "ENSMUSG00000006800",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 503085,
+   "detected_frac": 0.3095057358119108
+  },
+  {
+   "symbol": "Adamts9",
+   "ensembl": "ENSMUSG00000030022",
+   "vmax": 5.099295139312744,
+   "bytes_gz": 139087,
+   "detected_frac": 0.056942604020747356
+  },
+  {
+   "symbol": "Abhd12b",
+   "ensembl": "ENSMUSG00000090121",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 34584,
+   "detected_frac": 0.010244008632112975
+  },
+  {
+   "symbol": "Insyn2b",
+   "ensembl": "ENSMUSG00000069911",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 111567,
+   "detected_frac": 0.04448472343164351
+  },
+  {
+   "symbol": "St8sia2",
+   "ensembl": "ENSMUSG00000025789",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 98698,
+   "detected_frac": 0.03796047400901072
+  },
+  {
+   "symbol": "Vcan",
+   "ensembl": "ENSMUSG00000021614",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 156815,
+   "detected_frac": 0.06492446901147163
+  },
+  {
+   "symbol": "Thrsp",
+   "ensembl": "ENSMUSG00000035686",
+   "vmax": 5.851181507110596,
+   "bytes_gz": 282271,
+   "detected_frac": 0.14560254420171886
+  },
+  {
+   "symbol": "Boc",
+   "ensembl": "ENSMUSG00000022687",
+   "vmax": 5.321928024291992,
+   "bytes_gz": 322999,
+   "detected_frac": 0.17410366107598532
+  },
+  {
+   "symbol": "Doc2b",
+   "ensembl": "ENSMUSG00000020848",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 181897,
+   "detected_frac": 0.08537462613107182
+  },
+  {
+   "symbol": "Ebf2",
+   "ensembl": "ENSMUSG00000022053",
+   "vmax": 4.423511981964111,
+   "bytes_gz": 51084,
+   "detected_frac": 0.01656475977738235
+  },
+  {
+   "symbol": "Zbbx",
+   "ensembl": "ENSMUSG00000034151",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 97411,
+   "detected_frac": 0.03808257297542877
+  },
+  {
+   "symbol": "Lhfpl5",
+   "ensembl": "ENSMUSG00000062252",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 141680,
+   "detected_frac": 0.06045886495286412
+  },
+  {
+   "symbol": "Nkd1",
+   "ensembl": "ENSMUSG00000031661",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 218070,
+   "detected_frac": 0.10193654639760724
+  },
+  {
+   "symbol": "Nkx2-2",
+   "ensembl": "ENSMUSG00000027434",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 115862,
+   "detected_frac": 0.04597262711543558
+  },
+  {
+   "symbol": "Mdfic",
+   "ensembl": "ENSMUSG00000041390",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 66869,
+   "detected_frac": 0.02283439972740696
+  },
+  {
+   "symbol": "Prdm8",
+   "ensembl": "ENSMUSG00000035456",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 217322,
+   "detected_frac": 0.10493790936281376
+  },
+  {
+   "symbol": "Hs3st3a1",
+   "ensembl": "ENSMUSG00000047759",
+   "vmax": 4.730306148529053,
+   "bytes_gz": 65086,
+   "detected_frac": 0.022292053155643053
+  },
+  {
+   "symbol": "Pax5",
+   "ensembl": "ENSMUSG00000014030",
+   "vmax": 5.614709854125977,
+   "bytes_gz": 43476,
+   "detected_frac": 0.01373187445576042
+  },
+  {
+   "symbol": "Insm2",
+   "ensembl": "ENSMUSG00000045440",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 91483,
+   "detected_frac": 0.0342312497633741
+  },
+  {
+   "symbol": "Nfia",
+   "ensembl": "ENSMUSG00000028565",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 432185,
+   "detected_frac": 0.265476280619392
+  },
+  {
+   "symbol": "Cyp26b1",
+   "ensembl": "ENSMUSG00000063415",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 112778,
+   "detected_frac": 0.044407110135160716
+  },
+  {
+   "symbol": "Rbp1",
+   "ensembl": "ENSMUSG00000046402",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 64548,
+   "detected_frac": 0.022336538825578314
+  },
+  {
+   "symbol": "Hpse",
+   "ensembl": "ENSMUSG00000035273",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 43378,
+   "detected_frac": 0.013333396433574377
+  },
+  {
+   "symbol": "Pafah1b3",
+   "ensembl": "ENSMUSG00000005447",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 201391,
+   "detected_frac": 0.09530534206640669
+  },
+  {
+   "symbol": "Vipr2",
+   "ensembl": "ENSMUSG00000011171",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 121023,
+   "detected_frac": 0.05332033468367849
+  },
+  {
+   "symbol": "Synpr",
+   "ensembl": "ENSMUSG00000056296",
+   "vmax": 5.177917957305908,
+   "bytes_gz": 242228,
+   "detected_frac": 0.1264386854957786
+  },
+  {
+   "symbol": "Six3",
+   "ensembl": "ENSMUSG00000038805",
+   "vmax": 4.379172325134277,
+   "bytes_gz": 104107,
+   "detected_frac": 0.04337542119410896
+  },
+  {
+   "symbol": "Ttc6",
+   "ensembl": "ENSMUSG00000046782",
+   "vmax": 3.650254011154175,
+   "bytes_gz": 40008,
+   "detected_frac": 0.011927838564343317
+  },
+  {
+   "symbol": "Necab1",
+   "ensembl": "ENSMUSG00000040536",
+   "vmax": 5.1960225105285645,
+   "bytes_gz": 347477,
+   "detected_frac": 0.1924752962556317
+  },
+  {
+   "symbol": "Pappa2",
+   "ensembl": "ENSMUSG00000073530",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 36685,
+   "detected_frac": 0.010859235982281452
+  },
+  {
+   "symbol": "Scn5a",
+   "ensembl": "ENSMUSG00000032511",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 130898,
+   "detected_frac": 0.054519554764699205
+  },
+  {
+   "symbol": "Gck",
+   "ensembl": "ENSMUSG00000041798",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 63953,
+   "detected_frac": 0.022152917124143415
+  },
+  {
+   "symbol": "Kazald1",
+   "ensembl": "ENSMUSG00000025213",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 108766,
+   "detected_frac": 0.04227369098549957
+  },
+  {
+   "symbol": "Gm30564",
+   "ensembl": "ENSMUSG00000115965",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 39519,
+   "detected_frac": 0.012180555029720213
+  },
+  {
+   "symbol": "Phox2b",
+   "ensembl": "ENSMUSG00000012520",
+   "vmax": 4.297680854797363,
+   "bytes_gz": 38170,
+   "detected_frac": 0.011399689546814069
+  },
+  {
+   "symbol": "Coro1a",
+   "ensembl": "ENSMUSG00000030707",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 419238,
+   "detected_frac": 0.25827244160072693
+  },
+  {
+   "symbol": "Sall1",
+   "ensembl": "ENSMUSG00000031665",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 405834,
+   "detected_frac": 0.2322871313368417
+  },
+  {
+   "symbol": "Ebf1",
+   "ensembl": "ENSMUSG00000057098",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 230604,
+   "detected_frac": 0.10865388255783137
+  },
+  {
+   "symbol": "D7Ertd443e",
+   "ensembl": "ENSMUSG00000030994",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 187471,
+   "detected_frac": 0.08444989209858782
+  },
+  {
+   "symbol": "Pbx3",
+   "ensembl": "ENSMUSG00000038718",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 292837,
+   "detected_frac": 0.15962783477832884
+  },
+  {
+   "symbol": "Foxb1",
+   "ensembl": "ENSMUSG00000059246",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 57612,
+   "detected_frac": 0.01887896111763147
+  },
+  {
+   "symbol": "Lmo2",
+   "ensembl": "ENSMUSG00000032698",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 351706,
+   "detected_frac": 0.18930072312876234
+  },
+  {
+   "symbol": "Hrh3",
+   "ensembl": "ENSMUSG00000039059",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 263925,
+   "detected_frac": 0.1384488698746829
+  },
+  {
+   "symbol": "Ly6g6e",
+   "ensembl": "ENSMUSG00000013766",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 118369,
+   "detected_frac": 0.04702608563964714
+  },
+  {
+   "symbol": "Bdnf",
+   "ensembl": "ENSMUSG00000048482",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 173444,
+   "detected_frac": 0.07748078597660243
+  },
+  {
+   "symbol": "Pnoc",
+   "ensembl": "ENSMUSG00000045731",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 72388,
+   "detected_frac": 0.02501230454700337
+  },
+  {
+   "symbol": "Scml4",
+   "ensembl": "ENSMUSG00000044770",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 93489,
+   "detected_frac": 0.03555067580358157
+  },
+  {
+   "symbol": "Coch",
+   "ensembl": "ENSMUSG00000020953",
+   "vmax": 5.614709854125977,
+   "bytes_gz": 154786,
+   "detected_frac": 0.06968822170900693
+  },
+  {
+   "symbol": "Tfap2a",
+   "ensembl": "ENSMUSG00000021359",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 68893,
+   "detected_frac": 0.024194525423087115
+  },
+  {
+   "symbol": "Slco5a1",
+   "ensembl": "ENSMUSG00000025938",
+   "vmax": 5.044394016265869,
+   "bytes_gz": 132953,
+   "detected_frac": 0.06188335289440806
+  },
+  {
+   "symbol": "Trpc6",
+   "ensembl": "ENSMUSG00000031997",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 138158,
+   "detected_frac": 0.05786733805323136
+  },
+  {
+   "symbol": "Scgn",
+   "ensembl": "ENSMUSG00000021337",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 45513,
+   "detected_frac": 0.015170559951539014
+  },
+  {
+   "symbol": "Gabrq",
+   "ensembl": "ENSMUSG00000031344",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 66435,
+   "detected_frac": 0.02296123121190323
+  },
+  {
+   "symbol": "Egr3",
+   "ensembl": "ENSMUSG00000033730",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 320839,
+   "detected_frac": 0.18264207019270814
+  },
+  {
+   "symbol": "Tcf19",
+   "ensembl": "ENSMUSG00000050410",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 106727,
+   "detected_frac": 0.04209858781660546
+  },
+  {
+   "symbol": "Dcn",
+   "ensembl": "ENSMUSG00000019929",
+   "vmax": 6.563767910003662,
+   "bytes_gz": 126557,
+   "detected_frac": 0.05017604967250975
+  },
+  {
+   "symbol": "Spin2c",
+   "ensembl": "ENSMUSG00000046550",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 139466,
+   "detected_frac": 0.06089614962329156
+  },
+  {
+   "symbol": "Pcdh18",
+   "ensembl": "ENSMUSG00000037892",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 147067,
+   "detected_frac": 0.06032635444667399
+  },
+  {
+   "symbol": "Apela",
+   "ensembl": "ENSMUSG00000079042",
+   "vmax": 4.087462902069092,
+   "bytes_gz": 48824,
+   "detected_frac": 0.015259531291409533
+  },
+  {
+   "symbol": "St14",
+   "ensembl": "ENSMUSG00000031995",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 40827,
+   "detected_frac": 0.012272365880437664
+  },
+  {
+   "symbol": "Bcl6",
+   "ensembl": "ENSMUSG00000022508",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 336090,
+   "detected_frac": 0.18817533032976186
+  },
+  {
+   "symbol": "Adamts2",
+   "ensembl": "ENSMUSG00000036545",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 146153,
+   "detected_frac": 0.060995532502934165
+  },
+  {
+   "symbol": "Grem1",
+   "ensembl": "ENSMUSG00000074934",
+   "vmax": 4.89188814163208,
+   "bytes_gz": 81652,
+   "detected_frac": 0.030087456934085488
+  },
+  {
+   "symbol": "Cnga3",
+   "ensembl": "ENSMUSG00000026114",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 45582,
+   "detected_frac": 0.014551546586907962
+  },
+  {
+   "symbol": "Drd2",
+   "ensembl": "ENSMUSG00000032259",
+   "vmax": 5.321928024291992,
+   "bytes_gz": 145662,
+   "detected_frac": 0.062444629538484835
+  },
+  {
+   "symbol": "Grm3",
+   "ensembl": "ENSMUSG00000003974",
+   "vmax": 6.714245319366455,
+   "bytes_gz": 593180,
+   "detected_frac": 0.4175273539544921
+  },
+  {
+   "symbol": "Kitl",
+   "ensembl": "ENSMUSG00000019966",
+   "vmax": 5.958296775817871,
+   "bytes_gz": 306282,
+   "detected_frac": 0.16151610949153825
+  },
+  {
+   "symbol": "Ddr2",
+   "ensembl": "ENSMUSG00000026674",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 147755,
+   "detected_frac": 0.061664710559194334
+  },
+  {
+   "symbol": "Otx2",
+   "ensembl": "ENSMUSG00000021848",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 115225,
+   "detected_frac": 0.044478097906334
+  },
+  {
+   "symbol": "Serpina3g",
+   "ensembl": "ENSMUSG00000041481",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 34976,
+   "detected_frac": 0.010313103396054972
+  },
+  {
+   "symbol": "Prkcq",
+   "ensembl": "ENSMUSG00000026778",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 219309,
+   "detected_frac": 0.10299568394351266
+  },
+  {
+   "symbol": "Zbtb16",
+   "ensembl": "ENSMUSG00000066687",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 445006,
+   "detected_frac": 0.2804812024381933
+  },
+  {
+   "symbol": "Syndig1",
+   "ensembl": "ENSMUSG00000074736",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 379864,
+   "detected_frac": 0.2234704501571196
+  },
+  {
+   "symbol": "Cfap206",
+   "ensembl": "ENSMUSG00000028294",
+   "vmax": 4.036275386810303,
+   "bytes_gz": 68152,
+   "detected_frac": 0.02351493582705486
+  },
+  {
+   "symbol": "Coro6",
+   "ensembl": "ENSMUSG00000020836",
+   "vmax": 5.561394214630127,
+   "bytes_gz": 306139,
+   "detected_frac": 0.1538437511831295
+  },
+  {
+   "symbol": "Wnt5a",
+   "ensembl": "ENSMUSG00000021994",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 117395,
+   "detected_frac": 0.046696702381403096
+  },
+  {
+   "symbol": "Tacr1",
+   "ensembl": "ENSMUSG00000030043",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 116821,
+   "detected_frac": 0.046303903380910914
+  },
+  {
+   "symbol": "Gpx3",
+   "ensembl": "ENSMUSG00000018339",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 177147,
+   "detected_frac": 0.07776000454321735
+  },
+  {
+   "symbol": "Emx2",
+   "ensembl": "ENSMUSG00000043969",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 287435,
+   "detected_frac": 0.1574489834551168
+  },
+  {
+   "symbol": "Cxcl5",
+   "ensembl": "ENSMUSG00000029371",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 30309,
+   "detected_frac": 0.008602771362586605
+  },
+  {
+   "symbol": "Pth2",
+   "ensembl": "ENSMUSG00000038300",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 38067,
+   "detected_frac": 0.011380759474501193
+  },
+  {
+   "symbol": "Pla2g5",
+   "ensembl": "ENSMUSG00000041193",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 86604,
+   "detected_frac": 0.031519516904554574
+  },
+  {
+   "symbol": "Bmp2",
+   "ensembl": "ENSMUSG00000027358",
+   "vmax": 4.698218822479248,
+   "bytes_gz": 87827,
+   "detected_frac": 0.03194449702797865
+  },
+  {
+   "symbol": "Ccbe1",
+   "ensembl": "ENSMUSG00000046318",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 122333,
+   "detected_frac": 0.0499242797107485
+  },
+  {
+   "symbol": "Syt10",
+   "ensembl": "ENSMUSG00000063260",
+   "vmax": 5.023040294647217,
+   "bytes_gz": 266590,
+   "detected_frac": 0.1344603036383599
+  },
+  {
+   "symbol": "Itga4",
+   "ensembl": "ENSMUSG00000027009",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 99259,
+   "detected_frac": 0.038449816378298564
+  },
+  {
+   "symbol": "Adamts12",
+   "ensembl": "ENSMUSG00000047497",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 45535,
+   "detected_frac": 0.014052739181463674
+  },
+  {
+   "symbol": "Pcp4l1",
+   "ensembl": "ENSMUSG00000038370",
+   "vmax": 6.02236795425415,
+   "bytes_gz": 608588,
+   "detected_frac": 0.41443418013856814
+  },
+  {
+   "symbol": "Homer3",
+   "ensembl": "ENSMUSG00000003573",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 198569,
+   "detected_frac": 0.0922358308408738
+  },
+  {
+   "symbol": "Chst9",
+   "ensembl": "ENSMUSG00000047161",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 61675,
+   "detected_frac": 0.020781433385075532
+  },
+  {
+   "symbol": "Arhgap15",
+   "ensembl": "ENSMUSG00000049744",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 45259,
+   "detected_frac": 0.01417389164426608
+  },
+  {
+   "symbol": "A830019P07Rik",
+   "ensembl": "ENSMUSG00000094707",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 64363,
+   "detected_frac": 0.021678718812705864
+  },
+  {
+   "symbol": "Mmel1",
+   "ensembl": "ENSMUSG00000058183",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 53975,
+   "detected_frac": 0.017758300836709196
+  },
+  {
+   "symbol": "Plscr4",
+   "ensembl": "ENSMUSG00000032377",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 126893,
+   "detected_frac": 0.0508641578010828
+  },
+  {
+   "symbol": "Plcxd3",
+   "ensembl": "ENSMUSG00000049148",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 281799,
+   "detected_frac": 0.14507723469503653
+  },
+  {
+   "symbol": "Car8",
+   "ensembl": "ENSMUSG00000041261",
+   "vmax": 5.58201265335083,
+   "bytes_gz": 123657,
+   "detected_frac": 0.050621852875477984
+  },
+  {
+   "symbol": "Pirt",
+   "ensembl": "ENSMUSG00000048070",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 32231,
+   "detected_frac": 0.009377957823798888
+  },
+  {
+   "symbol": "Cnr1",
+   "ensembl": "ENSMUSG00000044288",
+   "vmax": 6.5855817794799805,
+   "bytes_gz": 369789,
+   "detected_frac": 0.21401014651875971
+  },
+  {
+   "symbol": "Galnt18",
+   "ensembl": "ENSMUSG00000038296",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 413725,
+   "detected_frac": 0.24724851398932343
+  },
+  {
+   "symbol": "Sstr2",
+   "ensembl": "ENSMUSG00000047904",
+   "vmax": 4.89188814163208,
+   "bytes_gz": 158610,
+   "detected_frac": 0.06924431151326998
+  },
+  {
+   "symbol": "Pcdh20",
+   "ensembl": "ENSMUSG00000050505",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 145636,
+   "detected_frac": 0.06241718093363117
+  },
+  {
+   "symbol": "Col23a1",
+   "ensembl": "ENSMUSG00000063564",
+   "vmax": 5.604861736297607,
+   "bytes_gz": 132356,
+   "detected_frac": 0.05527959716806118
+  },
+  {
+   "symbol": "Fat4",
+   "ensembl": "ENSMUSG00000046743",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 219603,
+   "detected_frac": 0.10544902131526142
+  },
+  {
+   "symbol": "Irx2",
+   "ensembl": "ENSMUSG00000001504",
+   "vmax": 5.044394016265869,
+   "bytes_gz": 114060,
+   "detected_frac": 0.048038844508386025
+  },
+  {
+   "symbol": "Fli1",
+   "ensembl": "ENSMUSG00000016087",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 245526,
+   "detected_frac": 0.11418430318403816
+  },
+  {
+   "symbol": "C1qtnf7",
+   "ensembl": "ENSMUSG00000061535",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 45002,
+   "detected_frac": 0.013856812933025405
+  },
+  {
+   "symbol": "Clic5",
+   "ensembl": "ENSMUSG00000023959",
+   "vmax": 5.614709854125977,
+   "bytes_gz": 168808,
+   "detected_frac": 0.07074357324044978
+  },
+  {
+   "symbol": "Cpne8",
+   "ensembl": "ENSMUSG00000052560",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 183404,
+   "detected_frac": 0.08658331124824897
+  },
+  {
+   "symbol": "Fzd2",
+   "ensembl": "ENSMUSG00000050288",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 200918,
+   "detected_frac": 0.09098739257183962
+  },
+  {
+   "symbol": "2900052N01Rik",
+   "ensembl": "ENSMUSG00000099696",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 134954,
+   "detected_frac": 0.05571877484571991
+  },
+  {
+   "symbol": "Dmbx1",
+   "ensembl": "ENSMUSG00000028707",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 36522,
+   "detected_frac": 0.010871540529284822
+  },
+  {
+   "symbol": "Ntf3",
+   "ensembl": "ENSMUSG00000049107",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 55219,
+   "detected_frac": 0.01847480407375156
+  },
+  {
+   "symbol": "Tpbgl",
+   "ensembl": "ENSMUSG00000096606",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 125839,
+   "detected_frac": 0.048906788323931395
+  },
+  {
+   "symbol": "Slc17a6",
+   "ensembl": "ENSMUSG00000030500",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 255855,
+   "detected_frac": 0.12411028660129482
+  },
+  {
+   "symbol": "Cdh23",
+   "ensembl": "ENSMUSG00000012819",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 63823,
+   "detected_frac": 0.021803657289970847
+  },
+  {
+   "symbol": "Blnk",
+   "ensembl": "ENSMUSG00000061132",
+   "vmax": 6.395748615264893,
+   "bytes_gz": 151308,
+   "detected_frac": 0.06322454851777534
+  },
+  {
+   "symbol": "Dbx2",
+   "ensembl": "ENSMUSG00000045608",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 205531,
+   "detected_frac": 0.09331673796993904
+  },
+  {
+   "symbol": "Ttc29",
+   "ensembl": "ENSMUSG00000037101",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 57384,
+   "detected_frac": 0.018738878582516185
+  },
+  {
+   "symbol": "Cxcl14",
+   "ensembl": "ENSMUSG00000021508",
+   "vmax": 5.851181507110596,
+   "bytes_gz": 440042,
+   "detected_frac": 0.262037632983758
+  },
+  {
+   "symbol": "Glt8d2",
+   "ensembl": "ENSMUSG00000020251",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 113159,
+   "detected_frac": 0.04665694922954606
+  },
+  {
+   "symbol": "Casr",
+   "ensembl": "ENSMUSG00000051980",
+   "vmax": 4.196397304534912,
+   "bytes_gz": 44516,
+   "detected_frac": 0.013851133911331541
+  },
+  {
+   "symbol": "Ankfn1",
+   "ensembl": "ENSMUSG00000047773",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 138975,
+   "detected_frac": 0.057586226479385154
+  },
+  {
+   "symbol": "Nts",
+   "ensembl": "ENSMUSG00000019890",
+   "vmax": 4.974484443664551,
+   "bytes_gz": 86143,
+   "detected_frac": 0.03207132851247492
+  },
+  {
+   "symbol": "Tspear",
+   "ensembl": "ENSMUSG00000069581",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 56234,
+   "detected_frac": 0.019008632112974672
+  },
+  {
+   "symbol": "Ctsc",
+   "ensembl": "ENSMUSG00000030560",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 114201,
+   "detected_frac": 0.043895051679097415
+  },
+  {
+   "symbol": "Hoxb6",
+   "ensembl": "ENSMUSG00000000690",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 28565,
+   "detected_frac": 0.008220383901866505
+  },
+  {
+   "symbol": "Pmfbp1",
+   "ensembl": "ENSMUSG00000031727",
+   "vmax": 4.346874713897705,
+   "bytes_gz": 42370,
+   "detected_frac": 0.012818498466664142
+  },
+  {
+   "symbol": "Mab21l2",
+   "ensembl": "ENSMUSG00000057777",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 81504,
+   "detected_frac": 0.030772725551811608
+  },
+  {
+   "symbol": "Plscr5",
+   "ensembl": "ENSMUSG00000095654",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 32560,
+   "detected_frac": 0.00966190890849203
+  },
+  {
+   "symbol": "Nxph4",
+   "ensembl": "ENSMUSG00000040258",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 114633,
+   "detected_frac": 0.04518986862529815
+  },
+  {
+   "symbol": "Inhba",
+   "ensembl": "ENSMUSG00000041324",
+   "vmax": 6.615691184997559,
+   "bytes_gz": 171204,
+   "detected_frac": 0.08120338469692955
+  },
+  {
+   "symbol": "Sla",
+   "ensembl": "ENSMUSG00000022372",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 146000,
+   "detected_frac": 0.05984269109908
+  },
+  {
+   "symbol": "A330076C08Rik",
+   "ensembl": "ENSMUSG00000113186",
+   "vmax": 4.844653606414795,
+   "bytes_gz": 89489,
+   "detected_frac": 0.03285408700261235
+  },
+  {
+   "symbol": "Actn2",
+   "ensembl": "ENSMUSG00000052374",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 247732,
+   "detected_frac": 0.12818119865217886
+  },
+  {
+   "symbol": "Ddit4l",
+   "ensembl": "ENSMUSG00000046818",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 174572,
+   "detected_frac": 0.07797770037481543
+  },
+  {
+   "symbol": "Lhx2",
+   "ensembl": "ENSMUSG00000000247",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 394721,
+   "detected_frac": 0.23913697800325598
+  },
+  {
+   "symbol": "Tac2",
+   "ensembl": "ENSMUSG00000025400",
+   "vmax": 5.763765811920166,
+   "bytes_gz": 62754,
+   "detected_frac": 0.020953697043122704
+  },
+  {
+   "symbol": "Pparg",
+   "ensembl": "ENSMUSG00000000440",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 123138,
+   "detected_frac": 0.051767122250407
+  },
+  {
+   "symbol": "Lepr",
+   "ensembl": "ENSMUSG00000057722",
+   "vmax": 4.541373252868652,
+   "bytes_gz": 79309,
+   "detected_frac": 0.02837144587892326
+  },
+  {
+   "symbol": "Ddo",
+   "ensembl": "ENSMUSG00000063428",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 176256,
+   "detected_frac": 0.07892893650853747
+  },
+  {
+   "symbol": "Nmur2",
+   "ensembl": "ENSMUSG00000037393",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 25858,
+   "detected_frac": 0.007210464543974558
+  },
+  {
+   "symbol": "Lmx1b",
+   "ensembl": "ENSMUSG00000038765",
+   "vmax": 3.807354688644409,
+   "bytes_gz": 49485,
+   "detected_frac": 0.01567315337144588
+  },
+  {
+   "symbol": "Maf",
+   "ensembl": "ENSMUSG00000055435",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 298861,
+   "detected_frac": 0.14844584106311287
+  },
+  {
+   "symbol": "Tshz2",
+   "ensembl": "ENSMUSG00000047907",
+   "vmax": 6.303780555725098,
+   "bytes_gz": 457028,
+   "detected_frac": 0.2769374929012229
+  },
+  {
+   "symbol": "Cd24a",
+   "ensembl": "ENSMUSG00000047139",
+   "vmax": 6.044394016265869,
+   "bytes_gz": 279630,
+   "detected_frac": 0.14639382122439706
+  },
+  {
+   "symbol": "Lrrc38",
+   "ensembl": "ENSMUSG00000028584",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 59920,
+   "detected_frac": 0.019988263355166017
+  },
+  {
+   "symbol": "Corin",
+   "ensembl": "ENSMUSG00000005220",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 29705,
+   "detected_frac": 0.008282853140498996
+  },
+  {
+   "symbol": "Ets1",
+   "ensembl": "ENSMUSG00000032035",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 271316,
+   "detected_frac": 0.13105005111119525
+  },
+  {
+   "symbol": "Npas3",
+   "ensembl": "ENSMUSG00000021010",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 245329,
+   "detected_frac": 0.12143168136902283
+  },
+  {
+   "symbol": "Cux2",
+   "ensembl": "ENSMUSG00000042589",
+   "vmax": 6.607668399810791,
+   "bytes_gz": 471363,
+   "detected_frac": 0.29643452087986977
+  },
+  {
+   "symbol": "Egln3",
+   "ensembl": "ENSMUSG00000035105",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 118472,
+   "detected_frac": 0.04829629349184114
+  },
+  {
+   "symbol": "Pax8",
+   "ensembl": "ENSMUSG00000026976",
+   "vmax": 3.5786211490631104,
+   "bytes_gz": 34536,
+   "detected_frac": 0.009872032711164956
+  },
+  {
+   "symbol": "Nkx6-1",
+   "ensembl": "ENSMUSG00000035187",
+   "vmax": 4.754887104034424,
+   "bytes_gz": 56674,
+   "detected_frac": 0.01858081247870367
+  },
+  {
+   "symbol": "Hmgb3",
+   "ensembl": "ENSMUSG00000015217",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 359596,
+   "detected_frac": 0.21804509143224926
+  },
+  {
+   "symbol": "Itga2",
+   "ensembl": "ENSMUSG00000015533",
+   "vmax": 4.940837860107422,
+   "bytes_gz": 44721,
+   "detected_frac": 0.014192821716578957
+  },
+  {
+   "symbol": "Htr3a",
+   "ensembl": "ENSMUSG00000032269",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 64250,
+   "detected_frac": 0.021457236966645213
+  },
+  {
+   "symbol": "Trpc4",
+   "ensembl": "ENSMUSG00000027748",
+   "vmax": 5.917158603668213,
+   "bytes_gz": 266543,
+   "detected_frac": 0.14074982016431303
+  },
+  {
+   "symbol": "Mirt1",
+   "ensembl": "ENSMUSG00000097636",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 44472,
+   "detected_frac": 0.01380096921970242
+  },
+  {
+   "symbol": "Id4",
+   "ensembl": "ENSMUSG00000021379",
+   "vmax": 5.278660774230957,
+   "bytes_gz": 403846,
+   "detected_frac": 0.23097906334002197
+  },
+  {
+   "symbol": "Robo3",
+   "ensembl": "ENSMUSG00000032128",
+   "vmax": 4.733354091644287,
+   "bytes_gz": 107337,
+   "detected_frac": 0.04333850755309885
+  },
+  {
+   "symbol": "Unc13c",
+   "ensembl": "ENSMUSG00000062151",
+   "vmax": 6.136136531829834,
+   "bytes_gz": 411538,
+   "detected_frac": 0.246479006549805
+  },
+  {
+   "symbol": "Igf1",
+   "ensembl": "ENSMUSG00000020053",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 102916,
+   "detected_frac": 0.040500889713398706
+  },
+  {
+   "symbol": "Hoxb5",
+   "ensembl": "ENSMUSG00000038700",
+   "vmax": 4.31535530090332,
+   "bytes_gz": 21942,
+   "detected_frac": 0.005824783250672018
+  },
+  {
+   "symbol": "Sfrp2",
+   "ensembl": "ENSMUSG00000027996",
+   "vmax": 4.916141033172607,
+   "bytes_gz": 84587,
+   "detected_frac": 0.030581531821451558
+  },
+  {
+   "symbol": "Agt",
+   "ensembl": "ENSMUSG00000031980",
+   "vmax": 6.494141101837158,
+   "bytes_gz": 368554,
+   "detected_frac": 0.20062279937909364
+  },
+  {
+   "symbol": "Hrh1",
+   "ensembl": "ENSMUSG00000053004",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 152415,
+   "detected_frac": 0.06561636315450725
+  },
+  {
+   "symbol": "Galnt14",
+   "ensembl": "ENSMUSG00000024064",
+   "vmax": 4.234851360321045,
+   "bytes_gz": 203930,
+   "detected_frac": 0.09406731533714459
+  },
+  {
+   "symbol": "Kcnh8",
+   "ensembl": "ENSMUSG00000035580",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 93202,
+   "detected_frac": 0.03498655964865786
+  },
+  {
+   "symbol": "Pifo",
+   "ensembl": "ENSMUSG00000010136",
+   "vmax": 3.987061023712158,
+   "bytes_gz": 34322,
+   "detected_frac": 0.009990345663120433
+  },
+  {
+   "symbol": "Epb41l4a",
+   "ensembl": "ENSMUSG00000024376",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 147586,
+   "detected_frac": 0.06345549539999243
+  },
+  {
+   "symbol": "Matn2",
+   "ensembl": "ENSMUSG00000022324",
+   "vmax": 5.412781238555908,
+   "bytes_gz": 176790,
+   "detected_frac": 0.08108223223412714
+  },
+  {
+   "symbol": "Gata3",
+   "ensembl": "ENSMUSG00000015619",
+   "vmax": 4.591626167297363,
+   "bytes_gz": 62807,
+   "detected_frac": 0.0215045621474274
+  },
+  {
+   "symbol": "Fat1",
+   "ensembl": "ENSMUSG00000070047",
+   "vmax": 5.7279205322265625,
+   "bytes_gz": 453850,
+   "detected_frac": 0.28411577632226553
+  },
+  {
+   "symbol": "Zim1",
+   "ensembl": "ENSMUSG00000002266",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 147473,
+   "detected_frac": 0.06288948623783742
+  },
+  {
+   "symbol": "Lmo1",
+   "ensembl": "ENSMUSG00000036111",
+   "vmax": 5.1565046310424805,
+   "bytes_gz": 180445,
+   "detected_frac": 0.08058058531783592
+  },
+  {
+   "symbol": "Cntnap3",
+   "ensembl": "ENSMUSG00000033063",
+   "vmax": 4.446256160736084,
+   "bytes_gz": 121777,
+   "detected_frac": 0.05110740923030326
+  }
+ ],
+ "expr_encoding": "uint8, value = q / 255 * vmax (log2 expression, ABC 'log2' matrix); 0 = not detected"
+}

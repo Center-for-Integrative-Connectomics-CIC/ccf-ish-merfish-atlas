@@ -1,0 +1,36 @@
+{
+ "grid": [
+  566,
+  320,
+  456
+ ],
+ "voxel_um": 25.0,
+ "axes": [
+  "AP",
+  "DV",
+  "LR"
+ ],
+ "orientation": "ASR",
+ "space": "CCFv3BBP (Piluso et al.)",
+ "coords": "um = voxel index x 25 (voxel centres)",
+ "annotation": {
+  "file": "annotation.u16.gz",
+  "dtype": "uint16",
+  "shape": [
+   566,
+   320,
+   456
+  ],
+  "bytes_gz": 3805436
+ },
+ "reference": {
+  "file": "reference.u8.gz",
+  "dtype": "uint8",
+  "shape": [
+   566,
+   320,
+   456
+  ],
+  "bytes_gz": 26956448
+ }
+}
