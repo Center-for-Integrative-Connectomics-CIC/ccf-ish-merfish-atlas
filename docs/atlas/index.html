@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCF Gene Atlas · ISH × MERFISH viewer</title>
+<meta name="description" content="Interactive 3D viewer comparing the Blue Brain ISH gene atlas (CCFv3BBP) with five whole-brain MERFISH datasets (Allen Brain Cell Atlas), cell by cell, region by region.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link href="../assets/css/site.css?v=20261029204308" rel="stylesheet">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+<style>
+  body{overflow:hidden}
+  .app{display:grid;grid-template-columns:372px 1fr;grid-template-rows:auto 1fr;height:100vh}
+  header.top{grid-column:1/3;display:flex;align-items:center;gap:14px;padding:10px 18px;border-bottom:1px solid var(--line);background:#fff;z-index:5}
+  header.top .brand{font-family:var(--serif);font-size:21px;line-height:1}
+  header.top .brand em{font-style:italic;color:var(--accent)}
+  header.top .sub{font-family:var(--mono);font-size:10.5px;color:var(--muted-2);letter-spacing:.3px;margin-top:3px}
+  header.top .spacer{flex:1}
+  header.top a.back{font-size:12.5px;color:var(--accent);border:1px solid var(--line);padding:6px 11px;border-radius:6px}
+  header.top a.back:hover{border-color:var(--accent)}
+  .panel{border-right:1px solid var(--line);background:var(--panel);overflow-y:auto;min-height:0}
+  .sec{background:#fff;border-bottom:1px solid var(--line);padding:12px 14px}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
+  .row:first-of-type{margin-top:0}
+  .row label.mini{min-width:62px}
+  input[type=range]{accent-color:var(--accent);flex:1;min-width:90px}
+  .sugg{position:relative}
+  .sugg .list{position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid var(--line);border-radius:0 0 7px 7px;max-height:280px;overflow-y:auto;z-index:20;box-shadow:0 8px 20px rgba(0,0,0,.08);display:none}
+  .sugg .list div{padding:6px 10px;font-size:12.5px;cursor:pointer;display:flex;gap:6px;align-items:center}
+  .sugg .list div:hover,.sugg .list div.hi{background:var(--wash)}
+  .sugg .list .g{font-family:var(--mono);font-weight:500}
+  .sugg .list .n{color:var(--muted-2);font-size:11px;margin-left:auto;text-align:right}
+  .status{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:7px;min-height:14px}
+  .prog{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:5px;display:none}
+  .prog>div{height:100%;width:0;background:var(--accent);transition:width .15s}
+  .cbar{height:9px;border-radius:3px;flex:1;min-width:80px}
+  .gchip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11.5px;padding:3px 6px 3px 8px;border:1px solid var(--line);border-radius:14px;background:#fff;cursor:pointer}
+  .gchip.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .gchip .dot{width:9px;height:9px;border-radius:50%}
+  .gchip .x{color:var(--muted-2);padding:0 2px;font-size:13px;line-height:1}
+  .gchip .x:hover{color:#c0392b}
+  .btn.sm{padding:5px 9px;font-size:11.5px}
+  .htabs{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;margin-bottom:10px}
+  .htabs button{flex:1;font-family:var(--mono);font-size:11px;padding:7px 4px;border:none;background:#fff;color:var(--muted);cursor:pointer;display:flex;gap:5px;justify-content:center;align-items:center}
+  .htabs button+button{border-left:1px solid var(--line)}
+  .htabs button.active{background:var(--accent);color:#fff}
+  .hcard{background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 10px;margin-top:8px}
+  .hcard h5{margin:0 0 6px}
+  .glist{max-height:330px;overflow-y:auto;border:1px solid var(--line);border-radius:7px;background:#fff;margin-top:6px}
+  .glist label{display:flex;gap:6px;align-items:center;padding:3px 8px;font-size:12px;border-bottom:1px solid #f0f2f1;cursor:pointer}
+  .glist label:hover{background:var(--wash)}
+  .glist label.dis{opacity:.45;cursor:not-allowed}
+  .glist .tags{margin-left:auto;font-family:var(--mono);font-size:9.5px;color:var(--muted-2);text-align:right}
+  .hdom.part{background:var(--wash);border-color:var(--accent-soft)}
+  .hgrp{margin:5px 0}.hrow{display:flex;flex-wrap:wrap;gap:4px;margin-top:3px}
+  .hdom,.gpick{font-family:var(--mono);font-size:11px;padding:3px 7px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer;display:inline-flex;gap:5px;align-items:center}
+  .hdom span{color:var(--muted-2);font-size:10px}.hdom.on{background:var(--accent);color:#fff;border-color:var(--accent)}.hdom.on span{color:#d9f2ec}
+  .hdom:hover,.gpick:hover{border-color:var(--accent)}
+  .hmesh{font-family:var(--mono);font-size:11px;padding:3px 7px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer;display:inline-flex;gap:3px;align-items:center;opacity:.6}
+  .hmesh.on{opacity:1;border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .hmesh:hover{opacity:1}
+  #hglist tr.hg{cursor:pointer}#hglist tr.hg:hover{background:var(--wash)}#hglist tr.noish{opacity:.55}
+  details.t7{margin:4px 0;font-size:12px}details.t7 summary{cursor:pointer}details.t7 .mini{margin:3px 0 0 12px;line-height:1.45}
+  #hmatrix{position:absolute;inset:10px;background:#fff;border-radius:10px;z-index:30;box-shadow:0 18px 50px rgba(0,0,0,.35);display:flex;flex-direction:column;overflow:hidden}
+  #hmatrix .mh{padding:10px 12px;font-size:12px;border-bottom:1px solid var(--line)}
+  #hmatrix .mwrap{overflow:auto;flex:1;height:calc(100% - 50px)}
+  .mtab{border-collapse:separate;border-spacing:0;font-size:12px;width:100%;min-width:1000px;table-layout:fixed}
+  .mtab th,.mtab td{border-right:1px solid #eef0ef;border-bottom:1px solid #eef0ef;padding:3px 4px;text-align:center;height:16px}
+  .mtab th{position:sticky;background:#fff;z-index:2}
+  .mtab th.grp{top:0;height:22px;font-weight:600;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);border-bottom:2px solid var(--accent-soft)}
+  .mtab th.vc{top:29px;height:24px;cursor:pointer;font-family:var(--mono);font-weight:500;white-space:nowrap;font-size:10.5px;padding:3px 1px;overflow:hidden;text-overflow:clip}
+  .mtab th.gname{z-index:3}
+  .mtab th.vc.solo{top:0;vertical-align:bottom;border-bottom:2px solid var(--accent-soft)}
+  .mtab .gb{border-left:2px solid #c9d6d1}
+  .mtab td.ishc{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#6b7a75}
+  .mtab .gname{overflow:hidden;text-overflow:ellipsis}
+  .mtab th.vc:hover{background:var(--wash)}
+  .mtab .gname{text-align:left;font-family:var(--mono);white-space:nowrap;position:sticky;left:0;background:#fff}
+  .mtab td.x{background:var(--accent);box-shadow:inset 0 0 0 1px #fff}
+  .mtab tr[data-ish]:hover td{outline:1px solid var(--accent-soft)}
+  .mtab tr[data-ish]{cursor:pointer}
+  .gchip.hidden{opacity:.5;text-decoration:line-through}
+  .legend .gtoggle{cursor:pointer;border-radius:5px;padding:1px 4px;margin-left:-4px}
+  .legend .gtoggle:hover{background:rgba(255,255,255,.08)}
+  .legend .gtoggle.off{opacity:.45;text-decoration:line-through}
+  .profile h5{font-size:12.5px;margin:10px 0 4px;font-weight:600}
+  .profile .brainrow{margin:6px 0 10px}
+  .profile .brainrow .head{font-family:var(--mono);font-size:10.5px;color:var(--muted);display:flex;justify-content:space-between}
+  .stackbar{display:flex;height:14px;border-radius:3px;overflow:hidden;margin-top:3px;border:1px solid var(--line)}
+  .stackbar>div{height:100%}
+  .types{font-size:11.5px;margin-top:4px}
+  .types div{display:flex;align-items:center;gap:6px;padding:1px 0}
+  .types .pct{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+  .stage{position:relative;min-width:0;background:var(--stage);overflow:hidden}
+  #gl,#slice{position:absolute;inset:0;display:block;width:100%;height:100%}
+  #slice{display:none;cursor:crosshair}
+  .ov{position:absolute;background:rgba(12,17,22,.72);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#dfe6e2}
+  .viewbar{top:12px;left:12px;padding:6px;display:flex;gap:6px;align-items:center}
+  .viewbar .seg{background:transparent;border-color:rgba(255,255,255,.15)}
+  .viewbar .seg button{background:transparent;color:#cdd8d3}
+  .viewbar .seg button.active{background:var(--accent);color:#fff}
+  .viewbar .seg button+button{border-left-color:rgba(255,255,255,.12)}
+  .slicebar{top:56px;left:12px;padding:8px 10px;display:none;gap:10px;align-items:center;font-family:var(--mono);font-size:11px;width:min(560px,calc(100% - 24px))}
+  .slicebar input{flex:1}
+  .secbtn{font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.08);color:#dfe6e2;border:1px solid rgba(255,255,255,.18);border-radius:5px;padding:3px 7px;cursor:pointer}
+  .secbtn:hover{background:var(--accent)}
+  #ticks i{position:absolute;top:0;width:1px;height:6px;background:#7fe6d3;opacity:.8}
+  .legend{top:12px;right:12px;padding:10px 12px;max-width:260px;max-height:calc(100% - 90px);overflow-y:auto;font-size:11.5px}
+  .legend h4{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#8fb8b0;margin:0 0 6px;font-weight:500}
+  .legend .item{display:flex;align-items:center;gap:7px;margin:3px 0}
+  .legend .item .sw{border-color:rgba(255,255,255,.2)}
+  .legend .cb{height:8px;border-radius:2px;margin:4px 0}
+  .legend .ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:#9fb0aa}
+  .hud{bottom:12px;left:12px;padding:6px 10px;font-family:var(--mono);font-size:11px;color:#9fb0aa}
+  .hud b{color:#e6efe9}
+  .tip{pointer-events:none;padding:7px 9px;font-family:var(--mono);font-size:11px;line-height:1.45;display:none;max-width:340px;z-index:10}
+  .tip b{color:#7fe6d3;font-weight:500}
+  .splitlbl{top:12px;padding:4px 9px;font-family:var(--mono);font-size:10.5px;display:none}
+  .hint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10.5px;color:#7f938c}
+  .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9fb0aa;font-family:var(--mono);font-size:13px;pointer-events:none;transition:opacity .3s}
+  @media (max-width:860px){.app{grid-template-columns:1fr;grid-template-rows:auto 48vh 1fr}.panel{grid-row:3}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div>
+      <div class="brand">CCF Gene Atlas · <em>ISH × MERFISH</em></div>
+      <div class="sub">Blue Brain ISH (CCFv3BBP, 4,085 genes) · 5 MERFISH brains (Allen Brain Cell Atlas) · cell by cell</div>
+    </div>
+    <div class="spacer"></div>
+    <a class="back" href="../index.html"><i class="fa-solid fa-house"></i> Hub</a>
+    <a class="back" href="../qc/index.html"><i class="fa-solid fa-scale-balanced"></i> Accuracy</a>
+  </header>
+
+  <aside class="panel">
+    <div class="sec">
+      <div class="lbl">Data</div>
+      <div class="row"><span class="seg" id="mode">
+        <button data-v="ish">ISH</button><button data-v="merfish">MERFISH</button><button data-v="overlay" class="active">overlay</button><button data-v="split">side by side</button><button data-v="hgea" title="Hippocampus Gene Expression Atlas genes (Bienkowski et al. 2018) on the Blue Brain ISH">HGEA-ISH</button>
+      </span></div>
+      <div class="row"><label class="mini">brain</label><select class="sel" id="brain" style="flex:1"></select></div>
+      <div class="row"><label class="mini">cell region</label><span class="seg" id="labelsrc"><button data-v="ccf" class="active" title="each cell's own Allen CCF parcellation (data owners' registration)">own CCF</button><button data-v="bbp" title="CCFv3BBP label at the cell's position (ISH atlas labels)">CCFv3BBP</button></span></div>
+      <div class="row"><label class="mini">quality ≥</label><input type="range" id="quality" min="0" max="0.9" step="0.05" value="0"><span class="mini" id="qualityv">0</span></div>
+      <div class="row"><label class="mini">point size</label><input type="range" id="psize" min="4" max="60" step="1" value="14"><span class="mini" id="psizev">14 µm</span></div>
+    </div>
+
+    <div class="sec" id="hgeasec" style="display:none;background:#f3faf8">
+      <div class="lbl">HGEA-ISH · Hippocampus Gene Expression Atlas</div>
+      <div class="mini" style="line-height:1.45">The genes Bienkowski et al. (2018) used to define the hippocampal domains, on the Blue Brain ISH. Pick a domain, or show all HGEA genes together.</div>
+      <div class="row" style="margin:8px 0 6px"><button class="btn sm" id="hgeamatrix"><i class="fa-solid fa-table-cells"></i> gene × domain table (Supplementary Table 2)</button></div>
+      <details class="mini" id="hgeanotes" style="line-height:1.5;margin-bottom:8px"></details>
+      <div class="htabs" id="htabs"><button data-t="domains" class="active"><i class="fa-solid fa-layer-group"></i> Domains</button><button data-t="all"><i class="fa-solid fa-dna"></i> All genes</button><button data-t="view"><i class="fa-solid fa-cube"></i> View</button></div>
+      <div class="mini" id="hgeastatus" style="min-height:1.3em;margin:6px 0 2px;color:#0f6e5c"></div>
+      <div class="hpane" data-t="domains"><div id="hgeadomains"></div><div class="profile" id="hgeadomain"></div></div>
+      <div class="hpane" data-t="all" style="display:none"><div id="hgeaall"><div class="status">loading the HGEA gene stack…</div></div></div>
+      <div class="hpane" data-t="view" style="display:none"><div id="hgeahpf"></div></div>
+    </div>
+
+    <div class="sec">
+      <div class="lbl">Gene</div>
+      <div class="sugg"><input class="search" id="gene" placeholder="Search a gene (ISH ∪ MERFISH panels)…" autocomplete="off"><div class="list" id="genelist"></div></div>
+      <div class="row" id="genechips"></div>
+      <div class="row" id="avail"></div>
+      <div class="prog" id="prog"><div></div></div>
+      <div class="status" id="genestatus">type a gene symbol, e.g. Prox1, Gad2, Slc17a7</div>
+      <div class="row"><label class="mini">colour map</label><select class="sel" id="cmap"></select><label class="mini" style="min-width:0">cells by</label><span class="seg" id="colorby"><button data-v="type" class="active">type</button><button data-v="gene">gene</button></span></div>
+      <div class="row"><label class="mini">ISH range</label><input type="range" id="ishlo" min="0" max="100" value="20"><input type="range" id="ishhi" min="1" max="100" value="100"></div>
+      <div class="row"><label class="mini">ISH 3D ≥</label><input type="range" id="ishthr" min="1" max="99" value="55"><span class="mini" id="ishthrv">55%</span></div>
+      <div class="row"><label class="mini">MER range</label><input type="range" id="merlo" min="0" max="100" value="0"><input type="range" id="merhi" min="1" max="100" value="60"></div>
+      <div class="row"><label class="mini">show cells</label><select class="sel" id="cellshow" style="flex:1"><option value="all">all cells</option><option value="any">expressing any selected gene</option><option value="every">co-expressing all selected genes</option></select></div>
+      <div class="profile" id="generegions"></div>
+    </div>
+
+    <div class="sec">
+      <div class="lbl">Cell types</div>
+      <div class="row"><label class="mini">level</label><span class="seg" id="level"><button data-v="class">class</button><button data-v="subclass" class="active">subclass</button><button data-v="supertype">supertype</button><button data-v="cluster">cluster</button></span></div>
+      <div class="sugg" style="margin-top:8px"><input class="search" id="typeq" placeholder="Show only types matching… (e.g. Glut, DG, 038)" autocomplete="off"></div>
+      <div class="status" id="typestatus"></div>
+    </div>
+
+    <div class="sec">
+      <div class="lbl">Region</div>
+      <div class="sugg"><input class="search" id="region" placeholder="Search a CCF region (acronym or name)…" autocomplete="off"><div class="list" id="regionlist"></div></div>
+      <div class="row"><label class="mini" style="display:flex;gap:5px;align-items:center"><input type="checkbox" id="onlyregion"> only this region</label><label class="mini" style="display:flex;gap:5px;align-items:center"><input type="checkbox" id="showmesh" checked> mesh</label><button class="btn" id="clearregion" style="padding:4px 9px;font-size:11px">clear</button></div>
+      <div class="profile" id="profile"><div class="status">pick a region (search, or click a slice) to see each brain's cell-type profile and the gene's values there</div></div>
+    </div>
+  </aside>
+
+  <div class="stage" id="stage">
+    <canvas id="gl"></canvas>
+    <canvas id="slice"></canvas>
+    <div class="ov viewbar"><span class="seg" id="view"><button data-v="3d" class="active">3D</button><button data-v="coronal">coronal</button><button data-v="sagittal">sagittal</button><button data-v="horizontal">horizontal</button></span>
+      <label class="mini" style="color:#cdd8d3;display:flex;gap:5px;align-items:center;margin-left:6px"><input type="checkbox" id="shell" checked> brain shell</label></div>
+    <div class="ov slicebar" id="slicebar"><span id="slicelbl">AP</span>
+      <div style="flex:1;position:relative;display:flex;align-items:center"><input type="range" id="slicepos" min="0" max="565" value="283" style="width:100%"><div id="ticks" style="position:absolute;left:8px;right:8px;top:-7px;height:6px;pointer-events:none"></div></div>
+      <span id="slicev" style="min-width:72px"></span>
+      <button class="secbtn" id="secprev" title="previous MERFISH section">◀</button><button class="secbtn" id="secnext" title="next MERFISH section">▶</button>
+      <span>slab ±</span><select class="sel" id="slab"><option>12.5</option><option>25</option><option selected>50</option><option>100</option><option>200</option></select><span>µm</span></div>
+    <div class="ov" id="gapmsg" style="display:none;left:50%;transform:translateX(-50%);bottom:46px;padding:7px 12px;font-family:var(--mono);font-size:11px;color:#f2c48d"></div>
+    <div class="ov splitlbl" id="lblL" style="left:12px;top:56px">ISH · Blue Brain</div>
+    <div class="ov splitlbl" id="lblR" style="right:12px;top:56px">MERFISH</div>
+    <div class="ov legend" id="legend"></div>
+    <div id="hmatrix" style="display:none"></div>
+    <div class="ov hud" id="hud"></div>
+    <div class="ov tip" id="tip"></div>
+    <div class="hint" id="hint">drag rotate · scroll zoom · right-drag pan</div>
+    <div class="loading" id="loading">loading atlas…</div>
+  </div>
+</div>
+<script type="module" src="../assets/js/atlas.js?v=20261029204308"></script>
+</body>
+</html>

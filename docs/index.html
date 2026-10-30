@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCF Gene Atlas · ISH × MERFISH</title>
+<meta name="description" content="A 3D reference for looking up mouse brain genes in two atlases at once: the Blue Brain ISH gene atlas (4,085 genes, CCFv3BBP) and five whole-brain MERFISH datasets (Allen Brain Cell Atlas), aligned in one CCF space, cell by cell.">
+<meta content="CCF Gene Atlas · ISH × MERFISH" property="og:title">
+<meta content="Blue Brain ISH (4,085 genes) and five MERFISH brains in one CCF space: genes, cell types and regions in 3D." property="og:description">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link href="assets/css/site.css?v=20261029204308" rel="stylesheet">
+<style>
+  body{line-height:1.65;font-size:16px}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 40px}
+  .hero{background:var(--tint);border-bottom:1px solid var(--line);position:relative}
+  .hero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--ish),#e9a23b,var(--accent),var(--mer),#7a5bd1)}
+  .hero .wrap{padding:60px 40px 50px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:44px;align-items:center}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,54px);line-height:1.06;margin-bottom:16px}
+  h1 em{font-style:italic;color:var(--accent)}
+  .lede{font-size:17.5px;color:var(--muted);max-width:600px;margin-bottom:22px}
+  .btns{display:flex;gap:10px;flex-wrap:wrap}
+  .finder{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 12px 34px rgba(20,40,30,.08)}
+  .finder h3{font-family:var(--serif);font-weight:400;font-size:23px;margin-bottom:4px}
+  .finder p{font-size:13px;color:var(--muted);margin-bottom:12px}
+  .finder .sugg{position:relative}
+  .finder .list{position:absolute;left:0;right:0;top:100%;background:#fff;border:1px solid var(--line);border-radius:0 0 8px 8px;max-height:300px;overflow-y:auto;z-index:5;display:none;box-shadow:0 8px 20px rgba(0,0,0,.08)}
+  .finder .list a{display:flex;gap:8px;padding:7px 11px;font-size:13px;color:var(--ink);align-items:center}
+  .finder .list a:hover{background:var(--wash)}
+  .finder .list .g{font-family:var(--mono);font-weight:500}
+  .finder .list .chips{margin-left:auto;display:flex;gap:4px}
+  .finder .examples{margin-top:12px;font-family:var(--mono);font-size:11.5px;color:var(--muted-2)}
+  .finder .examples a{margin-right:9px}
+  .strip{border-bottom:1px solid var(--line)}
+  .strip .wrap{display:flex;gap:26px;flex-wrap:wrap;padding:15px 40px;font-family:var(--mono);font-size:12px;color:var(--muted-2)}
+  .strip b{color:var(--ink);font-weight:500}
+  section{padding:52px 0;border-bottom:1px solid var(--line)}
+  .seclabel{font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,35px);line-height:1.15;margin-bottom:10px}
+  .sub{color:var(--muted);max-width:780px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+  .card{border:1px solid var(--line);border-radius:12px;padding:20px;background:#fff;transition:box-shadow .18s,transform .18s;display:flex;flex-direction:column}
+  .card:hover{box-shadow:0 10px 28px rgba(20,40,30,.08);transform:translateY(-2px)}
+  .card .ic{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px;color:#fff}
+  .card h3{font-size:15.5px;font-weight:600;margin-bottom:4px}
+  .card p{font-size:13.2px;color:var(--muted);line-height:1.55;flex:1}
+  .card .kv{font-family:var(--mono);font-size:11.5px;color:var(--muted-2);margin-top:10px;line-height:1.7}
+  .card .kv b{color:var(--ink);font-weight:500}
+  .card .go{margin-top:12px;font-family:var(--mono);font-size:12px}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px}
+  .step{border-top:2px solid var(--accent);padding-top:10px;font-size:13.5px;color:var(--muted)}
+  .step b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:3px}
+  .acc{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:20px}
+  .acc .n{font-family:var(--serif);font-size:32px;line-height:1}
+  .acc .l{font-size:12.5px;color:var(--muted-2);margin-top:5px;line-height:1.45}
+  .refs{font-size:13.5px;color:var(--muted);margin-top:14px}
+  .refs li{margin:6px 0 6px 18px}
+  footer{padding:30px 0 50px;font-family:var(--mono);font-size:12px;color:var(--muted-2)}
+  @media (max-width:880px){.hero .wrap{grid-template-columns:1fr}.cards,.steps,.acc{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap">
+  <div>
+    <div class="kicker">CCF gene atlas · ISH × MERFISH</div>
+    <h1>Where a gene is, <em>cell by cell</em> and voxel by voxel</h1>
+    <p class="lede">Look up any mouse gene in the Blue Brain ISH atlas (4,085 genes on CCFv3BBP) and in five whole-brain MERFISH datasets from the Allen Brain Cell Atlas, side by side or overlaid in the same CCF space — with every brain kept separate, every cell typed, and every region profiled.</p>
+    <div class="btns">
+      <a class="btn btn-primary" href="atlas/index.html"><i class="fa-solid fa-cube"></i> Open the 3D atlas</a>
+      <a class="btn" href="atlas/index.html?mode=hgea&view=coronal"><i class="fa-solid fa-dna"></i> HGEA-ISH</a>
+      <a class="btn" href="qc/index.html"><i class="fa-solid fa-scale-balanced"></i> Accuracy &amp; methods</a>
+      <a class="btn" href="#data"><i class="fa-solid fa-database"></i> Data</a>
+    </div>
+  </div>
+  <div class="finder">
+    <h3>Find a gene</h3>
+    <p>Searches the ISH atlas and all five MERFISH panels; opens the gene in the 3D atlas.</p>
+    <div class="sugg"><input class="search" id="q" placeholder="Gene symbol, e.g. Prox1" autocomplete="off"><div class="list" id="list"></div></div>
+    <div class="examples">try <a href="atlas/index.html?gene=Prox1&region=DG&view=coronal">Prox1</a><a href="atlas/index.html?gene=Gad2">Gad2</a><a href="atlas/index.html?gene=Slc17a7">Slc17a7</a><a href="atlas/index.html?gene=Pvalb&region=CTX">Pvalb</a><a href="atlas/index.html?gene=Drd1&region=STR">Drd1</a></div>
+    <div class="examples" id="gcount"></div>
+  </div>
+</div></div>
+<div class="strip"><div class="wrap" id="strip"><span>loading…</span></div></div>
+
+<section id="data"><div class="wrap">
+  <div class="seclabel">Datasets</div>
+  <h2>Two atlases, six data sources, one space</h2>
+  <p class="sub">Each dataset is read from its original publisher and kept as is: ISH volumes stream from the Blue Brain / EBRAINS bucket; MERFISH cells, cell types and coordinates come from the Allen Brain Cell Atlas. Each of the five MERFISH brains is shown on its own — pick one, or compare all five region by region.</p>
+  <div class="cards" id="cards"></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="seclabel">How it is built</div>
+  <h2>From the original files to one CCF</h2>
+  <div class="steps">
+    <div class="step"><b>1 · Reference space</b>CCFv3BBP (Piluso et al.) at 25 µm: annotation, template and 887 region surfaces.</div>
+    <div class="step"><b>2 · Alignment</b>MERFISH cells carry Allen CCFv3 coordinates; CCFv3BBP = CCFv3 + 14 voxels AP, verified whole-brain against the CCF-2020 annotation the cells used.</div>
+    <div class="step"><b>3 · Cells &amp; types</b>Every cell at 1 µm, with its WMB cell type (34 classes → 5,322 clusters), its own CCF label and the CCFv3BBP label at its position.</div>
+    <div class="step"><b>4 · Genes</b>ISH volumes as published (25 µm); MERFISH log2 expression per cell; region means for both, and their concordance per gene and brain.</div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="seclabel">Accuracy</div>
+  <h2>How well the two atlases line up</h2>
+  <div class="acc" id="acc"></div>
+  <p class="sub" style="margin-top:16px">Details, per-region numbers and limits on the <a href="qc/index.html">accuracy page</a>.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="seclabel">Sources &amp; citation</div>
+  <h2>Credit the data owners</h2>
+  <ul class="refs">
+    <li>Carey H., Piluso S. et al. <i>An interactive 3D atlas of gene expression in the mouse brain.</i> bioRxiv (2026) — ISH gene volumes (EBRAINS bucket <span class="mono">deepslice</span>).</li>
+    <li>Piluso S. et al. <i>An augmented Allen mouse brain Common Coordinate Framework (CCFv3BBP).</i> bioRxiv (2024), Zenodo 14034334.</li>
+    <li>Yao Z. et al. <i>A high-resolution transcriptomic and spatial atlas of cell types in the whole mouse brain.</i> Nature 624 (2023) — MERFISH C57BL6J-638850 and the WMB taxonomy.</li>
+    <li>Zhang M. et al. <i>Molecularly defined and spatially resolved cell atlas of the whole mouse brain.</i> Nature 624 (2023) — Zhuang-ABCA-1 to -4.</li>
+    <li>Allen Brain Cell Atlas (Allen Institute for Brain Science) — data access, CCF registration of the MERFISH cells.</li>
+  </ul>
+  <p class="sub" style="margin-top:10px;font-size:13.5px">This site re-packages the data for viewing only; see the repository's <span class="mono">DATA_LICENSES.md</span> for each source's terms.</p>
+</div></section>
+<footer><div class="wrap">CCF Gene Atlas · static site (three.js) · <span id="ver"></span></div></footer>
+
+<script type="module">
+import { CONFIG } from './assets/js/config.js?v=20261029204308';
+const J = (p) => fetch(CONFIG.DATA + p).then((r) => r.json());
+const fmt = (n) => n.toLocaleString();
+const [ds, ish, al, conc] = await Promise.all([J('datasets.json'), J('ish/genes.json'), J('qc/alignment.json').catch(() => null), J('qc/concordance.json').catch(() => null)]);
+const cells = ds.merfish.reduce((s, d) => s + d.cells, 0);
+const genes = new Map(); ish.genes.forEach((g) => genes.set(g.gene, { ish: true, mer: [] }));
+const mans = await Promise.all(ds.merfish.map((d) => J(`merfish/${d.key}/manifest.json`)));
+mans.forEach((m, k) => m.genes.forEach((g) => { if (!genes.has(g.symbol)) genes.set(g.symbol, { ish: false, mer: [] }); genes.get(g.symbol).mer.push(ds.merfish[k].short); }));
+document.getElementById('strip').innerHTML = [
+  `<span><b>${fmt(ish.genes.length)}</b> ISH genes (25 µm)</span>`, `<span><b>${ds.merfish.length}</b> MERFISH brains</span>`,
+  `<span><b>${fmt(cells)}</b> cells</span>`, `<span><b>${fmt(genes.size)}</b> searchable genes</span>`,
+  `<span><b>5,322</b> cell-type clusters</span>`, `<span><b>887</b> CCFv3BBP regions</span>`].join('');
+document.getElementById('gcount').textContent = `${fmt(genes.size)} genes · ${fmt([...genes.values()].filter((g) => g.ish && g.mer.length).length)} in both atlases`;
+const card = (ic, col, title, text, kv, href) => `<a class="card" href="${href}"><div class="ic" style="background:${col}"><i class="fa-solid ${ic}"></i></div><h3>${title}</h3><p>${text}</p><div class="kv">${kv}</div><div class="go">open in the atlas →</div></a>`;
+let html = card('fa-cubes', 'var(--ish)', 'Blue Brain ISH gene atlas', 'Allen ISH sections registered with DeepSlice and reconstructed as 25 µm volumes on CCFv3BBP (Carey, Piluso et al. 2026).',
+  `<b>${fmt(ish.genes.length)}</b> genes · 25 µm · CCFv3BBP<br>streamed from EBRAINS on demand`, 'atlas/index.html?mode=ish');
+ds.merfish.forEach((d) => {
+  const ag = d.label_agreement;
+  html += card('fa-braille', 'var(--mer)', d.label, d.reference,
+    `<b>${fmt(d.cells)}</b> cells · <b>${d.genes}</b> genes · ${d.sections} sections<br>region label agreement: ${(ag.depth5 * 100).toFixed(1)}% (ontology depth 5)`, `atlas/index.html?brain=${d.key}&mode=merfish`);
+});
+html += card('fa-dna', 'var(--accent)', 'HGEA-ISH · Hippocampus Gene Expression Atlas', 'The 258 genes Bienkowski et al. (2018) used to define the hippocampal domains, organised by domain exactly as in Supplementary Tables 2 and 7, each on the Blue Brain ISH.',
+  `<b>258</b> genes · <b>256</b> with ISH · 20 domains / layers<br>Table 7 genes, inputs &amp; outputs for 22 domains`, 'atlas/index.html?mode=hgea&view=coronal');
+document.getElementById('cards').innerHTML = html;
+if (al) {
+  const big = al.per_structure.filter((s) => s.vox_bbp > 5000 && s.vox_ccfv3 > 0);
+  const med = big.map((s) => s.dice).sort((a, b) => a - b)[Math.floor(big.length / 2)];
+  let acc = `<div><div class="n">${al.best.brain_dice.toFixed(3)}</div><div class="l">brain-mask Dice, CCFv3 → CCFv3BBP (shift ${al.best_shift_vox.join(', ')} voxels)</div></div>
+    <div><div class="n">${(al.best.depth5 * 100).toFixed(1)}%</div><div class="l">voxel label agreement at ontology depth 5</div></div>
+    <div><div class="n">${med.toFixed(2)}</div><div class="l">median region Dice (${big.length} regions in both annotations)</div></div>`;
+  if (conc) { const r = Object.values(conc.ish_vs_merfish).map((x) => x.frac_peaks_top5pct).filter((x) => x != null); acc += `<div><div class="n">${(Math.max(...r) * 100).toFixed(0)}%</div><div class="l">of shared genes peak in the same top-5% regions in ISH and MERFISH (best brain; ${Object.keys(conc.ish_vs_merfish).length} brains on the accuracy page)</div></div>`; }
+  document.getElementById('acc').innerHTML = acc;
+}
+const symbols = [...genes.keys()].sort((a, b) => a.localeCompare(b));
+const q = document.getElementById('q'), list = document.getElementById('list');
+q.addEventListener('input', () => {
+  const s = q.value.trim().toLowerCase(); if (!s) { list.style.display = 'none'; return; }
+  const hits = [...symbols.filter((g) => g.toLowerCase().startsWith(s)), ...symbols.filter((g) => !g.toLowerCase().startsWith(s) && g.toLowerCase().includes(s))].slice(0, 30);
+  list.innerHTML = hits.map((g) => { const e = genes.get(g); return `<a href="atlas/index.html?gene=${encodeURIComponent(g)}"><span class="g">${g}</span><span class="chips">${e.ish ? '<span class="chip ish on">ISH</span>' : ''}${e.mer.map((m) => `<span class="chip mer on">${m}</span>`).join('')}</span></a>`; }).join('');
+  list.style.display = hits.length ? 'block' : 'none';
+});
+q.addEventListener('keydown', (e) => { if (e.key === 'Enter' && list.firstChild) location.href = list.firstChild.href; });
+document.getElementById('ver').textContent = `data: ${fmt(cells)} cells · ${fmt(ish.genes.length)} ISH genes`;
+</script>
+</body>
+</html>
