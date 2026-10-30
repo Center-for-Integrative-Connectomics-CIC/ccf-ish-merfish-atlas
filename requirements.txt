@@ -1,0 +1,13 @@
+numpy
+pandas
+scipy
+h5py
+anndata
+nibabel
+tifffile
+scikit-image
+openpyxl
+pyfqmr
+huggingface_hub
+# dev / tests
+playwright

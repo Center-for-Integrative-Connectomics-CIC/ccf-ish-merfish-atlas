@@ -1,0 +1,10 @@
+data_raw/
+data_work/
+hf_dataset/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+tests/shots*/
+data_raw_fetch*.log
+data_work_*.log
