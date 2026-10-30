@@ -1,10 +1,10 @@
 // CCF Gene Atlas viewer: Blue Brain ISH (CCFv3BBP) x MERFISH (Allen Brain Cell Atlas), one brain at a time.
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CONFIG } from './config.js?v=20261029204308';
-import * as IO from './io.js?v=20261029204308';
-import { lut, NAMES as CMAPS, hexToRgb, gradientCss } from './colormaps.js?v=20261029204308';
-import { initHgea, selectDomain, loadSignature, hgeaBox } from './hgea.js?v=20261029204308';
+import { CONFIG } from './config.js?v=20261029210827';
+import * as IO from './io.js?v=20261029210827';
+import { lut, NAMES as CMAPS, hexToRgb, gradientCss } from './colormaps.js?v=20261029210827';
+import { initHgea, selectDomain, loadSignature, hgeaBox } from './hgea.js?v=20261029210827';
 
 const $ = (id) => document.getElementById(id);
 const [NA, ND, NL] = IO.GRID;
@@ -15,7 +15,7 @@ const ishOnly = () => S.mode === 'ish' || S.mode === 'hgea';   // modes without 
 const S = {
   mode: 'overlay', brain: null, labelsrc: 'ccf', quality: 0, psize: 14,
   gene: null, cmap: 'magma', colorby: 'type', level: 'subclass', typeq: '',
-  region: 0, onlyRegion: false, showMesh: true, view: '3d', slab: 50, shell: true,
+  region: 0, onlyRegion: false, showMesh: true, view: '3d', slab: 200, shell: true,
   pos: { coronal: 283, sagittal: 228, horizontal: 160 },
   ishlo: 20, ishhi: 100, ishthr: 55, merlo: 0, merhi: 60, cellshow: 'all', hpfOnly: true,
 };
