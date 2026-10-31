@@ -1,7 +1,7 @@
 // HGEA-ISH: the Hippocampus Gene Expression Atlas gene set (Bienkowski et al. 2018, Supplementary Tables 2 and 7)
 // on the Blue Brain ISH volumes. Gene names, domain names, presence marks and Table 7 are shown as published;
 // signatures and the all-genes layer are derived from the ISH (documented in data/hgea/hgea.json).
-import * as IO from './io.js?v=20261031091246';
+import * as IO from './io.js?v=20261031092245';
 
 const $ = (id) => document.getElementById(id);
 let H = null, api = null, current = null;

@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-<link href="assets/css/site.css?v=20261031091246" rel="stylesheet">
+<link href="assets/css/site.css?v=20261031092245" rel="stylesheet">
 <style>
   body{line-height:1.65;font-size:16px}
   .wrap{max-width:1160px;margin:0 auto;padding:0 40px}
@@ -125,14 +125,14 @@
 <footer><div class="wrap">CCF Gene Atlas · static site (three.js) · <span id="ver"></span></div></footer>
 
 <script type="module">
-import { CONFIG } from './assets/js/config.js?v=20261031091246';
+import { CONFIG } from './assets/js/config.js?v=20261031092245';
 const J = (p) => fetch(CONFIG.DATA + p).then((r) => r.json());
 const fmt = (n) => n.toLocaleString();
 const [ds, ish, al, conc] = await Promise.all([J('datasets.json'), J('ish/genes.json'), J('qc/alignment.json').catch(() => null), J('qc/concordance.json').catch(() => null)]);
 const cells = ds.merfish.reduce((s, d) => s + d.cells, 0);
 const genes = new Map(); ish.genes.forEach((g) => genes.set(g.gene, { ish: true, mer: [] }));
 const mans = await Promise.all(ds.merfish.map((d) => J(`merfish/${d.key}/manifest.json`)));
-mans.forEach((m, k) => m.genes.forEach((g) => { if (!genes.has(g.symbol)) genes.set(g.symbol, { ish: false, mer: [] }); genes.get(g.symbol).mer.push(ds.merfish[k].short); }));
+mans.forEach((m, k) => m.genes.forEach((g) => { if (/^Blank-/.test(g.symbol)) return; if (!genes.has(g.symbol)) genes.set(g.symbol, { ish: false, mer: [] }); genes.get(g.symbol).mer.push(ds.merfish[k].short); }));
 document.getElementById('strip').innerHTML = [
   `<span><b>${fmt(ish.genes.length)}</b> ISH genes (25 µm)</span>`, `<span><b>${ds.merfish.length}</b> MERFISH brains</span>`,
   `<span><b>${fmt(cells)}</b> cells</span>`, `<span><b>${fmt(genes.size)}</b> searchable genes</span>`,

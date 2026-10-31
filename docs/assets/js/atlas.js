@@ -1,10 +1,10 @@
 // CCF Gene Atlas viewer: Blue Brain ISH (CCFv3BBP) x MERFISH (Allen Brain Cell Atlas), one brain at a time.
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CONFIG } from './config.js?v=20261031091246';
-import * as IO from './io.js?v=20261031091246';
-import { lut, NAMES as CMAPS, hexToRgb, gradientCss } from './colormaps.js?v=20261031091246';
-import { initHgea, selectDomain, loadSignature, hgeaBox } from './hgea.js?v=20261031091246';
+import { CONFIG } from './config.js?v=20261031092245';
+import * as IO from './io.js?v=20261031092245';
+import { lut, NAMES as CMAPS, hexToRgb, gradientCss } from './colormaps.js?v=20261031092245';
+import { initHgea, selectDomain, loadSignature, hgeaBox } from './hgea.js?v=20261031092245';
 
 const $ = (id) => document.getElementById(id);
 const [NA, ND, NL] = IO.GRID;
@@ -86,11 +86,14 @@ function buildTaxonomy() {
   }
 }
 
+const isControl = (sym) => /^Blank-/.test(sym);   // Allen 638850 panel: 50 blank control probes, not genes
+
 function buildGeneIndex() {
   GENES = new Map();
   ISH.genes.forEach((g, i) => GENES.set(g.gene, { ish: i, mer: {} }));
   for (const d of DS.merfish) {
     (B[d.key].man.genes || []).forEach((g, i) => {
+      if (isControl(g.symbol)) return;
       if (!GENES.has(g.symbol)) GENES.set(g.symbol, { ish: -1, mer: {} });
       GENES.get(g.symbol).mer[d.key] = i;
     });
@@ -1070,7 +1073,7 @@ async function topGenesHtml(r) {
   const b = await loadRegionGene(S.brain);
   if (b.rmean && b.man.region_cells[r] >= 30) {
     const Gb = b.man.genes.length, me = [];
-    for (let g = 0; g < Gb; g++) { const m0 = b.rmean[root * Gb + g], m = b.rmean[r * Gb + g]; if (m0 > 0.02 && b.rfrac[r * Gb + g] > 0.1) me.push([g, m / m0]); }
+    for (let g = 0; g < Gb; g++) { if (isControl(b.man.genes[g].symbol)) continue; const m0 = b.rmean[root * Gb + g], m = b.rmean[r * Gb + g]; if (m0 > 0.02 && b.rfrac[r * Gb + g] > 0.1) me.push([g, m / m0]); }
     me.sort((x, y) => y[1] - x[1]);
     html += `<div class="mini" style="margin-top:4px">MERFISH ${DS.merfish.find((d) => d.key === S.brain).short}: ` +
       me.slice(0, 14).map(([g, x]) => `<a href="#" data-gene="${b.man.genes[g].symbol}">${b.man.genes[g].symbol}</a> ${x.toFixed(1)}×`).join(' · ') + '</div>';

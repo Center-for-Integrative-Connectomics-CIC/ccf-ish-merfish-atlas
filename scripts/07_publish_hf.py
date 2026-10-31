@@ -57,7 +57,7 @@ def main() -> None:
         files = list((C.HF_STAGE / "merfish" / m.key / "expr").glob("*.u8.gz"))
         n_files += len(files)
         size += sum(f.stat().st_size for f in files)
-        rows.append(f"| {m.key} | {m.name} | {man['cells']:,} | {len(files)} |")
+        rows.append(f"| {m.key} | {m.name} | {man['cells']:,} | {sum(not C.is_control_probe(f.name[:-6]) for f in files)} |")
     (C.HF_STAGE / "README.md").write_text(CARD.format(rows="\n".join(rows)))
     print(f"{n_files} files, {size / 1e9:.2f} GB in {C.HF_STAGE}")
     if args.dry_run:

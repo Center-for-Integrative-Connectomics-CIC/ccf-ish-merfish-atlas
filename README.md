@@ -11,7 +11,7 @@ It runs in the browser with nothing to install. Data are loaded from their origi
 | Dataset | Content | Source |
 |---|---|---|
 | Blue Brain ISH gene atlas | 4,085 genes as 25 µm volumes in CCFv3BBP | Carey, Piluso et al., bioRxiv 2026 (EBRAINS) |
-| Allen MERFISH C57BL6J-638850 | 3.7 M cells, 550 genes | Yao et al., Nature 2023 (Allen Brain Cell Atlas) |
+| Allen MERFISH C57BL6J-638850 | 3.7 M cells, 500 genes | Yao et al., Nature 2023 (Allen Brain Cell Atlas) |
 | Zhuang ABCA-1 to -4 | 5.4 M cells across 4 brains, 1,122 genes | Zhang et al., Nature 2023 (Allen Brain Cell Atlas) |
 | Hippocampus Gene Expression Atlas (HGEA) | 258 domain-defining genes, gene × domain annotation | Bienkowski et al., Nat. Neurosci. 2018 |
 

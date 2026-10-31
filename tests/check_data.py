@@ -64,7 +64,8 @@ def main() -> None:
             check(int(cnt[reg == root].sum()) == int((r > 0).sum()), f"{k}: region_cluster_{src} root total = labelled cells")
             check(bool((np.diff(reg.astype(int)) >= 0).all()), f"{k}: region_cluster_{src} sorted by region")
         genes = man.get("genes", [])
-        check(len(genes) == d["genes"], f"{k}: {len(genes)} genes in the manifest")
+        n_real = sum(not C.is_control_probe(g["symbol"]) for g in genes)
+        check(n_real == d["genes"], f"{k}: {n_real} genes in the manifest ({len(genes) - n_real} control probes)")
         exp = C.HF_STAGE / "merfish" / k / "expr"
         files = {f.name[:-6] for f in exp.glob("*.u8.gz")}
         check(files == {g["symbol"] for g in genes}, f"{k}: expression files match the gene list")

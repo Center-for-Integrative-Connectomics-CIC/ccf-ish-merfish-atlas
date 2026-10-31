@@ -58,7 +58,7 @@ def main() -> None:
     ds = {"ish": {"label": "Blue Brain ISH gene atlas (Carey, Piluso et al. 2026)", "genes": len(ish_genes),
                   "space": "CCFv3BBP 25 µm", "url_template": ish["url_template"]},
           "merfish": [{"key": k, "short": SHORT[k], "label": v["man"]["label"], "dataset": v["man"]["dataset"],
-                       "reference": v["man"]["reference"], "cells": v["man"]["cells"], "genes": len(v["genes"]),
+                       "reference": v["man"]["reference"], "cells": v["man"]["cells"], "genes": sum(not C.is_control_probe(g) for g in v["genes"]),
                        "sections": len(v["man"]["sections"]), "label_agreement": v["man"]["region_label_agreement"]}
                       for k, v in mer.items()]}
     write_json(C.SITE_DATA / "datasets.json", ds, compact=False)

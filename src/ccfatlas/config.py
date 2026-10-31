@@ -70,3 +70,8 @@ MERFISH = [
               f"metadata/Zhuang-ABCA-{k}-CCF/20230830/ccf_coordinates.csv") for k in (1, 2, 3, 4)],
 ]
 MERFISH_BY_KEY = {m.key: m for m in MERFISH}
+
+
+def is_control_probe(symbol: str) -> bool:
+    """Blank control probes on the Allen 638850 panel; kept in the data, not counted or offered as genes."""
+    return symbol.startswith("Blank-")
