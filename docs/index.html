@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-<link href="assets/css/site.css?v=20261029212214" rel="stylesheet">
+<link href="assets/css/site.css?v=20261031084118" rel="stylesheet">
 <style>
   body{line-height:1.65;font-size:16px}
   .wrap{max-width:1160px;margin:0 auto;padding:0 40px}
@@ -125,7 +125,7 @@
 <footer><div class="wrap">CCF Gene Atlas · static site (three.js) · <span id="ver"></span></div></footer>
 
 <script type="module">
-import { CONFIG } from './assets/js/config.js?v=20261029212214';
+import { CONFIG } from './assets/js/config.js?v=20261031084118';
 const J = (p) => fetch(CONFIG.DATA + p).then((r) => r.json());
 const fmt = (n) => n.toLocaleString();
 const [ds, ish, al, conc] = await Promise.all([J('datasets.json'), J('ish/genes.json'), J('qc/alignment.json').catch(() => null), J('qc/concordance.json').catch(() => null)]);

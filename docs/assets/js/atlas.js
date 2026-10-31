@@ -1,10 +1,10 @@
 // CCF Gene Atlas viewer: Blue Brain ISH (CCFv3BBP) x MERFISH (Allen Brain Cell Atlas), one brain at a time.
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CONFIG } from './config.js?v=20261029212214';
-import * as IO from './io.js?v=20261029212214';
-import { lut, NAMES as CMAPS, hexToRgb, gradientCss } from './colormaps.js?v=20261029212214';
-import { initHgea, selectDomain, loadSignature, hgeaBox } from './hgea.js?v=20261029212214';
+import { CONFIG } from './config.js?v=20261031084118';
+import * as IO from './io.js?v=20261031084118';
+import { lut, NAMES as CMAPS, hexToRgb, gradientCss } from './colormaps.js?v=20261031084118';
+import { initHgea, selectDomain, loadSignature, hgeaBox } from './hgea.js?v=20261031084118';
 
 const $ = (id) => document.getElementById(id);
 const [NA, ND, NL] = IO.GRID;
@@ -61,10 +61,12 @@ async function boot() {
   await loadBrain(S.brain);
   if (!S.gene && !new URLSearchParams(location.search).has('nogene') && S.mode !== 'hgea') S.gene = 'Pvalb';   // open with a gene in both atlases
   if (S.mode === 'hgea') await enterHgea();
-  for (const sym of (S.gene || '').split(',').filter(Boolean)) {
+  const urlGenes = (S.gene || '').split(',').filter(Boolean);
+  for (const sym of urlGenes) {
     const m = sym.match(/^(sig|con):(.+)$/);
-    if (m) await showSignature(m[2], m[1] === 'sig' ? 'signature' : 'contrast'); else await selectGene(sym);
+    if (m) await showSignature(m[2], m[1] === 'sig' ? 'signature' : 'contrast');
   }
+  await addGenes(urlGenes.filter((sym) => !/^(sig|con):/.test(sym)));
   if (S.region) selectRegion(S.region, false);
   setView(S.view);
   $('loading').style.opacity = 0;
@@ -192,11 +194,69 @@ async function loadIshRegions() {
 
 // ───────────────────────── gene selection: one or several genes, each a colour channel ─────────────────────────
 const CHANNELS = ['#ff3dcf', '#45f06a', '#3db8ff', '#ffc93d'];   // magenta, green, cyan, amber (additive)
-const MAXG = 4;
+const ADDITIVE_MAX = 4;   // up to here colours add up; beyond it they would saturate, so each spot takes its strongest gene's colour
+const MAXG = 50;
+const LOAD_POOL = 4;      // volumes fetched at once when adding a list of genes
+const KEEP_REMOVED_ISH = 8, KEEP_REMOVED_MER = 50;   // removed genes kept in memory for quick re-adding
+const PALETTE = [...CHANNELS];
+for (let k = 0; PALETTE.length < MAXG; k++) {        // golden-angle hues, three lightness steps
+  const h = (205 + k * 137.508) % 360, l = [0.62, 0.72, 0.52][k % 3], a = 0.85 * Math.min(l, 1 - l);
+  const f = (n) => { const m = (n + h / 30) % 12; return Math.round(255 * (l - a * Math.max(-1, Math.min(m - 3, 9 - m, 1)))).toString(16).padStart(2, '0'); };
+  PALETTE.push(`#${f(0)}${f(8)}${f(4)}`);
+}
+const nextColor = () => { const used = new Set(SEL.map((x) => x.color)); return PALETTE.find((c) => !used.has(c)); };
 let SEL = [];          // selected genes: {symbol, ishIdx, ish, mer, merIdx, color, rgb}
 let GENE = null;       // the active gene (availability chips, single-gene colour map)
 const multi = () => SEL.length > 1;
 const shown = () => SEL.filter((g) => !g.hidden);     // genes currently toggled on
+let BATCH = false;     // adding a list of genes: redraw once, at the end
+
+// ISH volumes are held packed: only the voxels inside the brain (32.7 M of 82.6 M), in grid order, one shared map.
+// Nothing outside the brain is ever displayed, so this loses nothing visible: 33 MB per gene instead of 82 MB.
+let BM = null;
+function brainMap() {
+  if (BM) return BM;
+  const N = ANN.length, words = (N + 31) >>> 5, bits = new Uint32Array(words), cum = new Uint32Array(words), starts = [], lens = [];
+  let n = 0, run = -1;
+  for (let i = 0; i < N; i++) {
+    if (!(i & 31)) cum[i >>> 5] = n;
+    if (ANN[i]) { bits[i >>> 5] |= 1 << (i & 31); n++; if (run < 0) run = i; }
+    else if (run >= 0) { starts.push(run); lens.push(i - run); run = -1; }
+  }
+  if (run >= 0) { starts.push(run); lens.push(N - run); }
+  return (BM = { n, bits, cum, starts: Uint32Array.from(starts), lens: Uint32Array.from(lens) });
+}
+function packVol(full, out = null) {
+  const { n, starts, lens } = brainMap();
+  if (!out) out = new Uint8Array(n);
+  for (let r = 0, p = 0; r < starts.length; r++) { out.set(full.subarray(starts[r], starts[r] + lens[r]), p); p += lens[r]; }
+  return out;
+}
+function packedIndex(i) {   // grid index -> position in a packed volume (-1 outside the brain)
+  const w = i >>> 5, b = BM.bits[w], m = 1 << (i & 31);
+  if (!(b & m)) return -1;
+  let x = b & (m - 1);
+  x -= (x >>> 1) & 0x55555555; x = (x & 0x33333333) + ((x >>> 2) & 0x33333333);
+  return BM.cum[w] + ((((x + (x >>> 4)) & 0x0f0f0f0f) * 0x01010101) >>> 24);
+}
+function pruneCaches() {    // selected genes stay; only the most recently used removed genes are kept
+  const trim = (cache, sel, keep) => { const old = [...cache.keys()].filter((k) => !sel.has(k)); old.slice(0, Math.max(0, old.length - keep)).forEach((k) => cache.delete(k)); };
+  trim(ishCache, new Set(SEL.map((g) => g.symbol)), KEEP_REMOVED_ISH);
+  trim(merCache, new Set(SEL.map((g) => `${S.brain}|${g.symbol}`)), KEEP_REMOVED_MER);
+}
+
+async function addGenes(symbols) {   // several genes in one go: limited parallel downloads, one redraw
+  const list = [...new Set(symbols)];
+  if (!list.length) return;
+  const unknown = list.filter((x) => !GENES.has(x)), known = list.filter((x) => GENES.has(x)).slice(0, MAXG);
+  BATCH = true;
+  let next = 0, done = 0;
+  const worker = async () => { while (next < known.length) { const sym = known[next++]; await selectGene(sym); status(`loaded ${++done} of ${known.length} genes…`); } };
+  try { await Promise.all(Array.from({ length: LOAD_POOL }, worker)); } finally { BATCH = false; }
+  refreshGenes();
+  if (known.length === 1 && !unknown.length) return;   // selectGene already reported it
+  status(`${known.length} gene${known.length === 1 ? '' : 's'} added${unknown.length ? ` · not found: ${unknown.join(', ')}` : ''}${list.length - unknown.length > MAXG ? ` · only the first ${MAXG} kept` : ''}`);
+}
 
 async function selectGene(sym, replace = false) {
   const e = GENES.get(sym);
@@ -205,8 +265,7 @@ async function selectGene(sym, replace = false) {
   let g = SEL.find((x) => x.symbol === sym);
   if (!g) {
     makeRoom();
-    const used = new Set(SEL.map((x) => x.color));
-    const color = CHANNELS.find((c) => !used.has(c));
+    const color = nextColor();
     g = { symbol: sym, ishIdx: e.ish, ish: null, mer: null, merIdx: null, color, rgb: hexToRgb(color) };
     SEL.push(g);
   }
@@ -216,7 +275,9 @@ async function selectGene(sym, replace = false) {
     jobs.push((async () => {
       if (!ishCache.has(sym)) {
         status(`streaming ${sym} ISH volume from EBRAINS (${(ISH.genes[e.ish].bytes_gz / 1e6).toFixed(1)} MB)…`);
-        ishCache.set(sym, await IO.ishVolume(ISH.url_template, sym, progress));
+        const vol = await IO.ishVolume(ISH.url_template, sym, progress);
+        await annPromise;
+        ishCache.set(sym, packVol(vol));
       }
       g.ish = ishCache.get(sym);
     })());
@@ -224,7 +285,7 @@ async function selectGene(sym, replace = false) {
   jobs.push(loadMer(g));
   try { await Promise.all(jobs); } catch (err) { status(`could not load ${sym}: ${err.message}`); console.error(err); }
   progress(0, 0);
-  if (g.mer && S.colorby === 'type' && !ishOnly()) setSeg('colorby', 'gene');
+  if (g.mer && S.colorby === 'type') setSeg('colorby', 'gene');   // also in ISH mode, so the MERFISH tab opens on this gene
   refreshGenes();
   const bits = [];
   if (g.ish) bits.push('ISH ✓');
@@ -243,6 +304,7 @@ function makeRoom() {   // at the cap, the oldest gene/layer gives way instead o
 
 function removeGene(sym) {
   SEL = SEL.filter((g) => g.symbol !== sym);
+  pruneCaches();
   if (!GENE || GENE.symbol === sym) GENE = SEL[SEL.length - 1] || null;
   syncGeneURL(); renderGeneChips(); renderAvail(); refreshGenes();
   status(SEL.length ? `${SEL.length} gene${SEL.length > 1 ? 's' : ''} selected` : 'type a gene symbol, e.g. Prox1, Gad2, Slc17a7');
@@ -328,15 +390,16 @@ function focusHippocampus() {
   requestDraw();
 }
 
-function upsertLayer({ key, label, vol, p995, tip, legend, lo = null, thr3d = null }) {   // a derived ISH-space layer (e.g. all HGEA genes)
+async function upsertLayer({ key, label, vol, p995, tip, legend, lo = null, thr3d = null }) {   // a derived ISH-space layer (e.g. all HGEA genes)
+  await annPromise;
   let g = SEL.find((x) => x.symbol === key);
   if (!g) {
     makeRoom();
-    const used = new Set(SEL.map((x) => x.color)), color = CHANNELS.find((c) => !used.has(c));
+    const color = nextColor();
     g = { symbol: key, pseudo: true, kind: 'layer', mer: null, color, rgb: hexToRgb(color) };
     SEL.push(g);
   }
-  Object.assign(g, { label, ish: vol, p995, tip, legend, lo, thr3d });
+  Object.assign(g, { label, ish: packVol(vol, g.ish), p995, tip, legend, lo, thr3d });
   GENE = g; syncGeneURL(); renderGeneChips(); renderAvail(); refreshGenes();
   status(label);
 }
@@ -348,15 +411,16 @@ async function showSignature(col, kind) {
     makeRoom();
     status(`loading the ${col} ${kind}…`);
     const sg = await loadSignature(col, kind);
-    const used = new Set(SEL.map((x) => x.color)), color = CHANNELS.find((c) => !used.has(c));
-    g = { symbol: key, label: `${col} ${kind}`, pseudo: true, kind, col, ish: sg.vol, p995: sg.p995, mer: null, color, rgb: hexToRgb(color) };
+    await annPromise;
+    const color = nextColor();
+    g = { symbol: key, label: `${col} ${kind}`, pseudo: true, kind, col, ish: packVol(sg.vol), p995: sg.p995, mer: null, color, rgb: hexToRgb(color) };
     SEL.push(g);
   }
   GENE = g; syncGeneURL(); renderGeneChips(); renderAvail(); refreshGenes();
   status(`${g.label}: Blue Brain ISH of the genes annotated in ${col} (Bienkowski et al. 2018, Supplementary Table 2)`);
 }
 
-function refreshGenes() { SL.key = ''; buildIshPoints(); recolorCells(); refreshProfile(); renderLegend(); renderGeneRegions(); requestDraw(); }
+function refreshGenes() { if (BATCH) { renderGeneChips(); return; } SL.key = ''; buildIshPoints(); recolorCells(); refreshProfile(); renderLegend(); renderGeneRegions(); requestDraw(); }
 function syncGeneURL() { S.gene = SEL.filter((g) => g.symbol !== 'hgea:all').map((g) => g.symbol).join(','); writeURL(); }
 
 function renderGeneChips() {
@@ -376,7 +440,7 @@ function renderGeneChips() {
     clr.addEventListener('click', (ev) => { ev.preventDefault(); [...SEL].forEach((g) => removeGene(g.symbol)); });
     el.appendChild(clr);
   }
-  $('gene').placeholder = SEL.length ? `Add another gene (up to ${MAXG})…` : 'Search a gene (ISH ∪ MERFISH panels)…';
+  $('gene').placeholder = SEL.length ? `Add a gene, or paste a list (up to ${MAXG})…` : 'Search a gene, or paste a list (ISH ∪ MERFISH panels)…';
 }
 
 async function loadMer(g) {
@@ -495,6 +559,15 @@ function recolorCells() {
       const k = Math.max(0, Math.min(255, Math.round((v[i] - lo) / (hi - lo) * 255))) * 3;
       c[i * 3] = L[k]; c[i * 3 + 1] = L[k + 1]; c[i * 3 + 2] = L[k + 2];
     }
+  } else if (S.colorby === 'gene' && gs.length > ADDITIVE_MAX) {
+    // many genes: each cell takes the colour of its strongest gene (each gene relative to its own maximum)
+    const best = new Uint8Array(n), who = new Uint8Array(n);
+    gs.forEach((g, j) => { const v = g.mer; for (let i = 0; i < n; i++) if (v[i] > best[i]) { best[i] = v[i]; who[i] = j; } });
+    for (let i = 0; i < n; i++) {
+      if (!best[i]) { c[i * 3] = 38; c[i * 3 + 1] = 44; c[i * 3 + 2] = 50; continue; }
+      const f = Math.max(0.25, Math.min(1, (best[i] - lo) / (hi - lo))), rgb = gs[who[i]].rgb;
+      c[i * 3] = rgb[0] * f; c[i * 3 + 1] = rgb[1] * f; c[i * 3 + 2] = rgb[2] * f;
+    }
   } else if (S.colorby === 'gene' && gs.length) {
     // additive channels: each gene adds its colour scaled by its expression; overlap mixes (magenta + green -> white)
     for (let i = 0; i < n; i++) {
@@ -528,19 +601,49 @@ function ishRange(g = GENE) {
   return [S.ishlo / 100 * top, Math.max(S.ishlo / 100 * top + 1, S.ishhi / 100 * top), top];
 }
 
-function ishShade(i, gs, rngs, base) {   // colour of voxel i for the selected ISH genes, blended over base [r,g,b]; null = below range
+function ishShade(p, gs, rngs, base) {   // colour of packed voxel p for the selected ISH genes, blended over base [r,g,b]; null = below range
   if (gs.length === 1 && !multi()) {
-    const x = gs[0].ish[i], [lo, hi] = rngs[0]; if (x <= lo) return null;
+    const x = gs[0].ish[p], [lo, hi] = rngs[0]; if (x <= lo) return null;
     const f = Math.min(1, (x - lo) / (hi - lo)), k = Math.round(f * 255) * 3, L = lut(S.cmap), al = 0.25 + 0.75 * f;
     return [base[0] * (1 - al) + L[k] * al, base[1] * (1 - al) + L[k + 1] * al, base[2] * (1 - al) + L[k + 2] * al];
   }
+  if (gs.length > ADDITIVE_MAX) {       // the strongest gene here, each relative to its own range
+    let best = 0, bj = -1;
+    for (let j = 0; j < gs.length; j++) {
+      const x = gs[j].ish[p], lo = rngs[j][0]; if (x <= lo) continue;
+      const f = Math.min(1, (x - lo) / (rngs[j][1] - lo)); if (f > best) { best = f; bj = j; }
+    }
+    if (bj < 0) return null;
+    const al = 0.25 + 0.75 * best, c = gs[bj].rgb;
+    return [base[0] * (1 - al) + c[0] * al, base[1] * (1 - al) + c[1] * al, base[2] * (1 - al) + c[2] * al];
+  }
   let r = base[0], g = base[1], b = base[2], any = false;
   for (let j = 0; j < gs.length; j++) {
-    const x = gs[j].ish[i], [lo, hi] = rngs[j]; if (x <= lo) continue;
+    const x = gs[j].ish[p], [lo, hi] = rngs[j]; if (x <= lo) continue;
     any = true; const f = Math.min(1, (x - lo) / (hi - lo));
     r += gs[j].rgb[0] * f; g += gs[j].rgb[1] * f; b += gs[j].rgb[2] * f;
   }
   return any ? [Math.min(255, r), Math.min(255, g), Math.min(255, b)] : null;
+}
+
+// Per-voxel summary of all shown genes, one tight pass per gene; adding a gene to the end only merges that gene.
+let HITS = null, BEST = null, WHO = null, COMP = null;
+function mergeIsh(gs, rngs, thr, dominant) {
+  const n = brainMap().n, params = `${dominant}|${S.ishlo}|${S.ishhi}|${S.ishthr}`, syms = gs.map((g) => g.symbol);
+  if (!HITS) HITS = new Uint8Array(n);
+  if (dominant && !BEST) { BEST = new Uint8Array(n); WHO = new Uint8Array(n); }
+  const extend = COMP && COMP.params === params && !gs.some((g) => g.pseudo) && COMP.syms.length <= syms.length && COMP.syms.every((x, k) => x === syms[k]);
+  const from = extend ? COMP.syms.length : 0;
+  if (!from) { HITS.fill(0); if (dominant) { BEST.fill(0); WHO.fill(0); } }
+  const f = new Uint8Array(256);
+  for (let j = from; j < gs.length; j++) {
+    const v = gs[j].ish, t = thr[j];
+    if (!dominant) { for (let p = 0; p < n; p++) if (v[p] >= t) HITS[p]++; continue; }
+    const [lo, hi] = rngs[j];
+    for (let x = 0; x < 256; x++) f[x] = x <= lo ? 0 : 1 + Math.round(Math.min(1, (x - lo) / (hi - lo)) * 254);
+    for (let p = 0; p < n; p++) { const x = v[p]; if (x >= t) { HITS[p]++; if (f[x] > BEST[p]) { BEST[p] = f[x]; WHO[p] = j; } } }
+  }
+  COMP = { params, syms };
 }
 
 function buildIshPoints() {
@@ -548,32 +651,29 @@ function buildIshPoints() {
   const gs = shown().filter((g) => g.ish);
   if (!gs.length || !ANN) { hud(); return; }
   const rngs = gs.map((g) => ishRange(g)), thr = gs.map((g, j) => (g.thr3d != null ? g.thr3d : S.ishthr / 100 * rngs[j][2]));
-  const every = S.cellshow === 'every' && gs.length > 1;
+  const want = S.cellshow === 'every' && gs.length > 1 ? gs.length : 1, dominant = gs.length > ADDITIVE_MAX;
   const rm = S.onlyRegion && S.region ? regionMask(S.region) : hpfRestrict();
-  const pass = (i) => {
-    if (!ANN[i] || (rm && !rm[ANN[i]])) return false;
-    if (every) { for (let j = 0; j < gs.length; j++) if (gs[j].ish[i] < thr[j]) return false; return true; }
-    for (let j = 0; j < gs.length; j++) if (gs[j].ish[i] >= thr[j]) return true;
-    return false;
-  };
+  const { starts, lens } = brainMap();
+  mergeIsh(gs, rngs, thr, dominant);
   let n = 0;
-  for (let i = 0; i < ANN.length; i++) if (pass(i)) n++;
+  for (let r = 0, p = 0; r < starts.length; r++) for (let i = starts[r], e = i + lens[r]; i < e; i++, p++) if (HITS[p] >= want && (!rm || rm[ANN[i]])) n++;
   const cap = 3_000_000, stride = n > cap ? Math.ceil(n / cap) : 1;
   const pos = new Float32Array(Math.ceil(n / stride) * 3), col = new Uint8Array(pos.length);
   let m = 0, seen = 0;
-  const base = [0, 0, 0];
-  for (let a = 0; a < NA; a++) for (let d = 0; d < ND; d++) {
-    const row = (a * ND + d) * NL;
-    for (let l = 0; l < NL; l++) {
-      const i = row + l;
-      if (!pass(i)) continue;
-      if ((seen++ % stride) !== 0) continue;
-      const s = IO.toScene(a * 25, d * 25, l * 25);
-      pos[m * 3] = s[0]; pos[m * 3 + 1] = s[1]; pos[m * 3 + 2] = s[2];
-      const c = ishShade(i, gs, rngs, base) || [40, 40, 40];
+  const base = [0, 0, 0], grey = [40, 40, 40], sliceN = ND * NL;
+  for (let r = 0, p = 0; r < starts.length; r++) for (let i = starts[r], e = i + lens[r]; i < e; i++, p++) {
+    if (HITS[p] < want || (rm && !rm[ANN[i]])) continue;
+    if ((seen++ % stride) !== 0) continue;
+    const a = Math.floor(i / sliceN), rest = i - a * sliceN, d = Math.floor(rest / NL), s = IO.toScene(a * 25, d * 25, (rest - d * NL) * 25);
+    pos[m * 3] = s[0]; pos[m * 3 + 1] = s[1]; pos[m * 3 + 2] = s[2];
+    if (dominant) {
+      const c = BEST[p] ? gs[WHO[p]].rgb : grey, al = BEST[p] ? 0.25 + 0.75 * (BEST[p] - 1) / 254 : 1;
+      col[m * 3] = c[0] * al; col[m * 3 + 1] = c[1] * al; col[m * 3 + 2] = c[2] * al;
+    } else {
+      const c = ishShade(p, gs, rngs, base) || grey;
       col[m * 3] = c[0]; col[m * 3 + 1] = c[1]; col[m * 3 + 2] = c[2];
-      m++;
     }
+    m++;
   }
   const g = new THREE.BufferGeometry();
   g.setAttribute('position', new THREE.BufferAttribute(pos.subarray(0, m * 3), 3));
@@ -635,6 +735,7 @@ function sliceImage(plane, k, withIsh) {
   const P = PLANES[plane], img = new ImageData(P.W, P.H), px = img.data;
   const gs = withIsh ? shown().filter((g) => g.ish) : [], rngs = gs.map((g) => ishRange(g)), base = [0, 0, 0], hm = hpfRestrict();
   const lab = new Uint16Array(P.W * P.H);
+  if (gs.length) brainMap();
   for (let v = 0; v < P.H; v++) for (let u = 0; u < P.W; u++) {
     const [a, d, l] = voxAt(plane, k, u, v), i = (a * ND + d) * NL + l, o = (v * P.W + u) * 4;
     const an = ANN ? ANN[i] : 0; lab[v * P.W + u] = an;
@@ -642,7 +743,7 @@ function sliceImage(plane, k, withIsh) {
     if (an) { const t = REFVOL ? REFVOL[i] : 70; r = g = b = 18 + t * 0.42; }
     if (gs.length && an && (!hm || hm[an])) {
       base[0] = r; base[1] = g; base[2] = b;
-      const c = ishShade(i, gs, rngs, base); if (c) { r = c[0]; g = c[1]; b = c[2]; }
+      const c = ishShade(packedIndex(i), gs, rngs, base); if (c) { r = c[0]; g = c[1]; b = c[2]; }
     }
     px[o] = r; px[o + 1] = g; px[o + 2] = b; px[o + 3] = an ? 255 : 0;
   }
@@ -758,16 +859,23 @@ function sliceHit(ev) {
   return { x, y, j, a, d, l, i, region: ANN[i], cell: cellHit };
 }
 
+const TIP_GENES = 6;       // hover lists at most this many genes, strongest first
 function tipFor(hit) {
   const lines = [];
   if (hit.region != null) {
     const o = ONTO[hit.region];
     lines.push(`<b>${o.acronym}</b> ${o.name}`);
     lines.push(`AP ${(hit.a * 25 / 1000).toFixed(2)} · DV ${(hit.d * 25 / 1000).toFixed(2)} · LR ${(hit.l * 25 / 1000).toFixed(2)} mm`);
-    if (hit.region) for (const g of SEL.filter((x) => x.ish)) {
-      const x = g.ish[hit.i], top = g.p995 != null ? g.p995 : ISH.genes[g.ishIdx].p995;
-      if (g.tip) { const t = g.tip(hit.i); if (t) lines.push(t); continue; }
-      lines.push(`${g.pseudo ? '' : 'ISH '}${g.label || g.symbol}: ${x} (${(x / Math.max(1, top) * 100).toFixed(0)}% of p99.5)`);
+    if (hit.region) {
+      const p = packedIndex(hit.i), vals = [];
+      for (const g of SEL.filter((x) => x.ish)) {
+        if (g.tip) { const t = g.tip(hit.i); if (t) lines.push(t); continue; }
+        const x = g.ish[p], top = g.p995 != null ? g.p995 : ISH.genes[g.ishIdx].p995;
+        vals.push({ g, x, rel: x / Math.max(1, top) });
+      }
+      const many = vals.length > TIP_GENES, list = many ? vals.filter((v) => v.x).sort((a, b) => b.rel - a.rel) : vals;
+      for (const { g, x, rel } of list.slice(0, TIP_GENES)) lines.push(`${g.pseudo ? '' : 'ISH '}${g.label || g.symbol}: ${x} (${(rel * 100).toFixed(0)}% of p99.5)`);
+      if (many) lines.push(`&nbsp;ISH detected in ${list.length} of ${vals.length} genes here${list.length > TIP_GENES ? ` · strongest ${TIP_GENES} shown` : ''}`);
     }
   }
   if (hit.cell != null) {
@@ -776,10 +884,13 @@ function tipFor(hit) {
     for (const lv of ['class', 'subclass', 'supertype', 'cluster']) lines.push(`&nbsp;${lv}: ${TAX[lv][CL2[lv][c]].name}`);
     lines.push(`&nbsp;own CCF: ${ONTO[b.region_ccf[hit.cell]].acronym} · CCFv3BBP: ${ONTO[b.region_bbp[hit.cell]].acronym}`);
     lines.push(`&nbsp;${b.man.quality_field}: ${q.toFixed(2)}`);
-    for (const sg of SEL.filter((x) => x.mer)) {
+    const mers = SEL.filter((x) => x.mer), manyM = mers.length > TIP_GENES;
+    const mlist = manyM ? mers.filter((x) => x.mer[hit.cell]).sort((x, y) => y.mer[hit.cell] - x.mer[hit.cell]) : mers;
+    for (const sg of mlist.slice(0, TIP_GENES)) {
       const g = b.man.genes[sg.merIdx], q = sg.mer[hit.cell];
       lines.push(`&nbsp;${sg.symbol} log2: ${q ? (q / 255 * g.vmax).toFixed(2) : 'not detected'}`);
     }
+    if (manyM) lines.push(`&nbsp;detected: ${mlist.length} of ${mers.length} genes${mlist.length > TIP_GENES ? ` · strongest ${TIP_GENES} shown` : ''}`);
   }
   return lines.join('<br>');
 }
@@ -843,12 +954,15 @@ async function renderGeneRegions() {
   if (!SEL.length) { el.innerHTML = ''; return; }
   const want = S.gene;
   let html = '';
-  for (const g of SEL) html += await geneRegionsHtml(g);
+  const tables = SEL.length > TABLE_GENES ? SEL.filter((g) => g === GENE) : SEL;   // many genes: the clicked chip's table only
+  if (tables.length < SEL.length) html += `<div class="mini" style="margin:6px 0">${SEL.length} genes selected · click a gene above to see its top regions</div>`;
+  for (const g of tables) html += await geneRegionsHtml(g);
   if (want !== S.gene) return;
   el.innerHTML = html;
   el.querySelectorAll('[data-region]').forEach((a) => a.addEventListener('click', (ev) => { ev.preventDefault(); selectRegion(+a.dataset.region); }));
 }
 
+const TABLE_GENES = 6;
 async function geneRegionsHtml(G0) {
   if (G0.pseudo && G0.kind === 'layer') return `<h5><span class="sw" style="background:${G0.color}"></span>${G0.label}</h5><div class="mini">combined from the HGEA-ISH “All genes” tab (Blue Brain ISH, 50 µm, hippocampus)</div>`;
   if (G0.pseudo) return `<h5><span class="sw" style="background:${G0.color}"></span>${G0.label}</h5><div class="mini">${G0.kind === 'signature' ? 'mean' : 'contrast of the'} Blue Brain ISH of the genes Bienkowski et al. annotate in ${G0.col} (Supplementary Table 2)</div>`;
@@ -928,8 +1042,9 @@ function selectRegion(r, fly = true) {
 function renderLegend() {
   const el = $('legend'); let html = '';
   if (multi()) {
-    html += '<h4>genes (additive colour) · click to toggle</h4>' + SEL.map((g, j) => `<div class="item gtoggle${g.hidden ? ' off' : ''}" data-g="${j}" title="click to ${g.hidden ? 'show' : 'hide'} ${g.symbol}"><span class="sw" style="background:${g.hidden ? 'transparent' : g.color};border-color:${g.color}"></span>${g.label || g.symbol}<span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:#9fb0aa">${g.ish ? 'ISH' : ''}${g.ish && g.mer ? '·' : ''}${g.mer ? 'MER' : ''}</span></div>`).join('') +
-      `<div class="mini" style="color:#9fb0aa;margin-top:4px">overlap mixes colours${SEL.length === 2 ? ' (both ≈ white)' : ''}; brightness = level within each gene's range</div>`;
+    const dom = shown().length > ADDITIVE_MAX;
+    html += `<h4>${SEL.length} genes (${dom ? 'strongest gene per spot' : 'additive colour'}) · click to toggle</h4><div class="glegend">` + SEL.map((g, j) => `<div class="item gtoggle${g.hidden ? ' off' : ''}" data-g="${j}" title="click to ${g.hidden ? 'show' : 'hide'} ${g.symbol}"><span class="sw" style="background:${g.hidden ? 'transparent' : g.color};border-color:${g.color}"></span>${g.label || g.symbol}<span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:#9fb0aa">${g.ish ? 'ISH' : ''}${g.ish && g.mer ? '·' : ''}${g.mer ? 'MER' : ''}</span></div>`).join('') + '</div>' +
+      `<div class="mini" style="color:#9fb0aa;margin-top:4px">${dom ? `with more than ${ADDITIVE_MAX} genes shown, each spot takes the colour of its strongest gene` : `overlap mixes colours${SEL.length === 2 ? ' (both ≈ white)' : ''}`}; brightness = level within each gene's range</div>`;
   } else if (GENE && (GENE.ish || GENE.mer)) {
     html += `<h4>${GENE.label || GENE.symbol}</h4>`;
     if (GENE.legend) { const L = GENE.legend; html += `<div class="mini" style="color:#cdd8d3">${L.unit}</div><div class="cb" style="background:${gradientCss(S.cmap)}"></div><div class="ticks"><span>${L.lo}</span><span>${L.hi}</span></div>`; }
@@ -1037,6 +1152,15 @@ function initUI() {
   $('secprev').addEventListener('click', () => jumpSection(-1)); $('secnext').addEventListener('click', () => jumpSection(1));
 
   const symbols = [...GENES.keys()].sort((a, b) => a.localeCompare(b));
+  const geneList = (text) => text.split(/[\s,;]+/).filter(Boolean);
+  $('gene').addEventListener('paste', (ev) => {
+    const list = geneList(ev.clipboardData.getData('text'));
+    if (list.length > 1) { ev.preventDefault(); addGenes(list); }
+  });
+  $('gene').addEventListener('keydown', (ev) => {
+    const list = geneList($('gene').value);
+    if (ev.key === 'Enter' && list.length > 1) { ev.preventDefault(); ev.stopImmediatePropagation(); $('gene').value = ''; addGenes(list); }
+  });
   suggest('gene', 'genelist', (q) => {
     const starts = symbols.filter((g) => g.toLowerCase().startsWith(q)), inc = symbols.filter((g) => !g.toLowerCase().startsWith(q) && g.toLowerCase().includes(q));
     return [...starts, ...inc].map((g) => { const e = GENES.get(g), nm = Object.keys(e.mer).length;

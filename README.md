@@ -20,7 +20,7 @@ Each MERFISH brain is shown separately. Every cell carries its WMB cell type (cl
 ## Features
 
 - **Five views of the data:** ISH, MERFISH, overlay, side by side and HGEA-ISH, each in 3D or as coronal, sagittal or horizontal slices.
-- **Gene search across both atlases.** Show up to four genes at once, each in its own colour and toggleable.
+- **Gene search across both atlases.** Show up to 50 genes at once, each in its own colour and toggleable; paste a list to add many together.
 - **Region profiles.** For any CCF region, see the cell-type composition per brain, a gene's level in each dataset and the most enriched genes.
 - **HGEA-ISH.** The genes Bienkowski et al. (2018) used to define hippocampal domains, shown on the ISH volumes exactly as published:
   - the full Supplementary Table 2 gene × domain table;

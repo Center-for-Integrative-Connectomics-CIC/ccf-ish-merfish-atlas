@@ -1,7 +1,7 @@
 // HGEA-ISH: the Hippocampus Gene Expression Atlas gene set (Bienkowski et al. 2018, Supplementary Tables 2 and 7)
 // on the Blue Brain ISH volumes. Gene names, domain names, presence marks and Table 7 are shown as published;
 // signatures and the all-genes layer are derived from the ISH (documented in data/hgea/hgea.json).
-import * as IO from './io.js?v=20261029212214';
+import * as IO from './io.js?v=20261031084118';
 
 const $ = (id) => document.getElementById(id);
 let H = null, api = null, current = null;
@@ -47,7 +47,7 @@ export function selectDomain(col) {
   if (sig) html += `<div class="mini"><b>2 ·</b> see the whole domain at once</div><div class="row" style="margin-top:4px"><button class="btn sm" data-sig="signature"><i class="fa-solid fa-wave-square"></i> signature</button><button class="btn sm" data-sig="contrast"><i class="fa-solid fa-circle-half-stroke"></i> contrast</button><button class="btn sm" id="dom2all"><i class="fa-solid fa-dna"></i> these genes in All genes</button></div>
     <div class="mini" style="margin-top:3px">signature = mean ISH of the ${sig.markers} marker genes · contrast = minus the ${sig.absent_reference} genes the paper marks in sibling domains only</div>`;
   html += '</div>';
-  html += `<div class="hcard"><div class="mini"><b>3 ·</b> or look at single genes (click to add, up to 4) · ★ named in a paper figure · * as published</div>
+  html += `<div class="hcard"><div class="mini"><b>3 ·</b> or look at single genes (click to add, up to 50) · ★ named in a paper figure · * as published</div>
     <input class="search" id="hgfilter" placeholder="filter ${genes.length} genes…" style="margin-top:6px"><div id="hglist" class="glist"></div></div>`;
   if (t7.length) {
     html += '<div class="hcard"><div class="mini" style="margin-bottom:3px">connectivity · Supplementary Table 7</div>';
