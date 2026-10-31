@@ -25,7 +25,7 @@ tags: [neuroscience, mouse-brain, spatial-transcriptomics, merfish, allen-ccf]
 ---
 # CCF Gene Atlas · per-cell MERFISH expression
 
-Per-cell log2 expression of every panel gene for five whole-brain MERFISH datasets from the Allen Brain Cell
+Per-cell log2 expression of every panel gene for five MERFISH brains from the Allen Brain Cell
 Atlas, packaged for the browser viewer of the CCF Gene Atlas (ISH x MERFISH). Each brain is kept separate.
 
 | brain | dataset | cells | genes |

@@ -1,7 +1,7 @@
 // HGEA-ISH: the Hippocampus Gene Expression Atlas gene set (Bienkowski et al. 2018, Supplementary Tables 2 and 7)
 // on the Blue Brain ISH volumes. Gene names, domain names, presence marks and Table 7 are shown as published;
 // signatures and the all-genes layer are derived from the ISH (documented in data/hgea/hgea.json).
-import * as IO from './io.js?v=20261031084118';
+import * as IO from './io.js?v=20261031091246';
 
 const $ = (id) => document.getElementById(id);
 let H = null, api = null, current = null;
@@ -65,9 +65,9 @@ export function selectDomain(col) {
     const q = ($('hgfilter').value || '').toLowerCase();
     $('hglist').innerHTML = genes.filter((g) => !q || g.name.toLowerCase().includes(q) || (g.ish || '').toLowerCase().includes(q))
       .map((g) => `<label class="${g.ish ? '' : 'dis'}" data-ish="${esc(g.ish || '')}" title="annotated in: ${esc(g.domains.map((j) => H.columns[j]).join(', '))}">
-        ${g.figures.length ? '★' : ''}<b>${esc(g.name)}</b><span class="tags">${g.ish ? (g.match === 'exact' ? '' : esc(g.match.startsWith('alias') ? `ISH: ${g.ish}` : g.match)) : 'no coronal ISH'} · ${g.domains.length} dom.</span></label>`).join('');
+        ${g.figures.length ? '★' : ''}<b>${esc(g.name)}</b><span class="tags">${g.ish ? (g.match === 'exact' ? '' : esc(g.match.startsWith('alias') ? `ISH: ${g.ish}` : g.match)) : 'no ISH volume'} · ${g.domains.length} dom.</span></label>`).join('');
     $('hglist').querySelectorAll('label').forEach((r) => r.addEventListener('click', () => r.dataset.ish ? api.selectGene(r.dataset.ish)
-      : api.status(`${r.querySelector('b').textContent}: Allen imaged this gene sagittally only, so there is no Blue Brain coronal volume`)));
+      : api.status(`${r.querySelector('b').textContent}: not in the Blue Brain ISH atlas, so there is no volume to show`)));
   };
   $('hgfilter').addEventListener('input', list);
   list();
@@ -80,7 +80,7 @@ function renderSource() {   // Table 2 and gene coverage: always visible above t
   const no = H.genes.filter((g) => !g.ish);
   $('hgeanotes').innerHTML = `<summary><b>${H.genes.filter((g) => g.ish).length} of ${H.genes.length}</b> genes have Blue Brain ISH · missing: ${no.map((g) => esc(g.name)).join(', ')}</summary>
     ${H.genes.filter((g) => g.match === 'exact').length} exact, ${H.genes.filter((g) => g.match === 'asterisk removed').length} with the asterisk removed, ${al.length} under a current name:
-    ${al.map((g) => `${esc(g.name)} → ${esc(g.ish)}`).join(', ')}. No coronal volume for ${no.map((g) => esc(g.name)).join(', ')} (Allen imaged them sagittally only).
+    ${al.map((g) => `${esc(g.name)} → ${esc(g.ish)}`).join(', ')}. Not in the Blue Brain ISH atlas: ${no.map((g) => esc(g.name)).join(', ')}.
     ★ = named in the paper's figure legends.<br>${esc(H.asterisk_note)}<br>Supplementary Table 7 lists genes, inputs and outputs for ${H.table7.length} domains; its gene lists match Table 2 exactly.`;
 }
 
@@ -97,7 +97,7 @@ function openMatrix() {
       : `<th class="grp gb" colspan="${g.columns.length}">${esc(g.group)}</th>`)).join('') + `<th class="grp gb" rowspan="2" style="vertical-align:bottom">ISH volume</th></tr>` +
     `<tr>${cols.filter((c) => !H.groups.some((g) => g.columns.length === 1 && g.columns[0] === c)).map((c) => `<th class="vc${gb(c)}" data-col="${esc(c)}" title="open the ${esc(c)} domain">${esc(short(c))}</th>`).join('')}</tr>`;
   const rows = H.genes.map((g) => `<tr data-ish="${esc(g.ish || '')}" data-name="${esc(g.name.toLowerCase())}"><td class="gname">${g.figures.length ? '★ ' : ''}${esc(g.name)}</td>` +
-    cols.map((c, k) => `<td class="${(g.domains.includes(k) ? 'x' : '') + gb(c)}"></td>`).join('') + `<td class="ishc gb" title="${esc(g.ish || 'no coronal ISH volume')}">${g.ish ? (g.match === 'exact' ? '✓' : esc(g.ish)) : '— none'}</td></tr>`).join('');
+    cols.map((c, k) => `<td class="${(g.domains.includes(k) ? 'x' : '') + gb(c)}"></td>`).join('') + `<td class="ishc gb" title="${esc(g.ish || 'no ISH volume')}">${g.ish ? (g.match === 'exact' ? '✓' : esc(g.ish)) : '— none'}</td></tr>`).join('');
   ov.innerHTML = `<div class="mh"><b>Supplementary Table 2</b> · ${H.genes.length} genes × ${cols.length} columns, exactly as published (filled = annotated). Click a gene to view it, a column to open that domain.
     <input class="search" id="mfilter" placeholder="filter genes…" style="width:200px;margin-left:10px"><button class="btn sm" id="mclose" style="float:right">close</button></div>
     <div class="mwrap"><table class="mtab">${colgroup}${head}${rows}</table></div>`;
@@ -142,7 +142,7 @@ function renderAll() {
       <input class="search" id="allfilter" placeholder="filter genes…" style="margin-top:6px"><div class="glist" id="allgenes"></div></div>`;
   $('allgenes').innerHTML = H.genes.map((g) => {
     const k = g.ish ? G.indexOf(g.ish) : -1;
-    return `<label class="${k < 0 ? 'dis' : ''}" data-k="${k}" data-name="${esc(g.name.toLowerCase())}"><input type="checkbox" ${k < 0 ? 'disabled' : 'checked'}>${g.figures.length ? '★' : ''}${esc(g.name)}<span class="tags">${esc(g.domains.map((j) => short(H.columns[j])).slice(0, 4).join(' ') + (g.domains.length > 4 ? ` +${g.domains.length - 4}` : ''))}${k < 0 ? ' · no coronal ISH' : ''}</span></label>`;
+    return `<label class="${k < 0 ? 'dis' : ''}" data-k="${k}" data-name="${esc(g.name.toLowerCase())}"><input type="checkbox" ${k < 0 ? 'disabled' : 'checked'}>${g.figures.length ? '★' : ''}${esc(g.name)}<span class="tags">${esc(g.domains.map((j) => short(H.columns[j])).slice(0, 4).join(' ') + (g.domains.length > 4 ? ` +${g.domains.length - 4}` : ''))}${k < 0 ? ' · no ISH volume' : ''}</span></label>`;
   }).join('');
   $('allgenes').querySelectorAll('input[type=checkbox]').forEach((cb) => cb.addEventListener('change', () => { const k = +cb.parentElement.dataset.k; ALL.on[k] = cb.checked ? 1 : 0; changed(); }));
   $('allfilter').addEventListener('input', () => { const q = $('allfilter').value.toLowerCase(); $('allgenes').querySelectorAll('label').forEach((l) => { l.style.display = !q || l.dataset.name.includes(q) ? '' : 'none'; }); });

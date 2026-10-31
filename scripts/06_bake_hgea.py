@@ -11,7 +11,7 @@ The paper and its supplement do not define the asterisk on 14 gene names; it is 
 
 Derived here:
   - ISH volume for each gene: exact symbol, asterisk stripped, or a documented alias (old / renamed symbols);
-    Epha5 and Fosl2 have no coronal ISH volume (Allen imaged them sagittally only).
+    Epha5 and Fosl2 are not in the Blue Brain ISH atlas, so they have no volume.
   - Table 7 vs Table 2 consistency per domain.
   - figure/legend mentions of each gene in the main paper and the Supplementary Information.
   - per Table 2 column, two signature volumes on the hippocampus (CA, DG, SUB, ProS, FC, IG + 6 voxels):
@@ -140,7 +140,7 @@ def main() -> None:
         how = None if hit is None else ("exact" if hit == name else "asterisk removed" if hit == sym and name.endswith("*")
                                         else "same symbol" if hit == sym else f"alias ({sym} -> {hit})")
         doms = [k for k, c in enumerate(cols) if pd.notna(row[c]) and str(row[c]).strip()]
-        genes.append({"name": name, "symbol": sym, "asterisk": name.endswith("*"), "ish": hit, "match": how or "no coronal ISH volume",
+        genes.append({"name": name, "symbol": sym, "asterisk": name.endswith("*"), "ish": hit, "match": how or "no ISH volume",
                       "domains": doms})
     ment = figure_mentions([g["symbol"] for g in genes])
     for g in genes:

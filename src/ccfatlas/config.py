@@ -5,7 +5,7 @@ Every dataset is read from its original publisher:
   4,085 genes as 25 µm NIfTI volumes in CCFv3BBP (BrainGlobe ASR grid 566 x 320 x 456).
 - CCFv3BBP reference space: Piluso et al. (BrainGlobe package "ccfv3augmented_mouse_25um", same bucket /
   Zenodo 14034334).
-- MERFISH: Allen Brain Cell Atlas (S3 "allen-brain-cell-atlas"), five whole-brain datasets, each kept
+- MERFISH: Allen Brain Cell Atlas (S3 "allen-brain-cell-atlas"), five datasets, each kept
   separate: MERFISH-C57BL6J-638850 (Yao et al. 2023) and Zhuang-ABCA-1..4 (Zhang et al. 2023),
   with the shared WMB taxonomy (Yao et al. 2023) and the Allen CCFv3 coordinates provided per cell.
 

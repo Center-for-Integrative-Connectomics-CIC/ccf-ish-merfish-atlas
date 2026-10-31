@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-<link href="../assets/css/site.css?v=20261031084118" rel="stylesheet">
+<link href="../assets/css/site.css?v=20261031091246" rel="stylesheet">
 <style>
   body{line-height:1.65;font-size:15.5px}
   .wrap{max-width:1080px;margin:0 auto;padding:0 36px}
@@ -76,13 +76,16 @@
     <li>Each MERFISH brain was registered to the CCF by its data owners, section by section; that registration has its own error, which this site does not correct. Thin layers and small nuclei are the most affected.</li>
     <li>MERFISH sections are sampled at intervals (tens to a few hundred µm) and only five animals are available; the Zhuang-ABCA-4 brain has only three sections.</li>
     <li>The ISH volumes are reconstructed from Allen ISH sections ("interp" volumes), so between sections the values are interpolated, and probe quality varies by gene.</li>
+    <li>Only Allen 638850 samples both hemispheres. Zhuang-ABCA-1 and -2 are coronal with about 95% of cells on one side; Zhuang-ABCA-3 and -4 are sagittal with all cells on one side, and -4 covers only LR 1.6–3.1 mm. An empty side is unsampled, not empty of expression.</li>
+    <li>MERFISH colours use each gene's scale within each brain, and the share of cells with signal differs by brain (Gad2: 57% in Allen 638850, 23.5% in Zhuang-ABCA-1). Compare brains with the region tables and concordance, not by colour; signal above zero is not proof of expression.</li>
+    <li>ISH colours are scaled to each gene's own range, so faint genes can look strong. The viewer flags genes with p99.5 ≤ 10 of 255 (1,146 of 4,085). They agree less with MERFISH (median ρ 0.25 against 0.60 for p99.5 &gt; 20, Zhuang-ABCA-1), though some are true sparse markers such as Prox1.</li>
     <li>MERFISH panels are targeted (550 or 1,122 genes); a gene missing from a panel is not measured, not absent.</li>
     <li>CCFv3BBP subdivides some regions (e.g. cerebellar cortex and olfactory bulb layers) that CCFv3 does not; cells' own CCF labels cannot reach those subdivisions.</li>
   </ul>
 </div></section>
 
 <script type="module">
-import { CONFIG } from '../assets/js/config.js?v=20261031084118';
+import { CONFIG } from '../assets/js/config.js?v=20261031091246';
 const J = (p) => fetch(CONFIG.DATA + p).then((r) => r.json());
 const [al, conc, ds] = await Promise.all([J('qc/alignment.json'), J('qc/concordance.json').catch(() => null), J('datasets.json')]);
 const short = Object.fromEntries(ds.merfish.map((d) => [d.key, d.short]));

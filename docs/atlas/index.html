@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CCF Gene Atlas · ISH × MERFISH viewer</title>
-<meta name="description" content="Interactive 3D viewer comparing the Blue Brain ISH gene atlas (CCFv3BBP) with five whole-brain MERFISH datasets (Allen Brain Cell Atlas), cell by cell, region by region.">
+<meta name="description" content="Interactive 3D viewer comparing the Blue Brain ISH gene atlas (CCFv3BBP) with five MERFISH brains (Allen Brain Cell Atlas), cell by cell, region by region.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-<link href="../assets/css/site.css?v=20261031084118" rel="stylesheet">
+<link href="../assets/css/site.css?v=20261031091246" rel="stylesheet">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <script type="importmap">
 { "imports": {
@@ -179,7 +179,7 @@
       <div class="row"><label class="mini">ISH range</label><input type="range" id="ishlo" min="0" max="100" value="20"><input type="range" id="ishhi" min="1" max="100" value="100"></div>
       <div class="row"><label class="mini">ISH 3D ≥</label><input type="range" id="ishthr" min="1" max="99" value="55"><span class="mini" id="ishthrv">55%</span></div>
       <div class="row"><label class="mini">MER range</label><input type="range" id="merlo" min="0" max="100" value="0"><input type="range" id="merhi" min="1" max="100" value="60"></div>
-      <div class="row"><label class="mini">show cells</label><select class="sel" id="cellshow" style="flex:1"><option value="all">all cells</option><option value="any">expressing any selected gene</option><option value="every">co-expressing all selected genes</option></select></div>
+      <div class="row"><label class="mini">show cells</label><select class="sel" id="cellshow" style="flex:1"><option value="all">all cells</option><option value="any">with signal for any selected gene</option><option value="every">with signal for all selected genes</option></select></div>
       <div class="profile" id="generegions"></div>
     </div>
 
@@ -219,6 +219,6 @@
     <div class="loading" id="loading">loading atlas…</div>
   </div>
 </div>
-<script type="module" src="../assets/js/atlas.js?v=20261031084118"></script>
+<script type="module" src="../assets/js/atlas.js?v=20261031091246"></script>
 </body>
 </html>

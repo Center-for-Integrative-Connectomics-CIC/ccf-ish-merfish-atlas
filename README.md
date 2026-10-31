@@ -1,6 +1,6 @@
 # CCF Gene Atlas · ISH × MERFISH
 
-An interactive 3D browser for comparing mouse brain gene expression across two atlases in one common space: the Blue Brain in situ hybridisation (ISH) gene atlas and five whole-brain MERFISH datasets, all on the Allen Common Coordinate Framework (CCFv3BBP, 25 µm).
+An interactive 3D browser for comparing mouse brain gene expression across two atlases in one common space: the Blue Brain in situ hybridisation (ISH) gene atlas and five MERFISH brains, all on the Allen Common Coordinate Framework (CCFv3BBP, 25 µm).
 
 **Open the atlas:** https://center-for-integrative-connectomics-cic.github.io/ccf-ish-merfish-atlas/
 
@@ -15,7 +15,7 @@ It runs in the browser with nothing to install. Data are loaded from their origi
 | Zhuang ABCA-1 to -4 | 5.4 M cells across 4 brains, 1,122 genes | Zhang et al., Nature 2023 (Allen Brain Cell Atlas) |
 | Hippocampus Gene Expression Atlas (HGEA) | 258 domain-defining genes, gene × domain annotation | Bienkowski et al., Nat. Neurosci. 2018 |
 
-Each MERFISH brain is shown separately. Every cell carries its WMB cell type (class → cluster), its own CCF region and the CCFv3BBP region at its position.
+Each MERFISH brain is shown separately. Only Allen 638850 samples both hemispheres; the Zhuang brains sample about one, and Zhuang-ABCA-4 has three sections. Every cell carries its WMB cell type (class → cluster), its own CCF region and the CCFv3BBP region at its position.
 
 ## Features
 

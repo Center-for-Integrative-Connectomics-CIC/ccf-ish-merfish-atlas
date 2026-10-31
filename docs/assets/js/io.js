@@ -1,5 +1,5 @@
 // Loaders for the baked formats (see src/ccfatlas/bake.py) and the original ISH NIfTI volumes.
-import { CONFIG } from './config.js?v=20261031084118';
+import { CONFIG } from './config.js?v=20261031091246';
 
 export const GRID = [566, 320, 456];          // CCFv3BBP, ASR (AP, DV, LR), 25 µm
 export const VOX = 25;

@@ -1,10 +1,10 @@
 // CCF Gene Atlas viewer: Blue Brain ISH (CCFv3BBP) x MERFISH (Allen Brain Cell Atlas), one brain at a time.
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CONFIG } from './config.js?v=20261031084118';
-import * as IO from './io.js?v=20261031084118';
-import { lut, NAMES as CMAPS, hexToRgb, gradientCss } from './colormaps.js?v=20261031084118';
-import { initHgea, selectDomain, loadSignature, hgeaBox } from './hgea.js?v=20261031084118';
+import { CONFIG } from './config.js?v=20261031091246';
+import * as IO from './io.js?v=20261031091246';
+import { lut, NAMES as CMAPS, hexToRgb, gradientCss } from './colormaps.js?v=20261031091246';
+import { initHgea, selectDomain, loadSignature, hgeaBox } from './hgea.js?v=20261031091246';
 
 const $ = (id) => document.getElementById(id);
 const [NA, ND, NL] = IO.GRID;
@@ -111,6 +111,9 @@ async function loadBrain(key) {
       const s = IO.toScene(um[i * 3], um[i * 3 + 1], um[i * 3 + 2]);
       pos[i * 3] = s[0]; pos[i * 3 + 1] = s[1]; pos[i * 3 + 2] = s[2];
     }
+    let side = 0;
+    for (let i = 0; i < n; i++) if (um[i * 3 + 2] < IO.CENTER[2]) side++;
+    b.oneSide = Math.max(side, n - side) / n;
     Object.assign(b, { um, pos, cluster, region_ccf: rccf, region_bbp: rbbp, quality, hq, n, colors: new Uint8Array(n * 3) });
     b.sections = await sectionPlanes(b, base + f.section.file);
   }
@@ -251,9 +254,10 @@ async function addGenes(symbols) {   // several genes in one go: limited paralle
   const unknown = list.filter((x) => !GENES.has(x)), known = list.filter((x) => GENES.has(x)).slice(0, MAXG);
   BATCH = true;
   let next = 0, done = 0;
-  const worker = async () => { while (next < known.length) { const sym = known[next++]; await selectGene(sym); status(`loaded ${++done} of ${known.length} genes…`); } };
+  const worker = async () => { while (next < known.length) { const sym = known[next++]; await selectGene(sym); done++; if (known.length > 1) status(`loaded ${done} of ${known.length} genes…`); } };
   try { await Promise.all(Array.from({ length: LOAD_POOL }, worker)); } finally { BATCH = false; }
   refreshGenes();
+  if (await showOnPanelBrain()) return;
   if (known.length === 1 && !unknown.length) return;   // selectGene already reported it
   status(`${known.length} gene${known.length === 1 ? '' : 's'} added${unknown.length ? ` · not found: ${unknown.join(', ')}` : ''}${list.length - unknown.length > MAXG ? ` · only the first ${MAXG} kept` : ''}`);
 }
@@ -292,6 +296,25 @@ async function selectGene(sym, replace = false) {
   if (e.mer[S.brain] != null) bits.push(g.mer ? `MERFISH ${S.brain} ✓` : `MERFISH ${S.brain}: expression host unreachable`);
   else bits.push(`not on the ${B[S.brain].man.dataset} panel`);
   status(`${sym}: ${bits.join(' · ')}${multi() ? ` · ${SEL.length} genes selected` : ''}`);
+  if (!BATCH) await showOnPanelBrain();
+}
+
+// MERFISH tab: panels differ (Allen 550 genes, Zhuang 1,122), so go to a brain that measured the active gene.
+async function showOnPanelBrain() {
+  if (S.mode !== 'merfish' || !GENE || GENE.pseudo) return false;
+  const sym = GENE.symbol, e = GENES.get(sym);
+  if (!e || e.mer[S.brain] != null) return false;
+  const opts = DS.merfish.filter((d) => e.mer[d.key] != null);
+  if (!opts.length) { status(`${sym}: not on any MERFISH panel · ISH only`); return false; }
+  const cover = (d) => SEL.filter((g) => !g.pseudo && GENES.get(g.symbol).mer[d.key] != null).length;
+  const to = opts.reduce((a, d) => (cover(d) > cover(a) ? d : a));
+  const from = B[S.brain].man.dataset;
+  if (S.colorby === 'type') setSeg('colorby', 'gene');
+  $('brain').value = to.key;
+  await loadBrain(to.key);
+  writeURL(); renderAvail(); buildIshPoints(); sectionTicks(); SL.key = ''; requestDraw();
+  status(`${sym} is not on the ${from} panel · switched to ${B[to.key].man.dataset}`);
+  return true;
 }
 
 function makeRoom() {   // at the cap, the oldest gene/layer gives way instead of refusing silently
@@ -449,13 +472,19 @@ async function loadMer(g) {
   const gi = e.mer[S.brain];
   g.mer = null; g.merIdx = gi;
   if (gi == null) return;
-  const key = `${S.brain}|${g.symbol}`;
+  const brain = S.brain, key = `${brain}|${g.symbol}`;
   if (!merCache.has(key)) {
-    const url = `${CONFIG.EXPR}merfish/${S.brain}/expr/${encodeURIComponent(g.symbol)}.u8.gz`;
+    const url = `${CONFIG.EXPR}merfish/${brain}/expr/${encodeURIComponent(g.symbol)}.u8.gz`;
     try { merCache.set(key, await IO.array(url, 'uint8', progress)); } catch (err) { console.warn(err); return; }
   }
+  if (S.brain !== brain) return;   // the brain changed during the download: this array belongs to other cells
   g.mer = merCache.get(key);
 }
+
+const LOW_ISH = 10;        // ISH p99.5 at or below this (of 255) is flagged: such genes agree less with MERFISH, see the accuracy page
+const ishP995 = (g) => (g && !g.pseudo && g.ishIdx >= 0 ? ISH.genes[g.ishIdx].p995 : null);
+const lowIsh = (g) => { const p = ishP995(g); return p != null && p <= LOW_ISH; };
+const lowIshNote = (g) => `Low ISH signal: p99.5 = ${ishP995(g)} of 255. Colours are scaled to this gene's own range, so faint signal can look strong.`;
 
 function renderAvail() {
   const el = $('avail'); el.innerHTML = '';
@@ -464,10 +493,11 @@ function renderAvail() {
   const chip = (cls, on, txt, title) => { const c = document.createElement('span'); c.className = `chip ${cls} ${on ? 'on' : 'off'}`; c.textContent = txt; c.title = title; el.appendChild(c); };
   chip('ish', e.ish >= 0, 'ISH', e.ish >= 0 ? 'Blue Brain ISH volume (25 µm)' : 'no ISH volume');
   for (const d of DS.merfish) chip('mer', e.mer[d.key] != null, d.short, `${d.label}: ${e.mer[d.key] != null ? 'on the panel' : 'not on the panel'}`);
+  if (lowIsh(GENE)) { const m = document.createElement('div'); m.className = 'mini'; m.style.cssText = 'flex-basis:100%;margin-top:4px;color:#a8591a'; m.textContent = lowIshNote(GENE); el.appendChild(m); }
 }
 
 // ───────────────────────── 3D ─────────────────────────
-let renderer, scene, camera, controls, shellMesh = null, regionMesh = null, cellPts = null, ishPts = null, needDraw = true;
+let renderer, scene, camera, controls, shellMesh = null, regionMesh = null, cellPts = null, bgPts = null, ishPts = null, needDraw = true;
 function init3D() {
   const canvas = $('gl');
   renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -510,6 +540,7 @@ function meshObject(m, color, opacity) {
 function setupCells() {
   const b = B[S.brain];
   if (cellPts) { scene.remove(cellPts); cellPts.geometry.dispose(); }
+  if (bgPts) { scene.remove(bgPts); bgPts.geometry.dispose(); }
   const g = new THREE.BufferGeometry();
   g.setAttribute('position', new THREE.BufferAttribute(b.pos, 3));
   g.setAttribute('color', new THREE.BufferAttribute(b.colors, 3, true));
@@ -517,6 +548,12 @@ function setupCells() {
   cellPts = new THREE.Points(g, new THREE.PointsMaterial({ size: S.psize / 1000, vertexColors: true, sizeAttenuation: true }));
   cellPts.layers.set(2);
   scene.add(cellPts);
+  // MERFISH tab, cells by gene: cells without signal as a faint haze, so they cannot hide a sparse gene's cells
+  const bg = new THREE.BufferGeometry();
+  bg.setAttribute('position', g.attributes.position);
+  bgPts = new THREE.Points(bg, new THREE.PointsMaterial({ size: S.psize / 1000, color: 0x8fa3b0, sizeAttenuation: true, transparent: true, opacity: 0.035, depthWrite: false }));
+  bgPts.layers.set(2); bgPts.visible = false;
+  scene.add(bgPts);
 }
 
 function regionMask(r) {           // Uint8Array over ontology indices: 1 if index is r or a descendant
@@ -533,7 +570,7 @@ function typeMatch() {             // Uint8Array over clusters, or null (no filt
   return m;
 }
 
-function exprFilter() {              // cells shown by expression: all | expressing any selected gene | co-expressing all
+function exprFilter() {              // cells shown by signal: all | signal for any selected gene | signal for all of them
   if (S.cellshow === 'all' || S.colorby !== 'gene') return null;
   const arrs = shown().map((g) => g.mer).filter(Boolean);
   if (!arrs.length) return null;
@@ -548,15 +585,16 @@ function cellVisible() {           // predicate over cell index, shared by 3D an
   return (i) => (!rm || rm[reg[i]]) && (!tm || tm[b.cluster[i]]) && b.quality[i] >= qmin && (!ef || ef(i));
 }
 
+const LOW_VISIBLE = 64;    // MERFISH tab: lowest colour-map step for a cell with signal
 function recolorCells() {
   const b = B[S.brain]; if (!b || !b.pos) return;
   const c = b.colors, n = b.n, gs = shown().filter((g) => g.mer);
   const lo = S.merlo / 100 * 255, hi = Math.max(lo + 1, S.merhi / 100 * 255);
   if (S.colorby === 'gene' && gs.length && !multi()) {
-    const L = lut(S.cmap), v = gs[0].mer;
+    const L = lut(S.cmap), v = gs[0].mer, floor = S.mode === 'merfish' ? LOW_VISIBLE : 0;
     for (let i = 0; i < n; i++) {
       if (v[i] === 0) { c[i * 3] = 38; c[i * 3 + 1] = 44; c[i * 3 + 2] = 50; continue; }
-      const k = Math.max(0, Math.min(255, Math.round((v[i] - lo) / (hi - lo) * 255))) * 3;
+      const k = v[i] <= lo ? 0 : Math.max(floor, Math.min(255, Math.round((v[i] - lo) / (hi - lo) * 255))) * 3;   // any detection above the range stays visible
       c[i * 3] = L[k]; c[i * 3 + 1] = L[k + 1]; c[i * 3 + 2] = L[k + 2];
     }
   } else if (S.colorby === 'gene' && gs.length > ADDITIVE_MAX) {
@@ -584,14 +622,22 @@ function recolorCells() {
     const lv = CL2[S.level], col = LVCOL[S.level];
     for (let i = 0; i < n; i++) { const k = lv[b.cluster[i]] * 3; c[i * 3] = col[k]; c[i * 3 + 1] = col[k + 1]; c[i * 3 + 2] = col[k + 2]; }
   }
-  const vis = cellVisible(), idx = new Uint32Array(n); let m = 0;
-  for (let i = 0; i < n; i++) if (vis(i)) idx[m++] = i;
+  const vis = cellVisible(), idx = new Uint32Array(n), split = S.mode === 'merfish' && S.colorby === 'gene' && gs.length > 0;
+  let m = 0, nb = 0, rest = null;
+  if (split) {           // cells with signal solid, the others behind them as a haze
+    const arrs = gs.map((g) => g.mer), expr = new Uint8Array(n);
+    for (const a of arrs) for (let i = 0; i < n; i++) if (a[i] > lo) expr[i] = 1;
+    rest = new Uint32Array(n);
+    for (let i = 0; i < n; i++) if (vis(i)) { if (expr[i]) idx[m++] = i; else rest[nb++] = i; }
+  } else for (let i = 0; i < n; i++) if (vis(i)) idx[m++] = i;
   if (cellPts) {
     cellPts.geometry.attributes.color.needsUpdate = true;
     cellPts.geometry.setIndex(new THREE.BufferAttribute(idx.subarray(0, m), 1));
     cellPts.material.size = S.psize / 1000;
+    bgPts.visible = split; bgPts.material.size = S.psize / 1000;
+    if (split) bgPts.geometry.setIndex(new THREE.BufferAttribute(rest.subarray(0, nb), 1));
   }
-  b.nVisible = m;
+  b.nVisible = m + nb; b.nDetected = split ? m : null;
   hud(); renderLegend(); requestDraw();
 }
 
@@ -1043,15 +1089,16 @@ function renderLegend() {
   const el = $('legend'); let html = '';
   if (multi()) {
     const dom = shown().length > ADDITIVE_MAX;
-    html += `<h4>${SEL.length} genes (${dom ? 'strongest gene per spot' : 'additive colour'}) · click to toggle</h4><div class="glegend">` + SEL.map((g, j) => `<div class="item gtoggle${g.hidden ? ' off' : ''}" data-g="${j}" title="click to ${g.hidden ? 'show' : 'hide'} ${g.symbol}"><span class="sw" style="background:${g.hidden ? 'transparent' : g.color};border-color:${g.color}"></span>${g.label || g.symbol}<span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:#9fb0aa">${g.ish ? 'ISH' : ''}${g.ish && g.mer ? '·' : ''}${g.mer ? 'MER' : ''}</span></div>`).join('') + '</div>' +
+    html += `<h4>${SEL.length} genes (${dom ? 'strongest gene per spot' : 'additive colour'}) · click to toggle</h4><div class="glegend">` + SEL.map((g, j) => `<div class="item gtoggle${g.hidden ? ' off' : ''}" data-g="${j}" title="click to ${g.hidden ? 'show' : 'hide'} ${g.symbol}"><span class="sw" style="background:${g.hidden ? 'transparent' : g.color};border-color:${g.color}"></span>${g.label || g.symbol}<span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:#9fb0aa">${g.ish ? (lowIsh(g) ? 'ISH low' : 'ISH') : ''}${g.ish && g.mer ? '·' : ''}${g.mer ? 'MER' : ''}</span></div>`).join('') + '</div>' +
       `<div class="mini" style="color:#9fb0aa;margin-top:4px">${dom ? `with more than ${ADDITIVE_MAX} genes shown, each spot takes the colour of its strongest gene` : `overlap mixes colours${SEL.length === 2 ? ' (both ≈ white)' : ''}`}; brightness = level within each gene's range</div>`;
   } else if (GENE && (GENE.ish || GENE.mer)) {
     html += `<h4>${GENE.label || GENE.symbol}</h4>`;
     if (GENE.legend) { const L = GENE.legend; html += `<div class="mini" style="color:#cdd8d3">${L.unit}</div><div class="cb" style="background:${gradientCss(S.cmap)}"></div><div class="ticks"><span>${L.lo}</span><span>${L.hi}</span></div>`; }
-    else if (GENE.ish && S.mode !== 'merfish') { const [lo, hi] = ishRange(); html += `<div class="mini" style="color:#cdd8d3">${GENE.pseudo ? `${GENE.kind} (×255)` : 'ISH value'}</div><div class="cb" style="background:${gradientCss(S.cmap)}"></div><div class="ticks"><span>${lo.toFixed(0)}</span><span>${hi.toFixed(0)}</span></div>`; }
+    else if (GENE.ish && S.mode !== 'merfish') { const [lo, hi] = ishRange(); html += `<div class="mini" style="color:#cdd8d3">${GENE.pseudo ? `${GENE.kind} (×255)` : 'ISH value'}</div><div class="cb" style="background:${gradientCss(S.cmap)}"></div><div class="ticks"><span>${lo.toFixed(0)}</span><span>${hi.toFixed(0)}</span></div>`; if (lowIsh(GENE)) html += `<div class="mini" style="color:#f0b27a;margin-top:4px">${lowIshNote(GENE)}</div>`; }
     if (GENE.mer && !ishOnly() && S.colorby === 'gene') {
       const g = B[S.brain].man.genes[GENE.merIdx];
       html += `<div class="mini" style="color:#cdd8d3;margin-top:6px">MERFISH log2 (${S.brain})</div><div class="cb" style="background:${gradientCss(S.cmap)}"></div><div class="ticks"><span>${(S.merlo / 100 * g.vmax).toFixed(1)}</span><span>${(S.merhi / 100 * g.vmax).toFixed(1)}</span></div>`;
+      if (S.mode === 'merfish') html += '<div class="mini" style="color:#9fb0aa;margin-top:4px">weakest colours are raised so every cell with signal stays visible; signal is not proof of expression, and each brain has its own scale</div>';
     }
   }
   if (S.colorby === 'type' && !ishOnly() && B[S.brain] && B[S.brain].cluster) {
@@ -1064,11 +1111,21 @@ function renderLegend() {
   el.innerHTML = html || '<h4>legend</h4><div class="mini" style="color:#9fb0aa">select a gene or colour cells by type</div>';
   el.querySelectorAll('.gtoggle').forEach((it) => it.addEventListener('click', () => toggleGene(SEL[+it.dataset.g])));
 }
+const ONE_SIDE = 0.9;      // share of a brain's cells on one side above which it counts as one hemisphere
 function hud() {
   const b = B[S.brain]; const bits = [];
   if (b && b.n && !ishOnly()) bits.push(`<b>${(b.nVisible || 0).toLocaleString()}</b> / ${b.n.toLocaleString()} cells · ${b.man.dataset}` + (b.sections ? ` · ${b.sections.pos.length} ${b.sections.orient} sections ~${Math.round(b.sections.spacing)} µm apart` : ''));
   if (S.mode !== 'merfish' && !SEL.some((g) => g.ish)) bits.push(SEL.length ? `no ISH volume for ${SEL.map((g) => g.symbol).join(', ')}` : 'pick a gene to see ISH');
   if (ishPts && S.mode !== 'merfish') bits.push(`<b>${ishPts.userData.n.toLocaleString()}</b> ISH voxels${ishPts.userData.stride > 1 ? ` (1/${ishPts.userData.stride})` : ''}`);
+  if (b && b.n && !ishOnly() && b.oneSide > ONE_SIDE) bits.push(`one hemisphere sampled (${Math.round(b.oneSide * 100)}% of cells): the other side is unsampled, not empty`);
+  if (S.mode === 'merfish' && b && b.nDetected != null) bits.push(`<b>${b.nDetected.toLocaleString()}</b> with signal`);
+  if (S.mode === 'merfish' && b) {      // say which selected genes this brain cannot show
+    const real = SEL.filter((g) => !g.pseudo), absent = real.filter((g) => GENES.get(g.symbol).mer[S.brain] == null);
+    const none = absent.filter((g) => !Object.keys(GENES.get(g.symbol).mer).length), other = absent.filter((g) => !none.includes(g));
+    if (none.length) bits.push(`${none.map((g) => g.symbol).join(', ')}: on no MERFISH panel (ISH only)`);
+    if (other.length) bits.push(`${other.map((g) => g.symbol).join(', ')}: not on this brain's panel`);
+    if (absent.length === real.length && real.length) bits.push('cells coloured by type');
+  }
   $('hud').innerHTML = bits.join(' · ') || 'no data shown';
 }
 function status(t) { $('genestatus').textContent = t; const h = $('hgeastatus'); if (h) h.textContent = t; }
@@ -1126,7 +1183,7 @@ function initUI() {
   sel.value = S.brain; sel.addEventListener('change', async () => { await loadBrain(sel.value); writeURL(); renderAvail(); buildIshPoints(); sectionTicks(); SL.key = ''; requestDraw(); });
   CMAPS.forEach((c) => { const o = document.createElement('option'); o.value = c; o.textContent = c; $('cmap').appendChild(o); });
   $('cmap').value = S.cmap; $('cmap').addEventListener('change', () => { S.cmap = $('cmap').value; writeURL(); recolorCells(); buildIshPoints(); SL.key = ''; renderLegend(); });
-  seg('mode', async (v) => { if (v === 'hgea') await enterHgea(); else { $('hgeasec').style.display = 'none'; showHpfMeshes(false); SL.focus = null; SL.zoom = 1; SL.tx = SL.ty = 0; } buildIshPoints(); hud(); renderLegend(); SL.key = ''; requestDraw(); });
+  seg('mode', async (v) => { if (v === 'merfish') await showOnPanelBrain(); recolorCells(); if (v === 'hgea') await enterHgea(); else { $('hgeasec').style.display = 'none'; showHpfMeshes(false); SL.focus = null; SL.zoom = 1; SL.tx = SL.ty = 0; } buildIshPoints(); hud(); renderLegend(); SL.key = ''; requestDraw(); });
   seg('labelsrc', () => { recolorCells(); refreshProfile(); });
   seg('colorby', () => { recolorCells(); });
   seg('level', () => { recolorCells(); refreshProfile(); });
