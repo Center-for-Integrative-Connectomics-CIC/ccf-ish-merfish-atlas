@@ -1,0 +1,147 @@
+{
+ "yao638850": {
+  "cells_in_crop": 2476197,
+  "hippocampal_cells": 183170,
+  "region_agreement": 0.8425506360211825,
+  "per_field": {
+   "CA1": 0.7776181608583843,
+   "CA2": 0.3243329097839898,
+   "CA3": 0.8470308486019406,
+   "DG": 0.9097008720536768,
+   "SUB": 0.9073693541238568
+  },
+  "cell_types": {
+   "037 DG Glut": {
+    "cells": 34334,
+    "in_ara_field": 0.7009087202190248,
+    "own_ccf_label_in_field": 0.6888215762800722
+   },
+   "016 CA1-ProS Glut": {
+    "cells": 25131,
+    "in_ara_field": 0.7773268075285504,
+    "own_ccf_label_in_field": 0.8638733038876288
+   },
+   "017 CA3 Glut": {
+    "cells": 16389,
+    "in_ara_field": 0.7891878699127464,
+    "own_ccf_label_in_field": 0.7903471840868875
+   }
+  }
+ },
+ "zhuang1": {
+  "cells_in_crop": 1707233,
+  "hippocampal_cells": 142485,
+  "region_agreement": 0.8355967294802962,
+  "per_field": {
+   "CA1": 0.7775301804335598,
+   "CA2": 0.3338509316770186,
+   "CA3": 0.8157653528872594,
+   "DG": 0.9127457299387689,
+   "SUB": 0.8519652884124553
+  },
+  "cell_types": {
+   "037 DG Glut": {
+    "cells": 25834,
+    "in_ara_field": 0.9559495238832546,
+    "own_ccf_label_in_field": 0.9465820236897112
+   },
+   "016 CA1-ProS Glut": {
+    "cells": 19042,
+    "in_ara_field": 0.8297972902006092,
+    "own_ccf_label_in_field": 0.91502993383048
+   },
+   "017 CA3 Glut": {
+    "cells": 8693,
+    "in_ara_field": 0.7259864258598873,
+    "own_ccf_label_in_field": 0.7884504773956057
+   }
+  }
+ },
+ "zhuang2": {
+  "cells_in_crop": 710805,
+  "hippocampal_cells": 62580,
+  "region_agreement": 0.845989133908597,
+  "per_field": {
+   "CA1": 0.7624435619866181,
+   "CA2": 0.37058823529411766,
+   "CA3": 0.8622603019175846,
+   "DG": 0.9160755412252418,
+   "SUB": 0.8604480737018425
+  },
+  "cell_types": {
+   "037 DG Glut": {
+    "cells": 11387,
+    "in_ara_field": 0.9625010977430403,
+    "own_ccf_label_in_field": 0.9586370422411522
+   },
+   "016 CA1-ProS Glut": {
+    "cells": 7419,
+    "in_ara_field": 0.8316484701442243,
+    "own_ccf_label_in_field": 0.9121175360560723
+   },
+   "017 CA3 Glut": {
+    "cells": 3260,
+    "in_ara_field": 0.842638036809816,
+    "own_ccf_label_in_field": 0.8475460122699386
+   }
+  }
+ },
+ "zhuang3": {
+  "cells_in_crop": 897666,
+  "hippocampal_cells": 78309,
+  "region_agreement": 0.8581006014634334,
+  "per_field": {
+   "CA1": 0.8082032701597919,
+   "CA2": 0.4,
+   "CA3": 0.8407116547362569,
+   "DG": 0.926632004621606,
+   "SUB": 0.8189197023867041
+  },
+  "cell_types": {
+   "037 DG Glut": {
+    "cells": 17792,
+    "in_ara_field": 0.9701551258992805,
+    "own_ccf_label_in_field": 0.9673448741007195
+   },
+   "016 CA1-ProS Glut": {
+    "cells": 10057,
+    "in_ara_field": 0.8582082131848464,
+    "own_ccf_label_in_field": 0.9342746345828776
+   },
+   "017 CA3 Glut": {
+    "cells": 5345,
+    "in_ara_field": 0.8215154349859682,
+    "own_ccf_label_in_field": 0.8606173994387278
+   }
+  }
+ },
+ "zhuang4": {
+  "cells_in_crop": 109486,
+  "hippocampal_cells": 13363,
+  "region_agreement": 0.817855272019756,
+  "per_field": {
+   "CA1": 0.7687452180566182,
+   "CA2": 0.35319148936170214,
+   "CA3": 0.8429715302491103,
+   "DG": 0.8267847260653016,
+   "SUB": 0.9538763493621197
+  },
+  "cell_types": {
+   "037 DG Glut": {
+    "cells": 2317,
+    "in_ara_field": 0.862753560638757,
+    "own_ccf_label_in_field": 0.9922313336210618
+   },
+   "016 CA1-ProS Glut": {
+    "cells": 2264,
+    "in_ara_field": 0.782243816254417,
+    "own_ccf_label_in_field": 0.8710247349823321
+   },
+   "017 CA3 Glut": {
+    "cells": 908,
+    "in_ara_field": 0.8524229074889867,
+    "own_ccf_label_in_field": 0.8810572687224669
+   }
+  }
+ }
+}

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-<link href="../assets/css/site.css?v=20261031092245" rel="stylesheet">
+<link href="../assets/css/site.css?v=20261102182233" rel="stylesheet">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <script type="importmap">
 { "imports": {
@@ -148,8 +148,9 @@
     <div class="sec">
       <div class="lbl">Data</div>
       <div class="row"><span class="seg" id="mode">
-        <button data-v="ish" class="active">ISH</button><button data-v="merfish">MERFISH</button><button data-v="overlay">overlay</button><button data-v="split">side by side</button><button data-v="hgea" title="Hippocampus Gene Expression Atlas genes (Bienkowski et al. 2018) on the Blue Brain ISH">HGEA-ISH</button>
+        <button data-v="ish" class="active">ISH</button><button data-v="merfish">MERFISH</button><button data-v="overlay">overlay</button><button data-v="split">side by side</button><button data-v="hgea" disabled title="under construction">HGEA-ISH<br><small>under construction</small></button><button data-v="hgeaara" title="the HGEA domains on the 3D Allen Reference Atlas, with MERFISH cells mapped into it">HGEA-ARA</button>
       </span></div>
+      <div class="row" id="ararow" style="display:none"><label class="ck" title="the HGEA domains (Bienkowski et al. 2018) as outlines, over the Allen Reference Atlas Nissl brain as realigned into CCFv3BBP; off restores the view"><input type="checkbox" id="araon"> HGEA + ARA Nissl (CCFv3BBP)</label></div>
       <div class="row"><label class="mini">brain</label><select class="sel" id="brain" style="flex:1"></select></div>
       <div class="row"><label class="mini">cell region</label><span class="seg" id="labelsrc"><button data-v="ccf" class="active" title="each cell's own Allen CCF parcellation (data owners' registration)">own CCF</button><button data-v="bbp" title="CCFv3BBP label at the cell's position (ISH atlas labels)">CCFv3BBP</button></span></div>
       <div class="row"><label class="mini">quality ≥</label><input type="range" id="quality" min="0" max="0.9" step="0.05" value="0"><span class="mini" id="qualityv">0</span></div>
@@ -218,7 +219,8 @@
     <div class="hint" id="hint">drag rotate · scroll zoom · right-drag pan</div>
     <div class="loading" id="loading">loading atlas…</div>
   </div>
+  <div id="hgeaara" style="display:none;grid-column:1/3;grid-row:2;min-height:0"><iframe id="hgeaaraframe" title="HGEA-ARA" style="border:0;width:100%;height:100%;display:block"></iframe></div>
 </div>
-<script type="module" src="../assets/js/atlas.js?v=20261031092245"></script>
+<script type="module" src="../assets/js/atlas.js?v=20261102182233"></script>
 </body>
 </html>

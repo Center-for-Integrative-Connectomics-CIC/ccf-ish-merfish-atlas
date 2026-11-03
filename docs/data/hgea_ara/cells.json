@@ -1,0 +1,62 @@
+{
+ "yao638850": {
+  "cells": 2476197,
+  "label": "Allen MERFISH, C57BL/6J 638850 (Yao et al. 2023)",
+  "short": "Allen 638850",
+  "bytes_gz": {
+   "pos": 12775282,
+   "cluster": 3031209,
+   "section": 758501,
+   "hgea": 171707,
+   "idx": 3424766
+  }
+ },
+ "zhuang1": {
+  "cells": 1707233,
+  "label": "Zhuang lab MERFISH, ABCA-1 (Zhang et al. 2023)",
+  "short": "Zhuang 1",
+  "bytes_gz": {
+   "pos": 8583483,
+   "cluster": 1756911,
+   "section": 451738,
+   "hgea": 124987,
+   "idx": 2361250
+  }
+ },
+ "zhuang2": {
+  "cells": 710805,
+  "label": "Zhuang lab MERFISH, ABCA-2 (Zhang et al. 2023)",
+  "short": "Zhuang 2",
+  "bytes_gz": {
+   "pos": 3554158,
+   "cluster": 726091,
+   "section": 130018,
+   "hgea": 52806,
+   "idx": 983052
+  }
+ },
+ "zhuang3": {
+  "cells": 897666,
+  "label": "Zhuang lab MERFISH, ABCA-3 (Zhang et al. 2023)",
+  "short": "Zhuang 3",
+  "bytes_gz": {
+   "pos": 4531258,
+   "cluster": 957856,
+   "section": 627468,
+   "hgea": 73225,
+   "idx": 1241565
+  }
+ },
+ "zhuang4": {
+  "cells": 109486,
+  "label": "Zhuang lab MERFISH, ABCA-4 (Zhang et al. 2023)",
+  "short": "Zhuang 4",
+  "bytes_gz": {
+   "pos": 512258,
+   "cluster": 104213,
+   "section": 28027,
+   "hgea": 10022,
+   "idx": 151458
+  }
+ }
+}

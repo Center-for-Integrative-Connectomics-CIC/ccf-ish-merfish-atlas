@@ -1,10 +1,10 @@
 // CCF Gene Atlas viewer: Blue Brain ISH (CCFv3BBP) x MERFISH (Allen Brain Cell Atlas), one brain at a time.
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CONFIG } from './config.js?v=20261031092245';
-import * as IO from './io.js?v=20261031092245';
-import { lut, NAMES as CMAPS, hexToRgb, gradientCss } from './colormaps.js?v=20261031092245';
-import { initHgea, selectDomain, loadSignature, hgeaBox } from './hgea.js?v=20261031092245';
+import { CONFIG } from './config.js?v=20261102182233';
+import * as IO from './io.js?v=20261102182233';
+import { lut, NAMES as CMAPS, hexToRgb, gradientCss } from './colormaps.js?v=20261102182233';
+import { initHgea, selectDomain, loadSignature, hgeaBox } from './hgea.js?v=20261102182233';
 
 const $ = (id) => document.getElementById(id);
 const [NA, ND, NL] = IO.GRID;
@@ -24,6 +24,7 @@ function readURL() {
   const q = new URLSearchParams(location.search);
   for (const k of URLKEYS) if (q.has(k)) S[k] = q.get(k);
   if (q.has('region')) S.regionAcr = q.get('region');
+  if (S.mode === 'hgea') S.mode = 'ish';   // the HGEA-ISH tab is under construction
 }
 function writeURL() {
   const q = new URLSearchParams(location.search);
@@ -34,6 +35,21 @@ function writeURL() {
 
 // ───────────────────────── data ─────────────────────────
 let REF, ONTO, TAX, ISH, DS, ANN = null, REFVOL = null, annPromise = null, refPromise = null;
+// overlay / side by side: the HGEA (as outlines) over the ARA Nissl, both in CCFv3BBP (data/hgea_ccf)
+let AUTO_GENE = null, araGene = null;   // the opening example gene is not carried into the HGEA-ARA tab
+const HC = { on: false, nissl: null, hgea: null, rgb: null, loading: null };
+const araActive = () => HC.on && HC.nissl && (S.mode === 'overlay' || S.mode === 'split');
+async function loadHgeaCcf() {
+  if (HC.loading) return HC.loading;
+  HC.loading = (async () => {
+    const meta = await IO.json(IO.data('hgea_ccf/meta.json'));
+    const [n, h] = await Promise.all([IO.array(IO.data('hgea_ccf/nissl.u8.gz'), 'uint8'), IO.array(IO.data('hgea_ccf/hgea_full.u8.gz'), 'uint8')]);
+    HC.rgb = new Uint8Array(256 * 3);
+    for (const d of meta.domains) { const c = [1, 3, 5].map((k) => parseInt(d.colour.slice(k, k + 2), 16)); HC.rgb.set(c, d.id * 3); HC.rgb.set(c, (d.id + 100) * 3); }
+    HC.nissl = n; HC.hgea = h;
+  })();
+  return HC.loading;
+}
 const B = {};                      // brain key -> loaded arrays
 const ishCache = new Map(), merCache = new Map();
 let GENES = new Map();             // symbol -> {ish: index|-1, mer: {key: index}}
@@ -59,8 +75,15 @@ async function boot() {
   init3D();
   annPromise = IO.array(IO.data('ref/annotation.u16.gz'), 'uint16').then((a) => { ANN = a; requestDraw(); });
   await loadBrain(S.brain);
-  if (!S.gene && !new URLSearchParams(location.search).has('nogene') && S.mode !== 'hgea') S.gene = 'Pvalb';   // open with a gene in both atlases
+  if (!S.gene && !new URLSearchParams(location.search).has('nogene') && S.mode !== 'hgea') S.gene = AUTO_GENE = 'Pvalb';   // open with a gene in both atlases
   if (S.mode === 'hgea') await enterHgea();
+  if (S.mode === 'hgeaara') showHgeaAra(true);
+  $('ararow').style.display = S.mode === 'overlay' || S.mode === 'split' ? 'flex' : 'none';
+  $('araon').addEventListener('change', async () => {
+    HC.on = $('araon').checked;
+    if (HC.on) { status('loading the HGEA and the ARA Nissl in CCFv3BBP…'); await loadHgeaCcf(); status(''); }
+    SL.key = ''; requestDraw();
+  });
   const urlGenes = (S.gene || '').split(',').filter(Boolean);
   for (const sym of urlGenes) {
     const m = sym.match(/^(sig|con):(.+)$/);
@@ -783,17 +806,18 @@ function voxAt(plane, k, u, v) {   // plane coords -> [ap, dv, lr]
 function sliceImage(plane, k, withIsh) {
   const P = PLANES[plane], img = new ImageData(P.W, P.H), px = img.data;
   const gs = withIsh ? shown().filter((g) => g.ish) : [], rngs = gs.map((g) => ishRange(g)), base = [0, 0, 0], hm = hpfRestrict();
-  const lab = new Uint16Array(P.W * P.H);
+  const lab = new Uint16Array(P.W * P.H), ara = araActive(), hg = ara ? new Uint8Array(P.W * P.H) : null;
   if (gs.length) brainMap();
   for (let v = 0; v < P.H; v++) for (let u = 0; u < P.W; u++) {
     const [a, d, l] = voxAt(plane, k, u, v), i = (a * ND + d) * NL + l, o = (v * P.W + u) * 4;
     const an = ANN ? ANN[i] : 0; lab[v * P.W + u] = an;
     let r = 0, g = 0, b = 0;
-    if (an) { const t = REFVOL ? REFVOL[i] : 70; r = g = b = 18 + t * 0.42; }
+    if (an) { const t = ara ? HC.nissl[i] * 0.8 : REFVOL ? REFVOL[i] : 70; r = g = b = 18 + t * 0.42; }
     if (gs.length && an && (!hm || hm[an])) {
       base[0] = r; base[1] = g; base[2] = b;
       const c = ishShade(packedIndex(i), gs, rngs, base); if (c) { r = c[0]; g = c[1]; b = c[2]; }
     }
+    if (hg) hg[v * P.W + u] = HC.hgea[i];
     px[o] = r; px[o + 1] = g; px[o + 2] = b; px[o + 3] = an ? 255 : 0;
   }
   const sel = S.region ? regionMask(S.region) : null;
@@ -801,10 +825,21 @@ function sliceImage(plane, k, withIsh) {
     const c = lab[v * P.W + u], rr = u + 1 < P.W ? lab[v * P.W + u + 1] : c, dd = v + 1 < P.H ? lab[(v + 1) * P.W + u] : c;
     const o = (v * P.W + u) * 4;
     if (sel && sel[c] && (!sel[rr] || !sel[dd])) { px[o] = 127; px[o + 1] = 230; px[o + 2] = 211; px[o + 3] = 255; }
-    else if (c !== rr || c !== dd) { px[o] = Math.min(255, px[o] + 70); px[o + 1] = Math.min(255, px[o + 1] + 70); px[o + 2] = Math.min(255, px[o + 2] + 70); px[o + 3] = 255; }
+    else if (!ara && (c !== rr || c !== dd)) { px[o] = Math.min(255, px[o] + 70); px[o + 1] = Math.min(255, px[o + 1] + 70); px[o + 2] = Math.min(255, px[o + 2] + 70); px[o + 3] = 255; }
   }
   const cv = document.createElement('canvas'); cv.width = P.W; cv.height = P.H; cv.getContext('2d').putImageData(img, 0, 0);
-  return { canvas: cv, lab };
+  return { canvas: cv, lab, hgea: hg ? hgeaLines(hg, P.W, P.H) : null };
+}
+
+function hgeaLines(hg, W, H) {   // HGEA domain borders in their legend colours, a layer drawn over the cells
+  const img = new ImageData(W, H), px = img.data;
+  for (let v = 0; v < H; v++) for (let u = 0; u < W; u++) {
+    const j = v * W + u, h = hg[j];
+    if (!h || !((u + 1 < W && hg[j + 1] !== h) || (u > 0 && hg[j - 1] !== h) || (v + 1 < H && hg[j + W] !== h) || (v > 0 && hg[j - W] !== h))) continue;
+    const o = j * 4; px[o] = HC.rgb[h * 3]; px[o + 1] = HC.rgb[h * 3 + 1]; px[o + 2] = HC.rgb[h * 3 + 2]; px[o + 3] = 255;
+  }
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H; cv.getContext('2d').putImageData(img, 0, 0);
+  return cv;
 }
 
 async function ensureRef() {
@@ -827,7 +862,7 @@ function drawSlice() {
     const [fa, fd, fl] = SL.focus, fu = plane === 'sagittal' ? fa : fl, fv = plane === 'horizontal' ? fa : fd;
     SL.tx = fit * (P.W / 2 - fu) / dpr; SL.ty = fit * (P.H / 2 - fv) / dpr;
   }
-  const key = `${plane}|${k}|${S.gene}|${S.cmap}|${S.ishlo}|${S.ishhi}|${S.region}|${!!REFVOL}|${shown().map((g) => g.symbol).join('+')}|${!!hpfRestrict()}`;
+  const key = `${plane}|${k}|${araActive()}|${S.gene}|${S.cmap}|${S.ishlo}|${S.ishhi}|${S.region}|${!!REFVOL}|${shown().map((g) => g.symbol).join('+')}|${!!hpfRestrict()}`;
   if (SL.key !== key) {
     SL.key = key;
     SL.imgIsh = sliceImage(plane, k, true);
@@ -842,6 +877,7 @@ function drawSlice() {
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage((p.ish ? SL.imgIsh : SL.imgPlain).canvas, ox, oy, P.W * fit, P.H * fit);
     if (p.cells) drawCellsOnSlice(ctx, plane, k, ox, oy, fit, j);
+    const hl = (p.ish ? SL.imgIsh : SL.imgPlain).hgea; if (hl) ctx.drawImage(hl, ox, oy, P.W * fit, P.H * fit);
     ctx.restore();
   });
   if (panels.length > 1) { ctx.fillStyle = 'rgba(255,255,255,.12)'; ctx.fillRect(pw - dpr, 0, 2 * dpr, H); }
@@ -1138,6 +1174,21 @@ function progress(got, total) {
 }
 
 // ───────────────────────── UI ─────────────────────────
+// HGEA-ARA tab: the HGEA domains on the 3D ARA with MERFISH cells (../hgea-ara/, embedded), in place of the panel and
+// stage; it has the same Data section (mode buttons), which posts the chosen mode back here
+function showHgeaAra(on) {
+  const box = $('hgeaara'), fr = $('hgeaaraframe'), g0 = (S.gene || '').split(',')[0], g = g0 === AUTO_GENE ? '' : g0;
+  if (on && !fr.src) { fr.src = `../hgea-ara/index.html?embed=1&gene=${encodeURIComponent(g)}`; araGene = g; }
+  else if (on && g !== araGene) { fr.contentWindow.postMessage({ hgeaGene: g }, '*'); araGene = g; }   // follow a gene changed on this page
+  box.style.display = on ? 'block' : 'none';
+  document.querySelector('aside.panel').style.display = on ? 'none' : '';
+  $('stage').style.display = on ? 'none' : '';
+}
+addEventListener('message', (e) => {
+  const v = e.data && e.data.hgeaMode;
+  if (v) document.querySelector(`#mode button[data-v="${v}"]`)?.click();
+});
+
 function setSeg(id, v) {
   document.querySelectorAll(`#${id} button`).forEach((b) => b.classList.toggle('active', b.dataset.v === v));
   const map = { mode: 'mode', labelsrc: 'labelsrc', colorby: 'colorby', level: 'level', view: 'view' };
@@ -1186,7 +1237,7 @@ function initUI() {
   sel.value = S.brain; sel.addEventListener('change', async () => { await loadBrain(sel.value); writeURL(); renderAvail(); buildIshPoints(); sectionTicks(); SL.key = ''; requestDraw(); });
   CMAPS.forEach((c) => { const o = document.createElement('option'); o.value = c; o.textContent = c; $('cmap').appendChild(o); });
   $('cmap').value = S.cmap; $('cmap').addEventListener('change', () => { S.cmap = $('cmap').value; writeURL(); recolorCells(); buildIshPoints(); SL.key = ''; renderLegend(); });
-  seg('mode', async (v) => { if (v === 'merfish') await showOnPanelBrain(); recolorCells(); if (v === 'hgea') await enterHgea(); else { $('hgeasec').style.display = 'none'; showHpfMeshes(false); SL.focus = null; SL.zoom = 1; SL.tx = SL.ty = 0; } buildIshPoints(); hud(); renderLegend(); SL.key = ''; requestDraw(); });
+  seg('mode', async (v) => { showHgeaAra(v === 'hgeaara'); $('ararow').style.display = v === 'overlay' || v === 'split' ? 'flex' : 'none'; if (v === 'hgeaara') return; if (v === 'merfish') await showOnPanelBrain(); recolorCells(); if (v === 'hgea') await enterHgea(); else { $('hgeasec').style.display = 'none'; showHpfMeshes(false); SL.focus = null; SL.zoom = 1; SL.tx = SL.ty = 0; } buildIshPoints(); hud(); renderLegend(); SL.key = ''; requestDraw(); });
   seg('labelsrc', () => { recolorCells(); refreshProfile(); });
   seg('colorby', () => { recolorCells(); });
   seg('level', () => { recolorCells(); refreshProfile(); });

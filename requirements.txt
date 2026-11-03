@@ -9,5 +9,6 @@ scikit-image
 openpyxl
 pyfqmr
 huggingface_hub
+antspyx
 # dev / tests
 playwright
